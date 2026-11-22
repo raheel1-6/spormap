@@ -10,6 +10,7 @@ import { upper, type Locale } from "../../lib/format.ts";
 import { placeLabels, type LabelCandidate } from "../../lib/labels.ts";
 import { getRegion, type NavState, type RegionIndex, type RegionMeta } from "../../lib/regions.ts";
 import { categoryName, regionName } from "../../lib/render.ts";
+import type { Sport } from "../../lib/filter.ts";
 
 export interface MapViewOptions {
   /** Cloud Map ID: switches to the vector renderer (cloud style + eased camera). */
@@ -56,6 +57,7 @@ export class MapView {
     glow: new Set(),
     outline: new Set(),
   };
+  private sport: Sport = null;
   private visible: Record<Role, Set<string>> = {
     context: new Set(),
     fill: new Set(),
@@ -243,7 +245,23 @@ export class MapView {
     this.labels.update(
       focus.children.map((id) => getRegion(index, id)),
       nav.selected,
+      this.sport,
     );
+  }
+
+  /** Recolours regions and relabels them for one sport (null = all sports, by top category). */
+  setSport(sport: Sport): void {
+    if (sport === this.sport) return;
+    this.sport = sport;
+    this.restyle();
+    if (this.nav) {
+      const focus = getRegion(this.opts.index, this.nav.focus);
+      this.labels.update(
+        focus.children.map((id) => getRegion(this.opts.index, id)),
+        this.nav.selected,
+        sport,
+      );
+    }
   }
 
   /**
@@ -349,9 +367,24 @@ export class MapView {
     const v = (name: string) => css.getPropertyValue(name).trim();
     const selected = this.nav?.selected ?? null;
     const shown = (role: Role, id: string) => this.visible[role].has(id);
+    const sport = this.sport;
+    const empty = EMPTY_COLOR[this.scheme];
+    // With a sport chosen: that sport's colour, stronger where there are more of its venues
+    // (relative to the busiest region on screen); regions without any stay neutral.
+    const sportColor = sport ? (CATEGORY_BY_ID.get(sport)?.color[this.scheme] ?? empty) : empty;
+    const maxCount = sport
+      ? Math.max(1, ...[...this.visible.fill].map((id) => this.opts.index.regions[id]?.counts[sport] ?? 0))
+      : 1;
     const fillOf = (id: string) => {
-      const top = this.opts.index.regions[id]?.top[0];
-      return (top ? CATEGORY_BY_ID.get(top)?.color : undefined)?.[this.scheme] ?? EMPTY_COLOR[this.scheme];
+      const region = this.opts.index.regions[id];
+      if (sport) return (region?.counts[sport] ?? 0) > 0 ? sportColor : empty;
+      const top = region?.top[0];
+      return (top ? CATEGORY_BY_ID.get(top)?.color : undefined)?.[this.scheme] ?? empty;
+    };
+    const opacityOf = (id: string) => {
+      if (!sport) return 1;
+      const n = this.opts.index.regions[id]?.counts[sport] ?? 0;
+      return n ? 0.45 + 0.55 * Math.sqrt(n / maxCount) : 1;
     };
 
     this.layers.fill.setStyle((f) => {
@@ -361,7 +394,7 @@ export class MapView {
       return {
         zIndex: isSelected ? 3 : 2,
         fillColor: isSelected ? v("--region-selected") : fillOf(id),
-        fillOpacity: 1,
+        fillOpacity: isSelected ? 1 : opacityOf(id),
         strokeColor: v("--paper"),
         strokeWeight: 1,
         cursor: "pointer",
@@ -433,21 +466,25 @@ function createLabelLayer(maps: typeof google.maps, view: MapView) {
       this.root.remove();
     }
 
-    update(regions: RegionMeta[], selected: string | null): void {
+    update(regions: RegionMeta[], selected: string | null, sport: Sport = null): void {
       this.selected = selected;
       this.root.replaceChildren();
       this.items = regions.map((region) => {
         const el = document.createElement("div");
         el.className = `region-label region-label--${region.level}${region.id === selected ? " region-label--selected" : ""}`;
         el.setAttribute("aria-hidden", "true");
-        const top = region.top[0];
-        el.innerHTML = `<span class="region-label__name"></span>${top ? '<span class="region-label__cat"></span>' : ""}`;
+        // Second line: the region's top sport, or with a filter "3 HALI SAHA" (hidden when 0).
+        const count = sport ? (region.counts[sport] ?? 0) : 0;
+        const sub = sport
+          ? count
+            ? `${count} ${categoryName(sport, view.locale)}`
+            : ""
+          : region.top[0]
+            ? categoryName(region.top[0], view.locale)
+            : "";
+        el.innerHTML = `<span class="region-label__name"></span>${sub ? '<span class="region-label__cat"></span>' : ""}`;
         el.querySelector(".region-label__name")!.textContent = regionName(region, view.locale);
-        if (top)
-          el.querySelector(".region-label__cat")!.textContent = upper(
-            categoryName(top, view.locale),
-            view.locale,
-          );
+        if (sub) el.querySelector(".region-label__cat")!.textContent = upper(sub, view.locale);
         this.root.append(el);
         return { region, el, w: 0, h: 0 };
       });

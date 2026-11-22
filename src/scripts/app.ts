@@ -29,6 +29,7 @@ import { createPerfProbe } from "./perf.ts";
 import { GOOGLE_MAP_ID, forceRaster } from "../config.ts";
 import { districtOf, venuesIn, type OsmVenue } from "../lib/venues.ts";
 import { createLiveRatings } from "./live.ts";
+import { filterVenues, parseSport, regionCount, withSport, type Sport } from "../lib/filter.ts";
 
 const shell = document.querySelector<HTMLElement>("[data-app]");
 if (shell) void boot(shell);
@@ -46,6 +47,15 @@ async function boot(shell: HTMLElement) {
   let nav: NavState = goTo(index, shell.dataset["region"] ?? index.root);
   let map: MapView | null = null;
   const perf = createPerfProbe();
+  // Sport filter (?spor=halisaha): survives drilling up/down and is part of the URL.
+  let sport: Sport = parseSport(location.search);
+  let chipsExpanded = false;
+  const panelHtml = (venues: OsmVenue[]) => renderRegionPanel(ctx, nav, venues, { sport, chipsExpanded });
+  const cachedVenues = () => {
+    const d = currentDistrict();
+    return (d && venueCache.get(d)) || [];
+  };
+  const urlFor = (id: string) => href(ctx, id) + withSport(location.search, sport);
 
   const titleFor = (id: string) => {
     const r = getRegion(index, id);
@@ -79,7 +89,7 @@ async function boot(shell: HTMLElement) {
   });
   const mountLive = () => {
     const slot = panelBody.querySelector<HTMLElement>("[data-live]");
-    if (slot) live.mount(slot, getRegion(index, current(nav)));
+    if (slot) live.mount(slot, getRegion(index, current(nav)), sport);
   };
 
   /** Panel venues + map pins for the current region; re-renders the panel once data arrives. */
@@ -94,10 +104,22 @@ async function boot(shell: HTMLElement) {
     const list = await districtVenues(district).catch(() => []);
     if (current(nav) !== region.id) return; // user moved on
     if (!hadData) {
-      panelBody.innerHTML = renderRegionPanel(ctx, nav, list);
+      panelBody.innerHTML = panelHtml(list);
       mountLive();
     }
-    void map?.setPins(venuesIn(region, list));
+    void map?.setPins(filterVenues(venuesIn(region, list), sport));
+  }
+
+  /** Switches the sport filter: panel, map colours, pins, Google search and URL all follow. */
+  function setSport(next: Sport) {
+    if (next === sport) return;
+    sport = next;
+    panelBody.innerHTML = panelHtml(cachedVenues());
+    mountLive();
+    map?.setSport(sport);
+    void syncVenues();
+    hideTooltip();
+    history.pushState({ id: current(nav) }, "", urlFor(current(nav)));
   }
 
   function selectVenue(id: string | null, { scroll = false } = {}) {
@@ -114,9 +136,9 @@ async function boot(shell: HTMLElement) {
     const changed = current(next) !== current(nav) || next.focus !== nav.focus;
     if (changed) perf?.navigationStarted();
     nav = next;
-    const district = currentDistrict();
+    if (changed) chipsExpanded = false;
     const swap = () => {
-      panelBody.innerHTML = renderRegionPanel(ctx, nav, (district && venueCache.get(district)) || []);
+      panelBody.innerHTML = panelHtml(cachedVenues());
       crumbs.innerHTML = renderBreadcrumb(ctx, nav);
       panelBody.closest("[data-panel]")?.scrollTo({ top: 0 });
       crumbs.scrollLeft = crumbs.scrollWidth;
@@ -131,7 +153,7 @@ async function boot(shell: HTMLElement) {
     } else swap();
     const id = current(nav);
     document.title = titleFor(id);
-    if (push && changed) history.pushState({ id }, "", href(ctx, id));
+    if (push && changed) history.pushState({ id }, "", urlFor(id));
     hideTooltip();
     void map?.show(nav);
     void syncVenues();
@@ -146,8 +168,21 @@ async function boot(shell: HTMLElement) {
     map?.highlightPin(panelBody.querySelector<HTMLElement>(".venue-row--active")?.dataset["venue"] ?? null),
   );
   panelBody.addEventListener("click", (e) => {
-    const row = (e.target as Element).closest<HTMLElement>("[data-venue]");
+    const target = e.target as Element;
+    const row = target.closest<HTMLElement>("[data-venue]");
     if (row) selectVenue(row.dataset["venue"]!);
+    // Sport chips are real links (?spor=…) so they work without JS; with JS they filter in place.
+    const chip = target.closest<HTMLAnchorElement>("a[data-sport]");
+    if (chip && !(e as MouseEvent).metaKey && !(e as MouseEvent).ctrlKey) {
+      e.preventDefault();
+      setSport(chip.dataset["sport"] || null);
+    }
+    if (target.closest("[data-chips-more]")) {
+      chipsExpanded = true;
+      panelBody.innerHTML = panelHtml(cachedVenues());
+      mountLive();
+      panelBody.querySelector<HTMLElement>(".sport-chips .chip:last-child")?.focus();
+    }
   });
 
   // Links inside the panel and breadcrumb navigate in place.
@@ -168,7 +203,16 @@ async function boot(shell: HTMLElement) {
 
   window.addEventListener("popstate", () => {
     const id = resolvePath(index, location.pathname.slice(base.length)) ?? index.root;
+    const urlSport = parseSport(location.search);
+    if (urlSport !== sport) {
+      sport = urlSport;
+      map?.setSport(sport);
+    }
     render(goTo(index, id), { push: false });
+    // render() skips the panel when only the filter changed; refresh it for that case.
+    panelBody.innerHTML = panelHtml(cachedVenues());
+    mountLive();
+    void syncVenues();
   });
 
   window.addEventListener("keydown", (e) => {
@@ -180,8 +224,13 @@ async function boot(shell: HTMLElement) {
     const r = index.regions[id];
     if (!r) return;
     const cats = r.top.slice(0, 3).map((c) => esc(upper(categoryName(c, locale), locale)));
+    const what = sport
+      ? categoryName(sport, locale).toLocaleLowerCase("tr-TR")
+      : locale === "tr"
+        ? "mekan"
+        : "venues";
     tooltip.innerHTML = `<strong class="tooltip__name">${esc(regionName(r, locale))}</strong>
-      <span class="tooltip__count">${esc(formatCount(r.venues, locale))} ${locale === "tr" ? "mekan" : "venues"}</span>
+      <span class="tooltip__count">${esc(formatCount(regionCount(r, sport), locale))} ${esc(what)}</span>
       ${cats.length ? `<span class="tooltip__cats">${cats.join(" · ")}</span>` : ""}`;
     tooltip.hidden = false;
     const rect = tooltip.getBoundingClientRect();
@@ -191,6 +240,12 @@ async function boot(shell: HTMLElement) {
   }
   function hideTooltip() {
     tooltip.hidden = true;
+  }
+
+  // Arrived with ?spor=…: the static panel shows all sports, so redraw it filtered.
+  if (sport) {
+    panelBody.innerHTML = panelHtml(cachedVenues());
+    mountLive();
   }
 
   // ---------- map ----------
@@ -213,6 +268,7 @@ async function boot(shell: HTMLElement) {
     if (import.meta.env.DEV || perf)
       (window as unknown as { __spormap: unknown }).__spormap = { map: map.map, index };
     perf?.attach(map.map);
+    map.setSport(sport);
     await map.loadOverview();
     await map.show(nav, { animate: false });
     void syncVenues();

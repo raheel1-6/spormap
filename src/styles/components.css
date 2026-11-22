@@ -449,3 +449,24 @@ button.venue-row {
 .live-link {
   color: var(--accent);
 }
+
+/* ---------- Sport filter chips ---------- */
+.sport-chips {
+  margin: 4px 0 10px;
+}
+a.chip {
+  text-decoration: none;
+}
+.chip__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  outline: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+  flex: none;
+}
+.chip[aria-pressed="true"] .chip__dot {
+  outline-color: var(--on-rust);
+}
+.venue-row--muted {
+  opacity: 0.5;
+}

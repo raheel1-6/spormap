@@ -15,6 +15,19 @@ import {
   type RegionMeta,
 } from "./regions.ts";
 import { groupByCategory, venuesIn, type OsmVenue } from "./venues.ts";
+import { filterVenues, regionCount, sortChildren, sportChips, withSport, type Sport } from "./filter.ts";
+
+export interface PanelOptions {
+  /** Active sport filter (category id) or null for all. */
+  sport?: Sport;
+  /** Show every sport chip instead of the first few plus "+N". */
+  chipsExpanded?: boolean;
+}
+
+/** Category name in lower case for running text ("2 halı saha"). */
+function sportWord(id: string, locale: Locale): string {
+  return categoryName(id, locale).toLocaleLowerCase(locale === "tr" ? "tr-TR" : "en-GB");
+}
 
 export interface RenderContext {
   index: RegionIndex;
@@ -36,6 +49,11 @@ const T = {
     noneHere: "Bu bölgede OpenStreetMap'te kayıtlı spor mekanı yok.",
     osmHeading: (name: string, n: string) => `${name} · ${n} mekan`,
     badges: { o: "Açık hava", b: "Belediye tesisi" },
+    all: "Tümü",
+    filterLabel: "Spor türüne göre filtrele",
+    more: (n: number) => `+${n}`,
+    moreLabel: (n: number) => `${n} spor türü daha göster`,
+    noneOfSport: (sport: string) => `Bu bölgede OpenStreetMap'te kayıtlı ${sport} yok.`,
   },
   en: {
     crumbs: "Location",
@@ -49,6 +67,11 @@ const T = {
     noneHere: "No sports venues recorded in OpenStreetMap here.",
     osmHeading: (name: string, n: string) => `${name} · ${n} venues`,
     badges: { o: "Outdoor", b: "Municipal facility" },
+    all: "All",
+    filterLabel: "Filter by sport",
+    more: (n: number) => `+${n}`,
+    moreLabel: (n: number) => `Show ${n} more sports`,
+    noneOfSport: (sport: string) => `No ${sport} recorded in OpenStreetMap here.`,
   },
 } as const;
 
@@ -82,46 +105,94 @@ export function renderBreadcrumb(ctx: RenderContext, nav: NavState): string {
 
 const PIN_GLYPH = `<svg class="venue-row__pin" width="10" height="14" viewBox="0 0 10 14" aria-hidden="true"><path d="M5 0a5 5 0 0 0-5 5c0 3.7 5 9 5 9s5-5.3 5-9a5 5 0 0 0-5-5z"/><circle cx="5" cy="5" r="1.8" fill="var(--paper)"/></svg>`;
 
-/** OSM venues of a district or mahalle, in category sections. Rows link to their map pins. */
-export function renderVenues(ctx: RenderContext, region: RegionMeta, venues: OsmVenue[]): string {
+/** One OSM venue row (button linked to its map pin). */
+function venueRow(ctx: RenderContext, v: OsmVenue, showMahalle: boolean): string {
+  const t = T[ctx.locale];
+  const badges = [...(v.f ?? "")]
+    .map(
+      (b) =>
+        `<span class="venue-row__badge" title="${esc(t.badges[b as "o" | "b"] ?? "")}">${b === "o" ? "A" : "B"}</span>`,
+    )
+    .join("");
+  const mahalle = showMahalle ? ctx.index.regions[v.m] : undefined;
+  return `<li><button type="button" class="venue-row" data-venue="${esc(v.id)}">
+    <span class="venue-row__line">
+      <span class="venue-row__name">${esc(v.name)}${badges}</span>
+      <span class="venue-row__leader" aria-hidden="true"></span>
+      ${PIN_GLYPH}
+    </span>
+    ${mahalle ? `<span class="venue-row__sub">${esc(regionName(mahalle, ctx.locale))}</span>` : ""}
+  </button></li>`;
+}
+
+/**
+ * OSM venues of a district or mahalle. All sports: one section per sport. One sport: a flat list
+ * under a heading like "CADDEBOSTAN · 2 HALI SAHA". Rows link to their map pins.
+ */
+export function renderVenues(
+  ctx: RenderContext,
+  region: RegionMeta,
+  venues: OsmVenue[],
+  sport: Sport = null,
+): string {
   const t = T[ctx.locale];
   if (region.level !== "ilce" && region.level !== "mahalle") return "";
   const live = `<div class="live-slot" data-live></div>`;
-  if (!venues.length) return `${live}<p class="panel-empty">${esc(t.noneHere)}</p>`;
+  const list = filterVenues(venues, sport);
+  const name = regionName(region, ctx.locale);
+  if (!list.length) {
+    return `${live}<p class="panel-empty">${esc(sport ? t.noneOfSport(sportWord(sport, ctx.locale)) : t.noneHere)}</p>`;
+  }
   const showMahalle = region.level === "ilce";
-  return `${live}<h2 class="list-heading">${esc(upper(t.osmHeading(regionName(region, ctx.locale), formatCount(venues.length, ctx.locale)), ctx.locale))}</h2>
-    ${groupByCategory(venues)
+  if (sport) {
+    const heading = `${name} · ${formatCount(list.length, ctx.locale)} ${categoryName(sport, ctx.locale)}`;
+    const rows = [...list].sort((a, b) => a.name.localeCompare(b.name, "tr"));
+    return `${live}<h2 class="list-heading">${esc(upper(heading, ctx.locale))}</h2>
+      <ul class="venue-list">${rows.map((v) => venueRow(ctx, v, showMahalle)).join("")}</ul>`;
+  }
+  return `${live}<h2 class="list-heading">${esc(upper(t.osmHeading(name, formatCount(list.length, ctx.locale)), ctx.locale))}</h2>
+    ${groupByCategory(list)
       .map(
         (g) => `<h3 class="section-header">${esc(upper(categoryName(g.cat, ctx.locale), ctx.locale))}</h3>
-      <ul class="venue-list">${g.venues
-        .map((v) => {
-          const badges = [...(v.f ?? "")]
-            .map(
-              (b) =>
-                `<span class="venue-row__badge" title="${esc(t.badges[b as "o" | "b"] ?? "")}">${b === "o" ? "A" : "B"}</span>`,
-            )
-            .join("");
-          const sub = showMahalle
-            ? ctx.index.regions[v.m]
-              ? regionName(ctx.index.regions[v.m]!, ctx.locale)
-              : ""
-            : "";
-          return `<li><button type="button" class="venue-row" data-venue="${esc(v.id)}">
-            <span class="venue-row__line">
-              <span class="venue-row__name">${esc(v.name)}${badges}</span>
-              <span class="venue-row__leader" aria-hidden="true"></span>
-              ${PIN_GLYPH}
-            </span>
-            ${sub ? `<span class="venue-row__sub">${esc(sub)}</span>` : ""}
-          </button></li>`;
-        })
-        .join("")}</ul>`,
+      <ul class="venue-list">${g.venues.map((v) => venueRow(ctx, v, showMahalle)).join("")}</ul>`,
       )
       .join("")}`;
 }
 
-/** Panel for a region: eyebrow path, italic title, ornament, summary, venues and child regions. */
-export function renderRegionPanel(ctx: RenderContext, nav: NavState, venues: OsmVenue[] = []): string {
+/** "Tümü" + one chip per sport present (biggest first) + "+N" to expand the rest. */
+export function renderSportChips(
+  ctx: RenderContext,
+  region: RegionMeta,
+  sport: Sport,
+  expanded = false,
+): string {
+  const t = T[ctx.locale];
+  const { shown, hidden } = sportChips(region, sport, expanded ? Number.POSITIVE_INFINITY : 5);
+  const base = `${ctx.base}${pathOf(ctx.index, region.id)}/`;
+  const chip = (id: string | null, label: string, count: number | null) => {
+    const color = id ? CATEGORY_BY_ID.get(id)?.color.light : null;
+    return `<a class="chip" role="button" href="${esc(base + withSport("", id))}" data-sport="${esc(id ?? "")}" aria-pressed="${sport === id ? "true" : "false"}">${
+      color ? `<span class="chip__dot" style="background:${esc(color)}" aria-hidden="true"></span>` : ""
+    }${esc(label)}${count !== null ? `<span class="chip__count">${esc(formatCount(count, ctx.locale))}</span>` : ""}</a>`;
+  };
+  return `<div class="chips sport-chips" role="group" aria-label="${esc(t.filterLabel)}">
+    ${chip(null, t.all, null)}
+    ${shown.map((c) => chip(c.id, categoryName(c.id, ctx.locale), c.count)).join("")}
+    ${
+      hidden.length
+        ? `<button type="button" class="chip chip--more" data-chips-more aria-expanded="false" aria-label="${esc(t.moreLabel(hidden.length))}">${esc(t.more(hidden.length))}</button>`
+        : ""
+    }
+  </div>`;
+}
+
+/** Panel for a region: eyebrow path, italic title, ornament, summary, sport chips, venues, child regions. */
+export function renderRegionPanel(
+  ctx: RenderContext,
+  nav: NavState,
+  venues: OsmVenue[] = [],
+  { sport = null, chipsExpanded = false }: PanelOptions = {},
+): string {
   const t = T[ctx.locale];
   const region = getRegion(ctx.index, current(nav));
   const eyebrow = ancestry(ctx.index, region.id)
@@ -130,25 +201,31 @@ export function renderRegionPanel(ctx: RenderContext, nav: NavState, venues: Osm
     .map((r) => upper(regionName(r, ctx.locale), ctx.locale))
     .join("  ·  ");
 
-  const top = region.top.slice(0, 3).map((c) => esc(categoryName(c, ctx.locale)));
-  const summary = region.venues
-    ? `${esc(t.venues(formatCount(region.venues, ctx.locale)))}${top.length ? ` · ${top.join(", ")}` : ""}`
-    : esc(t.none);
+  let summary: string;
+  if (sport) {
+    summary = esc(`${formatCount(regionCount(region, sport), ctx.locale)} ${sportWord(sport, ctx.locale)}`);
+  } else {
+    const top = region.top.slice(0, 3).map((c) => esc(categoryName(c, ctx.locale)));
+    summary = region.venues
+      ? `${esc(t.venues(formatCount(region.venues, ctx.locale)))}${top.length ? ` · ${top.join(", ")}` : ""}`
+      : esc(t.none);
+  }
 
-  const children = region.children
-    .map((id) => getRegion(ctx.index, id))
-    .sort((a, b) => b.venues - a.venues || a.name.tr.localeCompare(b.name.tr, "tr"));
-
+  const children = sortChildren(
+    region.children.map((id) => getRegion(ctx.index, id)),
+    sport,
+  );
   const childList = children.length
     ? `<h2 class="section-header">${esc(upper(t.children[children[0]!.level], ctx.locale))}</h2>
        <ul class="venue-list">${children
          .map((c) => {
            const topCat = c.top[0] ? categoryName(c.top[0], ctx.locale) : "";
-           return `<li><a class="venue-row" href="${esc(href(ctx, c.id))}" data-region="${esc(c.id)}">
+           const count = regionCount(c, sport);
+           return `<li><a class="venue-row${sport && !count ? " venue-row--muted" : ""}" href="${esc(href(ctx, c.id) + withSport("", sport))}" data-region="${esc(c.id)}">
              <span class="venue-row__line">
                <span class="venue-row__name">${esc(regionName(c, ctx.locale))}</span>
                <span class="venue-row__leader" aria-hidden="true"></span>
-               <span class="venue-row__rating">${esc(formatCount(c.venues, ctx.locale))}</span>
+               <span class="venue-row__rating">${esc(formatCount(count, ctx.locale))}</span>
              </span>
              <span class="venue-row__sub">${esc(topCat || t.none)}</span>
            </a></li>`;
@@ -170,7 +247,8 @@ export function renderRegionPanel(ctx: RenderContext, nav: NavState, venues: Osm
       <div class="ornament" aria-hidden="true">✦ ✦ ✦</div>
       <p class="panel-summary">${summary}</p>
     </header>
-    ${renderVenues(ctx, region, venuesIn(region, venues))}
+    ${region.venues || sport ? renderSportChips(ctx, region, sport, chipsExpanded) : ""}
+    ${renderVenues(ctx, region, venuesIn(region, venues), sport)}
     ${childList}
     <footer class="panel-footer">
       ${region.level === "ilce" || region.level === "mahalle" ? `<p><b>A</b> ${esc(t.badges.o)} · <b>B</b> ${esc(t.badges.b)}</p>` : ""}
