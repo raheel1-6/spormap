@@ -32,6 +32,6 @@ jobs:
           json=$(echo "$body" | sed '$d')
           echo "live search: HTTP $status"
           echo "$json" | jq -c '.'
-          echo "$json" | jq '{count: ((.places // []) | length), sample: [(.places // [])[:3][] | {name, rating, count}]}'
+          echo "$json" | jq '{places: ((.places // []) | length), withRating: ((.places // []) | map(select(.rating != null)) | length)}'
           [ "$status" = 200 ] || fail=1
           exit $fail
