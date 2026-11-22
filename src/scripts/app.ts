@@ -134,7 +134,8 @@ async function boot(shell: HTMLElement) {
         id && window.matchMedia("(hover: hover)").matches ? showTooltip(id, x, y) : hideTooltip(),
       padding: overlayPadding,
     });
-    if (import.meta.env.DEV)
+    // Debug handle for profiling (dev server, or ?perf on the live site).
+    if (import.meta.env.DEV || perf)
       (window as unknown as { __spormap: unknown }).__spormap = { map: map.map, index };
     perf?.attach(map.map);
     await map.loadOverview();
