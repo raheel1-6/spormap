@@ -2,7 +2,7 @@
 
 A paper-styled, hierarchical map of İstanbul (İl › Yaka › İlçe › Mahalle) showing the best
 sport venues in each area with live Google ratings. Static site on GitHub Pages at
-[spormap.com.tr](https://spormap.com.tr).
+[raheel1-6.github.io/spormap](https://raheel1-6.github.io/spormap/) (custom domain later).
 
 Key decisions (platform, Google terms, free-tier limits) are in [docs/DECISIONS.md](docs/DECISIONS.md).
 

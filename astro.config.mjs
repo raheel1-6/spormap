@@ -1,10 +1,10 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 
-// Static site for GitHub Pages. Until the custom domain (public/CNAME) is live, Pages serves the
-// site under /spormap/; the deploy workflow passes that prefix in via SITE_BASE.
+// Static site for GitHub Pages, served at raheel1-6.github.io/spormap/ (no custom domain yet;
+// spormap.com.tr is not registered). The deploy workflow passes origin + base path in.
 export default defineConfig({
-  site: process.env.SITE_ORIGIN ?? "https://spormap.com.tr",
+  site: process.env.SITE_ORIGIN ?? "https://raheel1-6.github.io",
   base: process.env.SITE_BASE || "/",
   output: "static",
   trailingSlash: "ignore",

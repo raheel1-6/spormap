@@ -11,7 +11,7 @@ The Android M1 work (Kotlin/Compose theme) is preserved on the `android` branch.
 
 Stack: Astro (static output, one page per region) + TypeScript islands for the map, panel and
 search. Fonts: Fraunces + Inter variable (SIL OFL 1.1, self-hosted via Fontsource).
-Domain: `spormap.com.tr` (`public/CNAME`).
+Address: `https://raheel1-6.github.io/spormap/` (free). `spormap.com.tr` is not registered; owner chose to stay on the free address for now (2026-11-22). Adding a domain later only needs DNS records plus the Pages custom-domain setting; the build picks up the new base path automatically.
 
 ## D1 · Ratings: Google, live, never stored — agreed (option A)
 
@@ -36,7 +36,7 @@ Regions drawn from our OSM GeoJSON (Data layer, or a Maps Datasets upload if pro
 labels as HTML overlays with a collision pass. The dot grid sits on the page behind a transparent
 map background. Google logo and attribution stay visible at the bottom-left, under the breadcrumb.
 
-The browser key is public by nature: restricted to `https://spormap.com.tr/*` (+ localhost for
+The browser key is public by nature: restricted to `https://raheel1-6.github.io/spormap/*` (+ localhost for
 development) and to the Maps JavaScript API only.
 
 ## D3 · Boundaries: OpenStreetMap only — agreed
