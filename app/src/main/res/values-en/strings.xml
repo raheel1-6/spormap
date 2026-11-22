@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Istanbul Sports Map</string>
+    <string name="chip_all">All</string>
+    <string name="chip_best">Top rated %1$s+</string>
+    <string name="chip_outdoor">Outdoor</string>
+    <string name="a11y_current_level">Current level</string>
+    <string name="a11y_venue_row">%1$s, rated %2$s, %3$s reviews, %4$s</string>
+    <string name="showcase_footer">Design preview · sample data is not real</string>
+</resources>

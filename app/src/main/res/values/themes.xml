@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Window background matches the map paper so there is no white flash on launch. -->
+    <style name="Theme.SporHaritasi" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/map_background</item>
+    </style>
+    <color name="map_background">#DED2BA</color>
+    <color name="launcher_background">#F8EFDE</color>
+    <color name="launcher_rust">#AE4F23</color>
+    <color name="launcher_ink">#7A2A14</color>
+</resources>

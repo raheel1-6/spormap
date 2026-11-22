@@ -1,0 +1,31 @@
+# Overrides on top of detekt's default config (buildUponDefaultConfig = true).
+naming:
+  # Compose files are named after their main composable, not their first type.
+  MatchingDeclarationName:
+    active: false
+  FunctionNaming:
+    ignoreAnnotated: ['Composable']
+  TopLevelPropertyNaming:
+    constantPattern: '[A-Z][A-Za-z0-9_]*'
+
+complexity:
+  LongParameterList:
+    functionThreshold: 8
+    ignoreDefaultParameters: true
+    ignoreAnnotated: ['Composable']
+  LongMethod:
+    ignoreAnnotated: ['Composable']
+  CyclomaticComplexMethod:
+    ignoreAnnotated: ['Composable']
+
+style:
+  MagicNumber:
+    # Design tokens (colours, dp/sp sizes) are intentionally literal.
+    excludes: ['**/designsystem/**', '**/test/**', '**/androidTest/**', '**/showcase/**']
+    ignorePropertyDeclaration: true
+  UnusedPrivateMember:
+    ignoreAnnotated: ['Preview']
+  MaxLineLength:
+    maxLineLength: 140
+  WildcardImport:
+    active: true

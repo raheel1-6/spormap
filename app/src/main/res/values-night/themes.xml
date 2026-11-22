@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SporHaritasi" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/map_background</item>
+    </style>
+    <color name="map_background">#2B251D</color>
+</resources>

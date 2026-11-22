@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">İstanbul Spor Haritası</string>
+    <string name="chip_all">Tümü</string>
+    <string name="chip_best">En İyiler %1$s+</string>
+    <string name="chip_outdoor">Açık Hava</string>
+    <string name="a11y_current_level">Şu anki seviye</string>
+    <string name="a11y_venue_row">%1$s, puan %2$s, %3$s değerlendirme, %4$s</string>
+    <string name="showcase_footer">Tasarım önizlemesi · örnek veriler gerçek değildir</string>
+</resources>
