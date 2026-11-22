@@ -56,12 +56,16 @@ async function boot(shell: HTMLElement) {
     const swap = () => {
       panelBody.innerHTML = renderRegionPanel(ctx, nav);
       crumbs.innerHTML = renderBreadcrumb(ctx, nav);
-      panelBody.scrollTop = 0;
+      panelBody.closest("[data-panel]")?.scrollTo({ top: 0 });
       crumbs.scrollLeft = crumbs.scrollWidth;
     };
     // Crossfade the panel (View Transitions where supported; reduced motion disables it in CSS).
-    if (changed && "startViewTransition" in document) document.startViewTransition(swap);
-    else swap();
+    if (changed && !document.hidden && "startViewTransition" in document) {
+      // Transitions reject when skipped (e.g. tab hidden); the swap still happens.
+      const t = document.startViewTransition(swap);
+      t.finished.catch(() => {});
+      t.ready.catch(() => {});
+    } else swap();
     const id = current(nav);
     document.title = titleFor(id);
     if (push && changed) history.pushState({ id }, "", href(ctx, id));
@@ -135,5 +139,5 @@ async function boot(shell: HTMLElement) {
 function overlayPadding(): google.maps.Padding {
   const wide = window.matchMedia("(min-width: 768px)").matches;
   if (wide) return { top: 76, left: 24, bottom: 76, right: 64 };
-  return { top: 72, left: 12, right: 12, bottom: 84 };
+  return { top: 72, left: 12, right: 12, bottom: 100 };
 }
