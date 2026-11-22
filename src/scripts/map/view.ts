@@ -224,6 +224,9 @@ export class MapView {
 
     await this.ready;
     this.fit(animate);
+    // First load only: if the renderer was still initialising, the first camera move can be
+    // dropped. Re-fit once when the map settles (no-op when it already fits).
+    if (!animate) this.maps.event.addListenerOnce(this.map, "idle", () => this.fit(false));
     this.labels.update(
       focus.children.map((id) => getRegion(index, id)),
       nav.selected,
