@@ -22,7 +22,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     <meta name="theme-color" content="#DED2BA" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#2B251D" media="(prefers-color-scheme: dark)" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="icon"
+      href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/favicon.svg`}
+      type="image/svg+xml"
+    />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
