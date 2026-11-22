@@ -35,7 +35,7 @@ npm run data      # rebuild OSM boundaries + venue counts (add -- --refresh to r
 
 - [x] W1 Setup, theme, fonts, CI, Pages deploy
 - [x] W2 Boundary pipeline + İstanbul → Yaka → İlçe map (mahalle drill-in included)
-- [ ] W3 Mahalle level, lazy loading, performance
+- [x] W3 Mahalle level, lazy loading, performance (see docs/PERFORMANCE.md)
 - [ ] W4 OSM venue dataset + Places proxy
 - [ ] W5 Venue panel / bottom sheet, chips, ranking, tooltip
 - [ ] W6 Venue detail, search, favorites, region URLs
