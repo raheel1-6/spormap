@@ -31,6 +31,7 @@ jobs:
           status=$(echo "$body" | tail -n1)
           json=$(echo "$body" | sed '$d')
           echo "live search: HTTP $status"
-          echo "$json" | jq '{count: (.places | length), sample: [.places[:3][] | {name, rating, count}], error}'
+          echo "$json" | jq -c '.'
+          echo "$json" | jq '{count: ((.places // []) | length), sample: [(.places // [])[:3][] | {name, rating, count}]}'
           [ "$status" = 200 ] || fail=1
           exit $fail

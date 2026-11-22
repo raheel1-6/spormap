@@ -143,7 +143,15 @@ export async function handle(req: Request, env: Env, fetchImpl: typeof fetch = f
     }),
   });
   if (upstream.status === 429) return reply(503, { error: "quota" });
-  if (!upstream.ok) return reply(502, { error: "upstream", status: upstream.status });
+  if (!upstream.ok) {
+    // Pass Google's error type through (e.g. PERMISSION_DENIED) for diagnosis; full message to the
+    // Worker log only (`wrangler tail`). The key itself never appears in either.
+    const detail = (await upstream.json().catch(() => ({}))) as {
+      error?: { status?: string; message?: string };
+    };
+    console.error("places upstream", upstream.status, detail.error?.status, detail.error?.message);
+    return reply(502, { error: "upstream", status: upstream.status, reason: detail.error?.status ?? null });
+  }
 
   const data = (await upstream.json()) as { places?: GooglePlace[] };
   return reply(200, { places: (data.places ?? []).map(toPlace).filter((p): p is Place => p !== null) });
