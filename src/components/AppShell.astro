@@ -9,6 +9,7 @@ import { join } from "node:path";
 import type { Locale } from "../lib/format.ts";
 import { goTo, getRegion, pathOf, type RegionIndex } from "../lib/regions.ts";
 import { categoryName, regionName, renderBreadcrumb, renderRegionPanel } from "../lib/render.ts";
+import { districtOf, type OsmVenue } from "../lib/venues.ts";
 
 interface Props {
   regionId: string;
@@ -22,6 +23,13 @@ const index = JSON.parse(
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const ctx = { index, locale, base };
 const nav = goTo(index, regionId);
+// OSM venues are pre-rendered into district and mahalle pages (crawlable, no JS needed).
+const district = districtOf(index, getRegion(index, regionId));
+const venues: OsmVenue[] = district
+  ? (JSON.parse(
+      readFileSync(join(process.cwd(), `public/data/venues/${district}.json`), "utf8"),
+    ) as OsmVenue[])
+  : [];
 const region = getRegion(index, regionId);
 const name = regionName(region, locale);
 const cats = region.top
@@ -64,7 +72,7 @@ const canonicalPath = `${base}${pathOf(index, regionId)}/`;
     <aside class="paper panel" aria-label={locale === "tr" ? "Bölge" : "Region"} data-panel>
       <div class="paper__rule">
         <div class="paper__body" data-panel-body>
-          <Fragment set:html={renderRegionPanel(ctx, nav)} />
+          <Fragment set:html={renderRegionPanel(ctx, nav, venues)} />
         </div>
       </div>
     </aside>

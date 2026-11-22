@@ -14,6 +14,7 @@ import {
   type RegionIndex,
   type RegionMeta,
 } from "./regions.ts";
+import { groupByCategory, venuesIn, type OsmVenue } from "./venues.ts";
 
 export interface RenderContext {
   index: RegionIndex;
@@ -32,6 +33,9 @@ const T = {
     children: { yaka: "Yakalar", ilce: "İlçeler", mahalle: "Mahalleler", il: "" },
     updated: "Son güncelleme",
     source: "Mekan ve sınır verisi",
+    noneHere: "Bu bölgede OpenStreetMap'te kayıtlı spor mekanı yok.",
+    osmHeading: (name: string, n: string) => `${name} · ${n} mekan`,
+    badges: { o: "Açık hava", b: "Belediye tesisi" },
   },
   en: {
     crumbs: "Location",
@@ -42,6 +46,9 @@ const T = {
     children: { yaka: "Sides", ilce: "Districts", mahalle: "Neighbourhoods", il: "" },
     updated: "Last updated",
     source: "Venue and boundary data",
+    noneHere: "No sports venues recorded in OpenStreetMap here.",
+    osmHeading: (name: string, n: string) => `${name} · ${n} venues`,
+    badges: { o: "Outdoor", b: "Municipal facility" },
   },
 } as const;
 
@@ -73,8 +80,48 @@ export function renderBreadcrumb(ctx: RenderContext, nav: NavState): string {
   return `<ol>${items.join("")}</ol>`;
 }
 
-/** Panel for a region: eyebrow path, italic title, ornament, summary and the list of child regions. */
-export function renderRegionPanel(ctx: RenderContext, nav: NavState): string {
+const PIN_GLYPH = `<svg class="venue-row__pin" width="10" height="14" viewBox="0 0 10 14" aria-hidden="true"><path d="M5 0a5 5 0 0 0-5 5c0 3.7 5 9 5 9s5-5.3 5-9a5 5 0 0 0-5-5z"/><circle cx="5" cy="5" r="1.8" fill="var(--paper)"/></svg>`;
+
+/** OSM venues of a district or mahalle, in category sections. Rows link to their map pins. */
+export function renderVenues(ctx: RenderContext, region: RegionMeta, venues: OsmVenue[]): string {
+  const t = T[ctx.locale];
+  if (region.level !== "ilce" && region.level !== "mahalle") return "";
+  const live = `<div class="live-slot" data-live></div>`;
+  if (!venues.length) return `${live}<p class="panel-empty">${esc(t.noneHere)}</p>`;
+  const showMahalle = region.level === "ilce";
+  return `${live}<h2 class="list-heading">${esc(upper(t.osmHeading(regionName(region, ctx.locale), formatCount(venues.length, ctx.locale)), ctx.locale))}</h2>
+    ${groupByCategory(venues)
+      .map(
+        (g) => `<h3 class="section-header">${esc(upper(categoryName(g.cat, ctx.locale), ctx.locale))}</h3>
+      <ul class="venue-list">${g.venues
+        .map((v) => {
+          const badges = [...(v.f ?? "")]
+            .map(
+              (b) =>
+                `<span class="venue-row__badge" title="${esc(t.badges[b as "o" | "b"] ?? "")}">${b === "o" ? "A" : "B"}</span>`,
+            )
+            .join("");
+          const sub = showMahalle
+            ? ctx.index.regions[v.m]
+              ? regionName(ctx.index.regions[v.m]!, ctx.locale)
+              : ""
+            : "";
+          return `<li><button type="button" class="venue-row" data-venue="${esc(v.id)}">
+            <span class="venue-row__line">
+              <span class="venue-row__name">${esc(v.name)}${badges}</span>
+              <span class="venue-row__leader" aria-hidden="true"></span>
+              ${PIN_GLYPH}
+            </span>
+            ${sub ? `<span class="venue-row__sub">${esc(sub)}</span>` : ""}
+          </button></li>`;
+        })
+        .join("")}</ul>`,
+      )
+      .join("")}`;
+}
+
+/** Panel for a region: eyebrow path, italic title, ornament, summary, venues and child regions. */
+export function renderRegionPanel(ctx: RenderContext, nav: NavState, venues: OsmVenue[] = []): string {
   const t = T[ctx.locale];
   const region = getRegion(ctx.index, current(nav));
   const eyebrow = ancestry(ctx.index, region.id)
@@ -123,8 +170,10 @@ export function renderRegionPanel(ctx: RenderContext, nav: NavState): string {
       <div class="ornament" aria-hidden="true">✦ ✦ ✦</div>
       <p class="panel-summary">${summary}</p>
     </header>
+    ${renderVenues(ctx, region, venuesIn(region, venues))}
     ${childList}
     <footer class="panel-footer">
+      ${region.level === "ilce" || region.level === "mahalle" ? `<p><b>A</b> ${esc(t.badges.o)} · <b>B</b> ${esc(t.badges.b)}</p>` : ""}
       <p>${esc(t.source)}: ${esc(ctx.index.meta.attribution)}</p>
       ${updated ? `<p>${esc(t.updated)}: ${esc(updated)}</p>` : ""}
     </footer>`;

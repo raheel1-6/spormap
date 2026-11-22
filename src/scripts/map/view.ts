@@ -14,6 +14,10 @@ import { categoryName, regionName } from "../../lib/render.ts";
 export interface MapViewOptions {
   /** Cloud Map ID: switches to the vector renderer (cloud style + eased camera). */
   mapId?: string | undefined;
+  /** Force the raster renderer (still with the Map ID's cloud style). */
+  raster?: boolean;
+  /** A venue pin was clicked or activated with the keyboard. */
+  onPinClick?: (id: string) => void;
   index: RegionIndex;
   locale: Locale;
   /** Base URL for data files, ending in "/". */
@@ -62,6 +66,9 @@ export class MapView {
   /** Resolves on the map's first "idle": fitting bounds earlier uses a stale viewport size. */
   private readonly ready: Promise<void>;
   private animation = 0;
+  private markerLib: google.maps.MarkerLibrary | undefined;
+  private readonly pins = new Map<string, google.maps.marker.AdvancedMarkerElement>();
+  private pinToken = 0;
 
   constructor(
     element: HTMLElement,
@@ -94,7 +101,12 @@ export class MapView {
       // No street basemap: every Google feature hidden, the page's paper + dot grid shows through.
       // No street basemap. Raster: every Google feature hidden here, the page paper + dot grid shows
       // through. Vector (Map ID): this is ignored and the Map ID's cloud style must hide everything.
-      ...(opts.mapId ? { mapId: opts.mapId } : { styles: [{ stylers: [{ visibility: "off" }] }] }),
+      ...(opts.mapId
+        ? {
+            mapId: opts.mapId,
+            renderingType: opts.raster ? maps.RenderingType.RASTER : maps.RenderingType.VECTOR,
+          }
+        : { styles: [{ stylers: [{ visibility: "off" }] }] }),
     });
 
     const layer = (zIndex: number, clickable: boolean) => {
@@ -272,6 +284,40 @@ export class MapView {
     this.animation = window.requestAnimationFrame(step);
   }
 
+  /**
+   * Pinpoint markers at the exact venue coordinates. Replaces any previous set; pass [] to clear.
+   * Needs a Map ID (Advanced Markers); without one, pins are skipped.
+   */
+  async setPins(pins: { id: string; name: string; ll: [number, number] }[]): Promise<void> {
+    const token = ++this.pinToken;
+    if (!this.opts.mapId) return;
+    this.markerLib ??= (await this.maps.importLibrary("marker")) as google.maps.MarkerLibrary;
+    if (token !== this.pinToken) return; // a newer call superseded this one
+    for (const marker of this.pins.values()) marker.map = null;
+    this.pins.clear();
+    for (const pin of pins) {
+      const marker = new this.markerLib.AdvancedMarkerElement({
+        map: this.map,
+        position: { lng: pin.ll[0], lat: pin.ll[1] },
+        content: pinElement(),
+        title: pin.name,
+        gmpClickable: true,
+        zIndex: 10,
+      });
+      marker.addListener("gmp-click", () => this.opts.onPinClick?.(pin.id));
+      this.pins.set(pin.id, marker);
+    }
+  }
+
+  /** Emphasises one pin (e.g. while its panel row is hovered); null clears. */
+  highlightPin(id: string | null): void {
+    for (const [pinId, marker] of this.pins) {
+      const active = pinId === id;
+      (marker.content as HTMLElement | null)?.classList.toggle("venue-pin--active", active);
+      marker.zIndex = active ? 20 : 10;
+    }
+  }
+
   get locale(): Locale {
     return this.opts.locale;
   }
@@ -363,6 +409,14 @@ export class MapView {
 }
 
 /** HTML labels drawn in an overlay pane, re-placed on every redraw (pan/zoom). */
+/** Small rust pinpoint; the tip sits exactly on the venue's coordinates (anchor = bottom centre). */
+function pinElement(): HTMLElement {
+  const el = document.createElement("div");
+  el.className = "venue-pin";
+  el.innerHTML = `<svg width="16" height="22" viewBox="0 0 16 22" aria-hidden="true"><path class="venue-pin__body" d="M8 1a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7z"/><circle class="venue-pin__dot" cx="8" cy="8" r="2.6"/></svg>`;
+  return el;
+}
+
 function createLabelLayer(maps: typeof google.maps, view: MapView) {
   class LabelLayer extends maps.OverlayView {
     private readonly root = document.createElement("div");

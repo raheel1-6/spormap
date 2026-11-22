@@ -27,6 +27,7 @@ npm run data      # rebuild OSM boundaries + venue counts (add -- --refresh to r
 | `src/pages/`                | `index.astro` + `[...path].astro`: one static page per region; `tasarim.astro`: design preview |
 | `src/scripts/`              | Client: `app.ts` (state, URL, panel), `map/view.ts` (Google map, choropleth, labels)           |
 | `src/lib/`                  | Shared logic: hierarchy (`regions.ts`), geometry, labels, categories, HTML rendering           |
+| `proxy/`                    | Cloudflare Worker: Places API proxy for live ratings (docs/PROXY.md)                           |
 | `pipeline/`                 | OSM → GeoJSON + region index (`npm run data`)                                                  |
 | `public/data/`              | Generated: `regions.json`, `geo/overview.geojson`, `geo/mahalle/*`, `venues/*`                 |
 | `.github/workflows/`        | `ci.yml` (branches, PRs) and `deploy.yml` (main → GitHub Pages)                                |
@@ -36,7 +37,7 @@ npm run data      # rebuild OSM boundaries + venue counts (add -- --refresh to r
 - [x] W1 Setup, theme, fonts, CI, Pages deploy
 - [x] W2 Boundary pipeline + İstanbul → Yaka → İlçe map (mahalle drill-in included)
 - [x] W3 Mahalle level, lazy loading, performance (see docs/PERFORMANCE.md)
-- [ ] W4 OSM venue dataset + Places proxy
+- [x] W4 OSM venue lists + pins, Places proxy (deploy: docs/PROXY.md)
 - [ ] W5 Venue panel / bottom sheet, chips, ranking, tooltip
 - [ ] W6 Venue detail, search, favorites, region URLs
 - [ ] W7 English, accessibility, dark mode polish, layouts

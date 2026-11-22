@@ -24,6 +24,7 @@ import {
   type Position,
 } from "../src/lib/geo.ts";
 import type { RegionIndex, RegionMeta } from "../src/lib/regions.ts";
+import type { OsmVenue } from "../src/lib/venues.ts";
 import type { BoundaryRecord } from "./build-boundaries.ts";
 import { overpass } from "./overpass.ts";
 
@@ -33,17 +34,6 @@ const refresh = process.argv.includes("--refresh");
 
 const LEISURE =
   "fitness_centre|sports_centre|stadium|pitch|swimming_pool|water_park|track|fitness_station|ice_rink|golf_course|miniature_golf|horse_riding|sports_hall|dojo";
-
-/** Compact venue record shipped to the browser. */
-export interface OsmVenue {
-  id: string; // "n123", "w456", "r789"
-  name: string;
-  cat: string;
-  m: string; // mahalle id
-  ll: Position;
-  /** Badges: o = outdoor, b = municipal (belediye). */
-  f?: string;
-}
 
 interface OsmElement {
   type: "node" | "way" | "relation";
@@ -112,7 +102,11 @@ async function main() {
         : "");
     venues.push({ id, name: tags["name"], cat, m: m.id, ll, ...(flags ? { f: flags } : {}) });
   }
-  console.log(`  ${venues.length} venues classified (${skipped} outside mahalle polygons)`);
+  const before = venues.length;
+  dedupe(venues);
+  console.log(
+    `  ${venues.length} venues classified (${before - venues.length} duplicates merged, ${skipped} outside mahalle polygons)`,
+  );
 
   // ---------- aggregate ----------
   const regions: Record<string, RegionMeta> = {};
@@ -159,6 +153,29 @@ async function main() {
       .map((c) => `${c} ${ist.counts[c]}`)
       .join(", ")}`,
   );
+}
+
+/**
+ * OSM often maps one venue twice (a point and a building/area outline). Same normalised name and
+ * category within DEDUPE_METRES → keep one, preferring the area (its centre is the better pin),
+ * and merge badges. Mutates the array.
+ */
+const DEDUPE_METRES = 200;
+function dedupe(venues: OsmVenue[]): void {
+  const key = (v: OsmVenue) => `${v.cat}|${v.name.toLocaleLowerCase("tr-TR").replace(/\s+/g, " ").trim()}`;
+  const metres = (a: Position, b: Position) => Math.hypot((a[0] - b[0]) * 84_000, (a[1] - b[1]) * 111_000);
+  const kept: OsmVenue[] = [];
+  for (const v of venues) {
+    const twin = kept.find((k) => key(k) === key(v) && metres(k.ll, v.ll) <= DEDUPE_METRES);
+    if (!twin) {
+      kept.push(v);
+      continue;
+    }
+    const flags = [...new Set([...(twin.f ?? ""), ...(v.f ?? "")])].join("");
+    if (twin.id.startsWith("n") && !v.id.startsWith("n")) Object.assign(twin, { id: v.id, ll: v.ll, m: v.m });
+    if (flags) twin.f = flags;
+  }
+  venues.splice(0, venues.length, ...kept);
 }
 
 await main();

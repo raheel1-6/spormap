@@ -34,6 +34,8 @@ jobs:
           SITE_BASE: ${{ steps.pages.outputs.base_path }}
           # Public browser key (repository variable), restricted by referrer in Google Cloud.
           PUBLIC_GOOGLE_MAPS_KEY: ${{ vars.GOOGLE_MAPS_KEY }}
+          # Places proxy Worker URL (docs/PROXY.md); empty = OSM-only, no ratings button.
+          PUBLIC_PLACES_PROXY_URL: ${{ vars.PLACES_PROXY_URL }}
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist

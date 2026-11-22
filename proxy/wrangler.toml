@@ -1,0 +1,17 @@
+# Cloudflare Worker for the Places proxy. Deploy steps: docs/PROXY.md
+name = "spormap-places"
+main = "src/index.ts"
+compatibility_date = "2026-11-01"
+
+[vars]
+ALLOWED_ORIGINS = "https://raheel1-6.github.io,http://localhost:4321,http://localhost:4322"
+
+# Per-IP rate limit (free on Workers): 20 searches per minute per visitor.
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1001"
+simple = { limit = 20, period = 60 }
+
+# Secrets (never in this file):
+#   wrangler secret put PLACES_API_KEY
+#   wrangler secret put TURNSTILE_SECRET   (optional)

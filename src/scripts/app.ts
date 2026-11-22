@@ -26,7 +26,9 @@ import {
 import { loadGoogleMaps } from "./map/google.ts";
 import { MapView } from "./map/view.ts";
 import { createPerfProbe } from "./perf.ts";
-import { GOOGLE_MAP_ID, useVectorMap } from "../config.ts";
+import { GOOGLE_MAP_ID, forceRaster } from "../config.ts";
+import { districtOf, venuesIn, type OsmVenue } from "../lib/venues.ts";
+import { createLiveRatings } from "./live.ts";
 
 const shell = document.querySelector<HTMLElement>("[data-app]");
 if (shell) void boot(shell);
@@ -53,15 +55,72 @@ async function boot(shell: HTMLElement) {
       : `Sports venues in ${name} · Istanbul Sports Map`;
   };
 
+  // ---------- OSM venues: one static file per district, fetched once ----------
+  const venueFiles = new Map<string, Promise<OsmVenue[]>>();
+  const venueCache = new Map<string, OsmVenue[]>();
+  function districtVenues(districtId: string): Promise<OsmVenue[]> {
+    let pending = venueFiles.get(districtId);
+    if (!pending) {
+      pending = fetch(`${base}/data/venues/${districtId}.json`)
+        .then((r) => (r.ok ? (r.json() as Promise<OsmVenue[]>) : []))
+        .then((list) => (venueCache.set(districtId, list), list));
+      pending.catch(() => venueFiles.delete(districtId));
+      venueFiles.set(districtId, pending);
+    }
+    return pending;
+  }
+  const currentDistrict = () => districtOf(index, getRegion(index, current(nav)));
+
+  // Live Google ratings (only when a proxy URL is configured at build time).
+  const live = createLiveRatings({
+    proxyUrl: import.meta.env.PUBLIC_PLACES_PROXY_URL,
+    locale,
+    onResults: (places) => void map?.setPins(places),
+  });
+  const mountLive = () => {
+    const slot = panelBody.querySelector<HTMLElement>("[data-live]");
+    if (slot) live.mount(slot, getRegion(index, current(nav)));
+  };
+
+  /** Panel venues + map pins for the current region; re-renders the panel once data arrives. */
+  async function syncVenues() {
+    const region = getRegion(index, current(nav));
+    const district = currentDistrict();
+    if (!district) {
+      void map?.setPins([]);
+      return;
+    }
+    const hadData = venueCache.has(district);
+    const list = await districtVenues(district).catch(() => []);
+    if (current(nav) !== region.id) return; // user moved on
+    if (!hadData) {
+      panelBody.innerHTML = renderRegionPanel(ctx, nav, list);
+      mountLive();
+    }
+    void map?.setPins(venuesIn(region, list));
+  }
+
+  function selectVenue(id: string | null, { scroll = false } = {}) {
+    for (const row of panelBody.querySelectorAll<HTMLElement>(".venue-row--active"))
+      row.classList.remove("venue-row--active");
+    map?.highlightPin(id);
+    if (!id) return;
+    const row = panelBody.querySelector<HTMLElement>(`[data-venue="${CSS.escape(id)}"]`);
+    row?.classList.add("venue-row--active");
+    if (scroll) row?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }
+
   function render(next: NavState, { push = true } = {}) {
     const changed = current(next) !== current(nav) || next.focus !== nav.focus;
     if (changed) perf?.navigationStarted();
     nav = next;
+    const district = currentDistrict();
     const swap = () => {
-      panelBody.innerHTML = renderRegionPanel(ctx, nav);
+      panelBody.innerHTML = renderRegionPanel(ctx, nav, (district && venueCache.get(district)) || []);
       crumbs.innerHTML = renderBreadcrumb(ctx, nav);
       panelBody.closest("[data-panel]")?.scrollTo({ top: 0 });
       crumbs.scrollLeft = crumbs.scrollWidth;
+      mountLive();
     };
     // Crossfade the panel (View Transitions where supported; reduced motion disables it in CSS).
     if (changed && !document.hidden && "startViewTransition" in document) {
@@ -75,7 +134,21 @@ async function boot(shell: HTMLElement) {
     if (push && changed) history.pushState({ id }, "", href(ctx, id));
     hideTooltip();
     void map?.show(nav);
+    void syncVenues();
   }
+
+  // Panel venue rows ↔ map pins: hover/focus emphasises the pin, click selects it.
+  panelBody.addEventListener("pointerover", (e) => {
+    const row = (e.target as Element).closest<HTMLElement>("[data-venue]");
+    map?.highlightPin(row?.dataset["venue"] ?? null);
+  });
+  panelBody.addEventListener("pointerleave", () =>
+    map?.highlightPin(panelBody.querySelector<HTMLElement>(".venue-row--active")?.dataset["venue"] ?? null),
+  );
+  panelBody.addEventListener("click", (e) => {
+    const row = (e.target as Element).closest<HTMLElement>("[data-venue]");
+    if (row) selectVenue(row.dataset["venue"]!);
+  });
 
   // Links inside the panel and breadcrumb navigate in place.
   shell.addEventListener("click", (e) => {
@@ -124,7 +197,8 @@ async function boot(shell: HTMLElement) {
   try {
     const maps = await loadGoogleMaps(import.meta.env.PUBLIC_GOOGLE_MAPS_KEY, locale);
     map = new MapView(mapEl, maps, {
-      mapId: useVectorMap() ? GOOGLE_MAP_ID : undefined,
+      mapId: GOOGLE_MAP_ID,
+      raster: forceRaster(),
       index,
       locale,
       dataUrl: `${base}/data/`,
@@ -133,6 +207,7 @@ async function boot(shell: HTMLElement) {
       onHover: (id, x, y) =>
         id && window.matchMedia("(hover: hover)").matches ? showTooltip(id, x, y) : hideTooltip(),
       padding: overlayPadding,
+      onPinClick: (id) => selectVenue(id, { scroll: true }),
     });
     // Debug handle for profiling (dev server, or ?perf on the live site).
     if (import.meta.env.DEV || perf)
@@ -140,6 +215,7 @@ async function boot(shell: HTMLElement) {
     perf?.attach(map.map);
     await map.loadOverview();
     await map.show(nav, { animate: false });
+    void syncVenues();
     shell.classList.add("map-ready");
   } catch (error) {
     console.error(error);
