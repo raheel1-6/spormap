@@ -31,7 +31,8 @@ jobs:
           status=$(echo "$body" | tail -n1)
           json=$(echo "$body" | sed '$d')
           echo "live search: HTTP $status"
-          echo "$json" | jq -c '.'
+          # Never print Google content (names, ratings) into the public log: counts and errors only.
+          echo "$json" | jq -c '{error, status, reason}'
           echo "$json" | jq '{places: ((.places // []) | length), withRating: ((.places // []) | map(select(.rating != null)) | length)}'
           [ "$status" = 200 ] || fail=1
           exit $fail
