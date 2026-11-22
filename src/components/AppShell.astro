@@ -1,0 +1,144 @@
+---
+/**
+ * The map app for one region. The panel and breadcrumb are rendered statically here (same
+ * functions the client uses), so each region page is complete HTML before any JS runs.
+ */
+import Base from "../layouts/Base.astro";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import type { Locale } from "../lib/format.ts";
+import { goTo, getRegion, pathOf, type RegionIndex } from "../lib/regions.ts";
+import { categoryName, regionName, renderBreadcrumb, renderRegionPanel } from "../lib/render.ts";
+
+interface Props {
+  regionId: string;
+  locale?: Locale;
+}
+
+const { regionId, locale = "tr" } = Astro.props;
+const index = JSON.parse(
+  readFileSync(join(process.cwd(), "public/data/regions.json"), "utf8"),
+) as RegionIndex;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const ctx = { index, locale, base };
+const nav = goTo(index, regionId);
+const region = getRegion(index, regionId);
+const name = regionName(region, locale);
+const cats = region.top
+  .slice(0, 3)
+  .map((c) => categoryName(c, locale).toLocaleLowerCase("tr-TR"))
+  .join(", ");
+const title =
+  region.level === "il" ? "İstanbul Spor Haritası" : `${name} spor mekanları · İstanbul Spor Haritası`;
+const description = `${name} bölgesindeki en iyi spor mekanları${cats ? `: ${cats}` : ""}. İlçe ve mahalle haritası, Google puanlarıyla.`;
+const canonicalPath = `${base}${pathOf(index, regionId)}`;
+---
+
+<Base title={title} description={description} lang={locale} canonicalPath={canonicalPath}>
+  <div class="app" data-app data-region={regionId} data-locale={locale} data-base={base}>
+    <main class="stage" aria-label={locale === "tr" ? "Harita" : "Map"}>
+      <div class="map" data-map></div>
+
+      <div class="search-slot">
+        <label class="search">
+          <span class="visually-hidden">{locale === "tr" ? "Ara" : "Search"}</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M10 4a6 6 0 1 0 3.9 10.6l4.7 4.7 1.4-1.4-4.7-4.7A6 6 0 0 0 10 4zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"
+            ></path>
+          </svg>
+          <input type="search" placeholder="Mekan, semt veya tür ara" disabled title="W6" />
+        </label>
+      </div>
+
+      <div class="crumb-slot">
+        <nav class="breadcrumb" aria-label={locale === "tr" ? "Konum" : "Location"} data-crumbs>
+          <Fragment set:html={renderBreadcrumb(ctx, nav)} />
+        </nav>
+      </div>
+
+      <div class="tooltip paper" data-tooltip hidden role="status"></div>
+    </main>
+
+    <aside class="paper panel" aria-label={locale === "tr" ? "Bölge" : "Region"} data-panel>
+      <div class="paper__rule">
+        <div class="paper__body" data-panel-body>
+          <Fragment set:html={renderRegionPanel(ctx, nav)} />
+        </div>
+      </div>
+    </aside>
+  </div>
+</Base>
+
+<script>
+  import "../scripts/app.ts";
+</script>
+
+<style>
+  .app {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr min(420px, 40vw);
+  }
+
+  .stage {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--map-bg);
+    background-image: radial-gradient(var(--map-dot) 1px, transparent 1.2px);
+    background-size: 14px 14px;
+  }
+
+  .map {
+    position: absolute;
+    inset: 0;
+  }
+
+  .search-slot {
+    position: absolute;
+    top: max(16px, env(safe-area-inset-top));
+    left: 16px;
+    width: min(360px, calc(100% - 80px));
+    z-index: 2;
+  }
+
+  .crumb-slot {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: max(30px, env(safe-area-inset-bottom)); /* Google logo sits below */
+    z-index: 2;
+    pointer-events: none;
+  }
+  .crumb-slot :global(.breadcrumb) {
+    pointer-events: auto;
+  }
+
+  .panel {
+    margin: 16px 16px 16px 0;
+    overflow-y: auto;
+    view-transition-name: panel;
+  }
+
+  @media (max-width: 767px) {
+    .app {
+      grid-template-columns: 1fr;
+    }
+    .panel {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-height: 45dvh;
+      margin: 0;
+      border-radius: 14px 14px 0 0;
+      padding-bottom: max(6px, env(safe-area-inset-bottom));
+      z-index: 3;
+    }
+    .crumb-slot {
+      bottom: calc(45dvh + 12px);
+    }
+  }
+</style>

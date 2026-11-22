@@ -1,0 +1,142 @@
+[
+  {
+    "id": "w1307616943",
+    "name": "Ankara Mercan Court",
+    "cat": "basketbol",
+    "m": "tuzla--postane",
+    "ll": [29.279567, 40.823393],
+    "f": "o"
+  },
+  {
+    "id": "n6477203296",
+    "name": "Atılım Fitness",
+    "cat": "fitness",
+    "m": "tuzla--cami",
+    "ll": [29.305445, 40.815127]
+  },
+  {
+    "id": "w1489251116",
+    "name": "Cezeri Meslek Lisesi Spor Salonu",
+    "cat": "stadyum",
+    "m": "tuzla--yayla",
+    "ll": [29.305291, 40.834196]
+  },
+  {
+    "id": "w339350105",
+    "name": "Eski Spor Salonu",
+    "cat": "stadyum",
+    "m": "tuzla--orta",
+    "ll": [29.3741, 40.895322]
+  },
+  {
+    "id": "w466131416",
+    "name": "Evliya Çelebi Parkı",
+    "cat": "basketbol",
+    "m": "tuzla--evliya-celebi",
+    "ll": [29.30435, 40.840824]
+  },
+  {
+    "id": "n5959828252",
+    "name": "Fırat Spor Kompleksi",
+    "cat": "stadyum",
+    "m": "tuzla--akfirat",
+    "ll": [29.416261, 40.927364]
+  },
+  {
+    "id": "n13856415940",
+    "name": "HK Fitness Club",
+    "cat": "stadyum",
+    "m": "tuzla--istasyon",
+    "ll": [29.3236, 40.82579]
+  },
+  {
+    "id": "w499516115",
+    "name": "İbb İstanbul Spor Okulları Basketbol Sahası",
+    "cat": "basketbol",
+    "m": "tuzla--cami",
+    "ll": [29.30919, 40.812434],
+    "f": "o"
+  },
+  {
+    "id": "w499516118",
+    "name": "İbb İstanbul Spor Okulları Futbol Sahası",
+    "cat": "halisaha",
+    "m": "tuzla--cami",
+    "ll": [29.309906, 40.812595],
+    "f": "o"
+  },
+  {
+    "id": "w499516114",
+    "name": "İbb İstanbul Spor Okulları Tenis Kortu",
+    "cat": "tenis",
+    "m": "tuzla--cami",
+    "ll": [29.30941, 40.81251],
+    "f": "o"
+  },
+  {
+    "id": "w468573613",
+    "name": "İstanbul Park",
+    "cat": "stadyum",
+    "m": "tuzla--akfirat",
+    "ll": [29.408432, 40.957318]
+  },
+  {
+    "id": "n12137605769",
+    "name": "Jump&Fly Studio",
+    "cat": "fitness",
+    "m": "tuzla--tepeoren",
+    "ll": [29.367416, 40.936273]
+  },
+  {
+    "id": "w1046518456",
+    "name": "Kamu Fitness Parkı",
+    "cat": "fitness",
+    "m": "tuzla--cami",
+    "ll": [29.309604, 40.812253],
+    "f": "o"
+  },
+  {
+    "id": "w1032893455",
+    "name": "Marina Aquapark",
+    "cat": "yuzme",
+    "m": "tuzla--cami",
+    "ll": [29.31383, 40.814168]
+  },
+  {
+    "id": "w216588003",
+    "name": "Mehmet Tekinalp Anadolu Lisesi Spor Salonu",
+    "cat": "stadyum",
+    "m": "tuzla--yayla",
+    "ll": [29.307889, 40.837487]
+  },
+  {
+    "id": "n13159777830",
+    "name": "Nefis Hayat Yoga Stüdyosu",
+    "cat": "yoga",
+    "m": "tuzla--postane",
+    "ll": [29.30523, 40.824407]
+  },
+  {
+    "id": "n11406398422",
+    "name": "Non Stop Fitness",
+    "cat": "fitness",
+    "m": "tuzla--yayla",
+    "ll": [29.307862, 40.829721]
+  },
+  {
+    "id": "w1320797871",
+    "name": "Tepeören Halı Sahası",
+    "cat": "halisaha",
+    "m": "tuzla--tepeoren",
+    "ll": [29.390173, 40.913155],
+    "f": "ob"
+  },
+  {
+    "id": "w721295511",
+    "name": "Tuzla Belediyesi Spor Kulübü",
+    "cat": "stadyum",
+    "m": "tuzla--icmeler",
+    "ll": [29.306263, 40.845384],
+    "f": "b"
+  }
+]

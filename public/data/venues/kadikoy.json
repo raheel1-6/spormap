@@ -1,0 +1,453 @@
+[
+  {
+    "id": "n8520266541",
+    "name": "360° Fit",
+    "cat": "fitness",
+    "m": "kadikoy--caddebostan",
+    "ll": [29.05735, 40.967079]
+  },
+  {
+    "id": "n5472985021",
+    "name": "Acıbadem Spor Salonu ve Yüzme Havuzu",
+    "cat": "yuzme",
+    "m": "kadikoy--acibadem",
+    "ll": [29.037083, 41.005553]
+  },
+  {
+    "id": "n5297414305",
+    "name": "Ada Yıldız Spor Klübü",
+    "cat": "stadyum",
+    "m": "kadikoy--suadiye",
+    "ll": [29.091034, 40.96019]
+  },
+  {
+    "id": "n10761002049",
+    "name": "Antrenman Sahası",
+    "cat": "halisaha",
+    "m": "kadikoy--zuhtupasa",
+    "ll": [29.035727, 40.982682],
+    "f": "o"
+  },
+  {
+    "id": "n14310602046",
+    "name": "Bonnie Pilates & Functional Fitness",
+    "cat": "fitness",
+    "m": "kadikoy--19-mayis",
+    "ll": [29.091639, 40.978017]
+  },
+  {
+    "id": "w157131557",
+    "name": "Bostancı Spor Kulübü",
+    "cat": "halisaha",
+    "m": "kadikoy--bostanci",
+    "ll": [29.088114, 40.954416],
+    "f": "o"
+  },
+  {
+    "id": "n8071577211",
+    "name": "Boulder İstanbul",
+    "cat": "tirmanis",
+    "m": "kadikoy--rasimpasa",
+    "ll": [29.026711, 40.993737]
+  },
+  {
+    "id": "n8872586932",
+    "name": "Cadde Fitness Club",
+    "cat": "fitness",
+    "m": "kadikoy--fenerbahce",
+    "ll": [29.046628, 40.973956]
+  },
+  {
+    "id": "n12817545763",
+    "name": "Cats Pilates",
+    "cat": "yoga",
+    "m": "kadikoy--caddebostan",
+    "ll": [29.069947, 40.965735]
+  },
+  {
+    "id": "n6525099032",
+    "name": "Centro",
+    "cat": "fitness",
+    "m": "kadikoy--caferaga",
+    "ll": [29.028225, 40.987061]
+  },
+  {
+    "id": "n4561223169",
+    "name": "Champion Gym",
+    "cat": "fitness",
+    "m": "kadikoy--bostanci",
+    "ll": [29.091931, 40.959696]
+  },
+  {
+    "id": "w66321024",
+    "name": "Chobani Stadyumu",
+    "cat": "stadyum",
+    "m": "kadikoy--zuhtupasa",
+    "ll": [29.036943, 40.987632]
+  },
+  {
+    "id": "n12037456872",
+    "name": "City's Pilates",
+    "cat": "fitness",
+    "m": "kadikoy--caddebostan",
+    "ll": [29.065811, 40.967893]
+  },
+  {
+    "id": "w810050793",
+    "name": "Club Sporium",
+    "cat": "tenis",
+    "m": "kadikoy--bostanci",
+    "ll": [29.108661, 40.960266]
+  },
+  {
+    "id": "w273102296",
+    "name": "Clubsporium Halı Saha",
+    "cat": "halisaha",
+    "m": "kadikoy--bostanci",
+    "ll": [29.109728, 40.959317],
+    "f": "o"
+  },
+  {
+    "id": "w914886384",
+    "name": "Clubsporium Halı Saha",
+    "cat": "halisaha",
+    "m": "kadikoy--bostanci",
+    "ll": [29.109973, 40.959112],
+    "f": "o"
+  },
+  {
+    "id": "n9980450081",
+    "name": "En Fit Body",
+    "cat": "fitness",
+    "m": "kadikoy--suadiye",
+    "ll": [29.083999, 40.960236]
+  },
+  {
+    "id": "w128542335",
+    "name": "Fenerbahçe Şükrü Saraçoğlu Spor Kompleksi",
+    "cat": "halisaha",
+    "m": "kadikoy--zuhtupasa",
+    "ll": [29.036939, 40.987627],
+    "f": "o"
+  },
+  {
+    "id": "n13388560801",
+    "name": "Fit Round Fitness",
+    "cat": "fitness",
+    "m": "kadikoy--kozyatagi",
+    "ll": [29.088592, 40.96818]
+  },
+  {
+    "id": "n12860813316",
+    "name": "Fitness Form Center",
+    "cat": "fitness",
+    "m": "kadikoy--erenkoy",
+    "ll": [29.077415, 40.978288]
+  },
+  {
+    "id": "n9108139232",
+    "name": "FY Pilates",
+    "cat": "yoga",
+    "m": "kadikoy--osmanaga",
+    "ll": [29.028116, 40.990199]
+  },
+  {
+    "id": "n12083895646",
+    "name": "Garduf",
+    "cat": "fitness",
+    "m": "kadikoy--kozyatagi",
+    "ll": [29.090702, 40.965461]
+  },
+  {
+    "id": "n10711998566",
+    "name": "GSSTORE",
+    "cat": "basketbol",
+    "m": "kadikoy--bostanci",
+    "ll": [29.090425, 40.955425]
+  },
+  {
+    "id": "n11937373975",
+    "name": "Gym Beam",
+    "cat": "fitness",
+    "m": "kadikoy--19-mayis",
+    "ll": [29.086684, 40.966134]
+  },
+  {
+    "id": "n4395618792",
+    "name": "Hariom Yoga",
+    "cat": "fitness",
+    "m": "kadikoy--zuhtupasa",
+    "ll": [29.037859, 40.982322]
+  },
+  {
+    "id": "n6541829411",
+    "name": "Just Fit",
+    "cat": "fitness",
+    "m": "kadikoy--caferaga",
+    "ll": [29.027352, 40.983008]
+  },
+  {
+    "id": "w235253301",
+    "name": "Kadıköy Belediyesi Caferağa Spor Salonu",
+    "cat": "basketbol",
+    "m": "kadikoy--caferaga",
+    "ll": [29.026037, 40.988385],
+    "f": "b"
+  },
+  {
+    "id": "w1380596402",
+    "name": "Kılıç Spor Tesisi",
+    "cat": "stadyum",
+    "m": "kadikoy--bostanci",
+    "ll": [29.105818, 40.957601]
+  },
+  {
+    "id": "w648862364",
+    "name": "Koşuyolu Parkı Basketbol Sahası",
+    "cat": "basketbol",
+    "m": "kadikoy--kosuyolu",
+    "ll": [29.038441, 41.007338],
+    "f": "o"
+  },
+  {
+    "id": "n5284690894",
+    "name": "Lets Pilates",
+    "cat": "fitness",
+    "m": "kadikoy--bostanci",
+    "ll": [29.086632, 40.957299]
+  },
+  {
+    "id": "n4831449959",
+    "name": "Luff Functional Fitness",
+    "cat": "fitness",
+    "m": "kadikoy--goztepe",
+    "ll": [29.068075, 40.974473]
+  },
+  {
+    "id": "n7553932413",
+    "name": "MACFit",
+    "cat": "fitness",
+    "m": "kadikoy--caddebostan",
+    "ll": [29.064818, 40.967491]
+  },
+  {
+    "id": "n9481263271",
+    "name": "MACFit",
+    "cat": "fitness",
+    "m": "kadikoy--19-mayis",
+    "ll": [29.083716, 40.972249]
+  },
+  {
+    "id": "n10304048977",
+    "name": "MACFit",
+    "cat": "fitness",
+    "m": "kadikoy--caddebostan",
+    "ll": [29.055914, 40.973131]
+  },
+  {
+    "id": "n9691764017",
+    "name": "Maestro",
+    "cat": "fitness",
+    "m": "kadikoy--caferaga",
+    "ll": [29.02603, 40.983541]
+  },
+  {
+    "id": "n12770568487",
+    "name": "Maximus Functional Training",
+    "cat": "fitness",
+    "m": "kadikoy--19-mayis",
+    "ll": [29.086511, 40.968773]
+  },
+  {
+    "id": "n14314619124",
+    "name": "Meta Academy EMS & Pilates & Performans",
+    "cat": "fitness",
+    "m": "kadikoy--19-mayis",
+    "ll": [29.092352, 40.978909]
+  },
+  {
+    "id": "n13831596760",
+    "name": "MFA Monofight Academy",
+    "cat": "dovus",
+    "m": "kadikoy--osmanaga",
+    "ll": [29.026274, 40.990282]
+  },
+  {
+    "id": "w1316797688",
+    "name": "Miltaş Sport Tesisleri",
+    "cat": "stadyum",
+    "m": "kadikoy--bostanci",
+    "ll": [29.087751, 40.959199]
+  },
+  {
+    "id": "w499316105",
+    "name": "Moda 2 Tenis Kortu",
+    "cat": "tenis",
+    "m": "kadikoy--caferaga",
+    "ll": [29.029353, 40.980128],
+    "f": "o"
+  },
+  {
+    "id": "n5088148525",
+    "name": "Nefess Yoga",
+    "cat": "fitness",
+    "m": "kadikoy--caferaga",
+    "ll": [29.022862, 40.980099]
+  },
+  {
+    "id": "n13950008470",
+    "name": "NFEEL PİLATES",
+    "cat": "stadyum",
+    "m": "kadikoy--bostanci",
+    "ll": [29.098566, 40.961174]
+  },
+  {
+    "id": "n13950008469",
+    "name": "NORTH YOGA",
+    "cat": "yoga",
+    "m": "kadikoy--bostanci",
+    "ll": [29.098773, 40.961274]
+  },
+  {
+    "id": "n14311705370",
+    "name": "Pastel Pilates Butik Studio",
+    "cat": "fitness",
+    "m": "kadikoy--kozyatagi",
+    "ll": [29.092012, 40.968108]
+  },
+  {
+    "id": "n11026328627",
+    "name": "Pilates Chi",
+    "cat": "yoga",
+    "m": "kadikoy--caferaga",
+    "ll": [29.024094, 40.980749]
+  },
+  {
+    "id": "n6785139397",
+    "name": "Pilates Demet Topa",
+    "cat": "fitness",
+    "m": "kadikoy--caferaga",
+    "ll": [29.02835, 40.983784]
+  },
+  {
+    "id": "n5296377569",
+    "name": "Pilates Stüdio",
+    "cat": "fitness",
+    "m": "kadikoy--suadiye",
+    "ll": [29.086817, 40.965306]
+  },
+  {
+    "id": "w499316059",
+    "name": "Raket Kulüp",
+    "cat": "tenis",
+    "m": "kadikoy--caddebostan",
+    "ll": [29.064554, 40.965704],
+    "f": "o"
+  },
+  {
+    "id": "w499316060",
+    "name": "Raket Kulüp",
+    "cat": "tenis",
+    "m": "kadikoy--caddebostan",
+    "ll": [29.064922, 40.965635],
+    "f": "o"
+  },
+  {
+    "id": "n13953662804",
+    "name": "RETRO GYM",
+    "cat": "fitness",
+    "m": "kadikoy--bostanci",
+    "ll": [29.094159, 40.960454]
+  },
+  {
+    "id": "n12129030622",
+    "name": "Songül Kara Pilates Stüdyo",
+    "cat": "fitness",
+    "m": "kadikoy--19-mayis",
+    "ll": [29.095743, 40.974728]
+  },
+  {
+    "id": "w544071043",
+    "name": "Spora",
+    "cat": "fitness",
+    "m": "kadikoy--sahrayicedit",
+    "ll": [29.089274, 40.982434]
+  },
+  {
+    "id": "n4539707390",
+    "name": "Sport Universe Gym",
+    "cat": "fitness",
+    "m": "kadikoy--caferaga",
+    "ll": [29.024749, 40.988631]
+  },
+  {
+    "id": "n11356993142",
+    "name": "Sports Factory",
+    "cat": "fitness",
+    "m": "kadikoy--19-mayis",
+    "ll": [29.088559, 40.971285]
+  },
+  {
+    "id": "w815560548",
+    "name": "Süs Havuzu",
+    "cat": "yuzme",
+    "m": "kadikoy--goztepe",
+    "ll": [29.065144, 40.972553]
+  },
+  {
+    "id": "n9813358720",
+    "name": "The Moon",
+    "cat": "fitness",
+    "m": "kadikoy--osmanaga",
+    "ll": [29.031263, 40.986639]
+  },
+  {
+    "id": "n13351648288",
+    "name": "U Training Club",
+    "cat": "fitness",
+    "m": "kadikoy--erenkoy",
+    "ll": [29.074292, 40.968265]
+  },
+  {
+    "id": "n9288103374",
+    "name": "Uni Sports Fitness Center",
+    "cat": "fitness",
+    "m": "kadikoy--sahrayicedit",
+    "ll": [29.085092, 40.979649]
+  },
+  {
+    "id": "n11251160037",
+    "name": "USA Team Fitness & Fight Club",
+    "cat": "fitness",
+    "m": "kadikoy--osmanaga",
+    "ll": [29.026961, 40.991784]
+  },
+  {
+    "id": "n10178081550",
+    "name": "Uzak Doğu Savaş Sanatları ve Kültür Derneği",
+    "cat": "stadyum",
+    "m": "kadikoy--caferaga",
+    "ll": [29.02438, 40.984522]
+  },
+  {
+    "id": "n12811023649",
+    "name": "Weekend Training Club",
+    "cat": "fitness",
+    "m": "kadikoy--erenkoy",
+    "ll": [29.072885, 40.972582]
+  },
+  {
+    "id": "n12811051601",
+    "name": "Weekend Training Club",
+    "cat": "fitness",
+    "m": "kadikoy--suadiye",
+    "ll": [29.076952, 40.965026]
+  },
+  {
+    "id": "n10143161627",
+    "name": "Yoga Sutra",
+    "cat": "stadyum",
+    "m": "kadikoy--goztepe",
+    "ll": [29.062481, 40.982984]
+  }
+]

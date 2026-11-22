@@ -1,0 +1,134 @@
+[
+  {
+    "id": "w672484186",
+    "name": "75. Yıl Yüzme Havuzu",
+    "cat": "yuzme",
+    "m": "sultangazi--75-yil",
+    "ll": [28.902033, 41.09544]
+  },
+  {
+    "id": "n5289936081",
+    "name": "Free Life Fitness Spor Salonu",
+    "cat": "fitness",
+    "m": "sultangazi--ugur-mumcu",
+    "ll": [28.864435, 41.104904]
+  },
+  {
+    "id": "w495795082",
+    "name": "Gençlerbirliği Spor Kulübü Seyit Ateş Stadı",
+    "cat": "halisaha",
+    "m": "sultangazi--cumhuriyet",
+    "ll": [28.876329, 41.088282],
+    "f": "o"
+  },
+  {
+    "id": "n14280499450",
+    "name": "Greenfit",
+    "cat": "fitness",
+    "m": "sultangazi--50-yil",
+    "ll": [28.866747, 41.088186]
+  },
+  {
+    "id": "w680591896",
+    "name": "Hamza Yerlikaya Spor Kompleksi",
+    "cat": "stadyum",
+    "m": "sultangazi--cumhuriyet",
+    "ll": [28.870647, 41.086844]
+  },
+  {
+    "id": "w229476767",
+    "name": "İBB Cebeci Spor Kompleksi",
+    "cat": "tenis",
+    "m": "sultangazi--ugur-mumcu",
+    "ll": [28.876304, 41.10736]
+  },
+  {
+    "id": "n13954731885",
+    "name": "Kaptan Spor Akademi",
+    "cat": "stadyum",
+    "m": "sultangazi--cebeci",
+    "ll": [28.849085, 41.120405]
+  },
+  {
+    "id": "r20410267",
+    "name": "Mimar Sinan Kent Ormanı",
+    "cat": "tenis",
+    "m": "sultangazi--zubeyde-hanim",
+    "ll": [28.900089, 41.116484],
+    "f": "b"
+  },
+  {
+    "id": "w1077198444",
+    "name": "Orhangazi Spor Salonu",
+    "cat": "stadyum",
+    "m": "sultangazi--50-yil",
+    "ll": [28.870328, 41.093739]
+  },
+  {
+    "id": "n14309743886",
+    "name": "Payitaht Spor Kompleksi",
+    "cat": "stadyum",
+    "m": "sultangazi--ugur-mumcu",
+    "ll": [28.873209, 41.106449]
+  },
+  {
+    "id": "n9823343136",
+    "name": "Red&Black Fitness",
+    "cat": "fitness",
+    "m": "sultangazi--ugur-mumcu",
+    "ll": [28.862934, 41.102007]
+  },
+  {
+    "id": "n5291970772",
+    "name": "Relax Fitness Spor",
+    "cat": "fitness",
+    "m": "sultangazi--sultanciftligi",
+    "ll": [28.862751, 41.099851]
+  },
+  {
+    "id": "n11012424195",
+    "name": "Relax Gym",
+    "cat": "fitness",
+    "m": "sultangazi--ugur-mumcu",
+    "ll": [28.86371, 41.1012]
+  },
+  {
+    "id": "w1246168855",
+    "name": "Sezai Karakoç Gençlik, Spor ve Engelliler Merkezi",
+    "cat": "dovus",
+    "m": "sultangazi--esentepe",
+    "ll": [28.881, 41.096487],
+    "f": "b"
+  },
+  {
+    "id": "w975228357",
+    "name": "Sultangazi At Binme Tesisleri",
+    "cat": "binicilik",
+    "m": "sultangazi--zubeyde-hanim",
+    "ll": [28.895919, 41.116198],
+    "f": "ob"
+  },
+  {
+    "id": "r19945959",
+    "name": "Sultangazi Kent Ormanı",
+    "cat": "kosu",
+    "m": "sultangazi--zubeyde-hanim",
+    "ll": [28.913459, 41.109797],
+    "f": "b"
+  },
+  {
+    "id": "w972358300",
+    "name": "Zara Ekinli Spor Kulübü Derneği Sosyal Tesisleri",
+    "cat": "stadyum",
+    "m": "sultangazi--ugur-mumcu",
+    "ll": [28.878029, 41.106824]
+  },
+  {
+    "id": "w31690604",
+    "name": "Zara Ekinli Spor Tesisi",
+    "cat": "halisaha",
+    "m": "sultangazi--ugur-mumcu",
+    "ll": [28.877727, 41.106919],
+    "f": "o"
+  }
+]

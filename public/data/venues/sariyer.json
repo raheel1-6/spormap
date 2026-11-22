@@ -1,0 +1,378 @@
+[
+  {
+    "id": "w278867823",
+    "name": "1",
+    "cat": "tenis",
+    "m": "sariyer--tarabya",
+    "ll": [29.033011, 41.13978],
+    "f": "o"
+  },
+  {
+    "id": "w278867828",
+    "name": "2",
+    "cat": "tenis",
+    "m": "sariyer--tarabya",
+    "ll": [29.03319, 41.139524],
+    "f": "o"
+  },
+  {
+    "id": "w278867833",
+    "name": "3",
+    "cat": "tenis",
+    "m": "sariyer--tarabya",
+    "ll": [29.033431, 41.139215],
+    "f": "o"
+  },
+  {
+    "id": "w278867822",
+    "name": "4",
+    "cat": "tenis",
+    "m": "sariyer--tarabya",
+    "ll": [29.03319, 41.139853],
+    "f": "o"
+  },
+  {
+    "id": "w278867826",
+    "name": "5",
+    "cat": "tenis",
+    "m": "sariyer--tarabya",
+    "ll": [29.033376, 41.139598],
+    "f": "o"
+  },
+  {
+    "id": "w278867819",
+    "name": "6",
+    "cat": "tenis",
+    "m": "sariyer--tarabya",
+    "ll": [29.033367, 41.139919],
+    "f": "o"
+  },
+  {
+    "id": "w278867831",
+    "name": "6",
+    "cat": "tenis",
+    "m": "sariyer--tarabya",
+    "ll": [29.033618, 41.139294],
+    "f": "o"
+  },
+  {
+    "id": "w278867825",
+    "name": "7",
+    "cat": "tenis",
+    "m": "sariyer--tarabya",
+    "ll": [29.033547, 41.139671],
+    "f": "o"
+  },
+  {
+    "id": "w278867829",
+    "name": "9 (Limak Kort)",
+    "cat": "tenis",
+    "m": "sariyer--tarabya",
+    "ll": [29.033797, 41.13937],
+    "f": "o"
+  },
+  {
+    "id": "w498371285",
+    "name": "A",
+    "cat": "tenis",
+    "m": "sariyer--resitpasa",
+    "ll": [29.021818, 41.102351],
+    "f": "o"
+  },
+  {
+    "id": "n12854852734",
+    "name": "Aletya Yoga & Pilates Studio",
+    "cat": "yoga",
+    "m": "sariyer--zekeriyakoy",
+    "ll": [29.012539, 41.198365]
+  },
+  {
+    "id": "w498371286",
+    "name": "B",
+    "cat": "tenis",
+    "m": "sariyer--resitpasa",
+    "ll": [29.021607, 41.102333],
+    "f": "o"
+  },
+  {
+    "id": "n3773156154",
+    "name": "bfit",
+    "cat": "stadyum",
+    "m": "sariyer--zekeriyakoy",
+    "ll": [29.023362, 41.207982]
+  },
+  {
+    "id": "w162852662",
+    "name": "Boğaziçi Üniversitesi Hisar Spor Tesisleri",
+    "cat": "stadyum",
+    "m": "sariyer--rumelihisari",
+    "ll": [29.050572, 41.08871]
+  },
+  {
+    "id": "w498371228",
+    "name": "Bubble Kort",
+    "cat": "tenis",
+    "m": "sariyer--rumelihisari",
+    "ll": [29.051865, 41.084483],
+    "f": "o"
+  },
+  {
+    "id": "w498371287",
+    "name": "C",
+    "cat": "tenis",
+    "m": "sariyer--resitpasa",
+    "ll": [29.021397, 41.102316],
+    "f": "o"
+  },
+  {
+    "id": "n3825439257",
+    "name": "Çayırbaşı Mahmut Sedat Özsoy Stadı",
+    "cat": "stadyum",
+    "m": "sariyer--cayirbasi",
+    "ll": [29.030444, 41.156371]
+  },
+  {
+    "id": "w145403408",
+    "name": "D",
+    "cat": "tenis",
+    "m": "sariyer--resitpasa",
+    "ll": [29.021186, 41.102298],
+    "f": "o"
+  },
+  {
+    "id": "n12730609087",
+    "name": "Dündürbey Basketbol Sahası",
+    "cat": "basketbol",
+    "m": "sariyer--zekeriyakoy",
+    "ll": [29.042749, 41.186468],
+    "f": "o"
+  },
+  {
+    "id": "w1067748016",
+    "name": "Eczacıbaşı Spor Salonu",
+    "cat": "basketbol",
+    "m": "sariyer--ayazaga",
+    "ll": [28.973831, 41.111342]
+  },
+  {
+    "id": "w498348806",
+    "name": "Enka Atletizm Pisti",
+    "cat": "halisaha",
+    "m": "sariyer--poligon",
+    "ll": [29.036596, 41.115185],
+    "f": "o"
+  },
+  {
+    "id": "w1540340148",
+    "name": "ENKA Sadi Gülçelik Spor Sitesi",
+    "cat": "stadyum",
+    "m": "sariyer--poligon",
+    "ll": [29.036329, 41.112232]
+  },
+  {
+    "id": "n3688962011",
+    "name": "Fit In Time",
+    "cat": "stadyum",
+    "m": "sariyer--maden",
+    "ll": [29.039962, 41.187578]
+  },
+  {
+    "id": "w1551979588",
+    "name": "İstanbul Üniversitesi-Cerrahpaşa Bahçeköy Yerleşkesi Stadyumu",
+    "cat": "stadyum",
+    "m": "sariyer--bahcekoy-merkez",
+    "ll": [28.990949, 41.173785]
+  },
+  {
+    "id": "w1540757314",
+    "name": "İstinye Avcılık ve Atıcılık Spor Kulübü",
+    "cat": "stadyum",
+    "m": "sariyer--poligon",
+    "ll": [29.038847, 41.114959]
+  },
+  {
+    "id": "w1453039278",
+    "name": "İTÜ Stadyumu",
+    "cat": "stadyum",
+    "m": "sariyer--resitpasa",
+    "ll": [29.023341, 41.101483]
+  },
+  {
+    "id": "w1417949228",
+    "name": "Kapalı 1",
+    "cat": "tenis",
+    "m": "sariyer--tarabya",
+    "ll": [29.033965, 41.139113],
+    "f": "o"
+  },
+  {
+    "id": "w1417949229",
+    "name": "Kapalı 2",
+    "cat": "tenis",
+    "m": "sariyer--tarabya",
+    "ll": [29.034043, 41.139006],
+    "f": "o"
+  },
+  {
+    "id": "w1417949230",
+    "name": "Kapalı 3",
+    "cat": "tenis",
+    "m": "sariyer--tarabya",
+    "ll": [29.034125, 41.138897],
+    "f": "o"
+  },
+  {
+    "id": "w582224059",
+    "name": "Kapalı Spor Salonu",
+    "cat": "fitness",
+    "m": "sariyer--gumusdere",
+    "ll": [29.013196, 41.24293]
+  },
+  {
+    "id": "w278992016",
+    "name": "Kilyos Futbol Stadyumu",
+    "cat": "halisaha",
+    "m": "sariyer--kumkoy-kilyos",
+    "ll": [29.038114, 41.247222],
+    "f": "o"
+  },
+  {
+    "id": "w831761432",
+    "name": "Kireçburnu Spor Kulübü Halı Saha",
+    "cat": "halisaha",
+    "m": "sariyer--tarabya",
+    "ll": [29.050834, 41.144641],
+    "f": "o"
+  },
+  {
+    "id": "w714365661",
+    "name": "Koç Üniversitesi Açık Yüzme Havuzu",
+    "cat": "yuzme",
+    "m": "sariyer--rumelifeneri",
+    "ll": [29.075004, 41.20917]
+  },
+  {
+    "id": "w727195536",
+    "name": "MACFit",
+    "cat": "fitness",
+    "m": "sariyer--uskumrukoy",
+    "ll": [29.04037, 41.213455]
+  },
+  {
+    "id": "w1417949215",
+    "name": "Merkez Kort",
+    "cat": "tenis",
+    "m": "sariyer--tarabya",
+    "ll": [29.033708, 41.139907],
+    "f": "o"
+  },
+  {
+    "id": "w145819342",
+    "name": "Merkez Spor Salonu",
+    "cat": "basketbol",
+    "m": "sariyer--resitpasa",
+    "ll": [29.021336, 41.102955]
+  },
+  {
+    "id": "w145344548",
+    "name": "Olimpik Yüzme Havuzu",
+    "cat": "yuzme",
+    "m": "sariyer--resitpasa",
+    "ll": [29.02654, 41.101264]
+  },
+  {
+    "id": "w204990428",
+    "name": "Orhan Keçeli Futbol Sahası",
+    "cat": "halisaha",
+    "m": "sariyer--zekeriyakoy",
+    "ll": [29.027741, 41.190775],
+    "f": "o"
+  },
+  {
+    "id": "w342828509",
+    "name": "RAMS Park",
+    "cat": "stadyum",
+    "m": "sariyer--huzur",
+    "ll": [28.990951, 41.103378]
+  },
+  {
+    "id": "n11816731487",
+    "name": "Sarıyer Atış Poligonu",
+    "cat": "okculuk",
+    "m": "sariyer--maden",
+    "ll": [29.021005, 41.185261]
+  },
+  {
+    "id": "w498371207",
+    "name": "sariyer park halisaha",
+    "cat": "halisaha",
+    "m": "sariyer--istinye",
+    "ll": [29.037714, 41.126869],
+    "f": "o"
+  },
+  {
+    "id": "w31616349",
+    "name": "Semahat Arsel Spor Salonu",
+    "cat": "basketbol",
+    "m": "sariyer--rumelifeneri",
+    "ll": [29.072519, 41.207411]
+  },
+  {
+    "id": "n14066073983",
+    "name": "Slimworld Zekeriyaköy",
+    "cat": "stadyum",
+    "m": "sariyer--uskumrukoy",
+    "ll": [29.03345, 41.213099]
+  },
+  {
+    "id": "n13030517543",
+    "name": "Sporty's",
+    "cat": "tenis",
+    "m": "sariyer--tarabya",
+    "ll": [29.033901, 41.138781]
+  },
+  {
+    "id": "w1417960528",
+    "name": "Tenis Eskrim Dağcılık Spor Kulübü",
+    "cat": "tenis",
+    "m": "sariyer--tarabya",
+    "ll": [29.032985, 41.139377]
+  },
+  {
+    "id": "w242561278",
+    "name": "Tenis Kortu",
+    "cat": "tenis",
+    "m": "sariyer--rumelifeneri",
+    "ll": [29.070187, 41.204823],
+    "f": "o"
+  },
+  {
+    "id": "w1540236530",
+    "name": "Türkiye Tenis Federasyonu İstanbul Merkezi",
+    "cat": "stadyum",
+    "m": "sariyer--poligon",
+    "ll": [29.038671, 41.117456]
+  },
+  {
+    "id": "w249589121",
+    "name": "Vadi Yurtları Spor Salonu",
+    "cat": "stadyum",
+    "m": "sariyer--resitpasa",
+    "ll": [29.03573, 41.108057]
+  },
+  {
+    "id": "n5263362933",
+    "name": "Volkswagen Arena",
+    "cat": "basketbol",
+    "m": "sariyer--huzur",
+    "ll": [29.007678, 41.108729]
+  },
+  {
+    "id": "w498348911",
+    "name": "Yusuf Ziya Öniş Stadyumu",
+    "cat": "halisaha",
+    "m": "sariyer--merkez",
+    "ll": [29.050278, 41.172607],
+    "f": "o"
+  }
+]

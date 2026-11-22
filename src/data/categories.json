@@ -1,0 +1,371 @@
+{
+  "$comment": "Order = priority: specific sports come before generic venue types, so an OSM venue matching several rules gets the most specific category, and ties in a region top category go to the earlier entry. osm rules: every key must match; a value list means any of them. places/keywords drive Google Places live search (W4).",
+  "emptyColor": {
+    "light": "#F1E8D7",
+    "dark": "#7A715F"
+  },
+  "categories": [
+    {
+      "id": "halisaha",
+      "name": {
+        "tr": "Halı Saha",
+        "en": "Five-a-side Football"
+      },
+      "color": {
+        "light": "#C1D0B9",
+        "dark": "#59654F"
+      },
+      "places": ["sports_complex", "athletic_field"],
+      "keywords": {
+        "tr": ["halı saha"],
+        "en": ["five a side football pitch"]
+      },
+      "osm": [
+        {
+          "leisure": "pitch",
+          "sport": ["soccer", "futsal"]
+        }
+      ]
+    },
+    {
+      "id": "tenis",
+      "name": {
+        "tr": "Tenis",
+        "en": "Tennis"
+      },
+      "color": {
+        "light": "#D7CEAF",
+        "dark": "#6B654A"
+      },
+      "places": ["sports_club"],
+      "keywords": {
+        "tr": ["tenis kortu", "tenis kulübü"],
+        "en": ["tennis court"]
+      },
+      "osm": [
+        {
+          "sport": ["tennis", "padel", "table_tennis", "badminton", "squash"]
+        }
+      ]
+    },
+    {
+      "id": "basketbol",
+      "name": {
+        "tr": "Basketbol",
+        "en": "Basketball"
+      },
+      "color": {
+        "light": "#DDBFA5",
+        "dark": "#6F5A47"
+      },
+      "places": ["sports_complex"],
+      "keywords": {
+        "tr": ["basketbol sahası"],
+        "en": ["basketball court"]
+      },
+      "osm": [
+        {
+          "sport": ["basketball", "volleyball", "beachvolleyball", "handball"]
+        }
+      ]
+    },
+    {
+      "id": "yoga",
+      "name": {
+        "tr": "Yoga & Pilates",
+        "en": "Yoga & Pilates"
+      },
+      "color": {
+        "light": "#C8B8C2",
+        "dark": "#625562"
+      },
+      "places": ["yoga_studio"],
+      "keywords": {
+        "tr": ["yoga stüdyosu", "pilates stüdyosu"],
+        "en": ["yoga studio", "pilates studio"]
+      },
+      "osm": [
+        {
+          "sport": ["yoga", "pilates"]
+        }
+      ]
+    },
+    {
+      "id": "dovus",
+      "name": {
+        "tr": "Dövüş Sporları",
+        "en": "Martial Arts"
+      },
+      "color": {
+        "light": "#CDB0A6",
+        "dark": "#6A514A"
+      },
+      "places": ["sports_coaching"],
+      "keywords": {
+        "tr": ["dövüş sporları", "boks salonu", "kick boks"],
+        "en": ["martial arts", "boxing gym"]
+      },
+      "osm": [
+        {
+          "sport": [
+            "martial_arts",
+            "boxing",
+            "karate",
+            "judo",
+            "taekwondo",
+            "kickboxing",
+            "mma",
+            "aikido",
+            "wrestling",
+            "kung_fu",
+            "jiu-jitsu",
+            "muay_thai",
+            "fencing"
+          ]
+        },
+        {
+          "leisure": "dojo"
+        }
+      ]
+    },
+    {
+      "id": "tirmanis",
+      "name": {
+        "tr": "Tırmanış",
+        "en": "Climbing"
+      },
+      "color": {
+        "light": "#C9BBA8",
+        "dark": "#625A4E"
+      },
+      "places": ["sports_activity_location"],
+      "keywords": {
+        "tr": ["tırmanış salonu"],
+        "en": ["climbing gym", "bouldering"]
+      },
+      "osm": [
+        {
+          "sport": ["climbing", "bouldering"]
+        }
+      ]
+    },
+    {
+      "id": "yuzme",
+      "name": {
+        "tr": "Yüzme / Havuz",
+        "en": "Swimming / Pool"
+      },
+      "color": {
+        "light": "#C0C9D3",
+        "dark": "#4F5B66"
+      },
+      "places": ["swimming_pool"],
+      "keywords": {
+        "tr": ["yüzme havuzu"],
+        "en": ["swimming pool"]
+      },
+      "osm": [
+        {
+          "leisure": ["swimming_pool", "water_park"]
+        },
+        {
+          "sport": "swimming"
+        }
+      ]
+    },
+    {
+      "id": "buz",
+      "name": {
+        "tr": "Buz Pateni",
+        "en": "Ice Skating"
+      },
+      "color": {
+        "light": "#C7D4D4",
+        "dark": "#526161"
+      },
+      "places": ["ice_skating_rink"],
+      "keywords": {
+        "tr": ["buz pateni pisti"],
+        "en": ["ice rink"]
+      },
+      "osm": [
+        {
+          "leisure": "ice_rink"
+        },
+        {
+          "sport": ["ice_skating", "ice_hockey", "skating"]
+        }
+      ]
+    },
+    {
+      "id": "golf",
+      "name": {
+        "tr": "Golf",
+        "en": "Golf"
+      },
+      "color": {
+        "light": "#B9CBB0",
+        "dark": "#546250"
+      },
+      "places": ["golf_course"],
+      "keywords": {
+        "tr": ["golf kulübü"],
+        "en": ["golf course"]
+      },
+      "osm": [
+        {
+          "leisure": ["golf_course", "miniature_golf"]
+        },
+        {
+          "sport": "golf"
+        }
+      ]
+    },
+    {
+      "id": "binicilik",
+      "name": {
+        "tr": "Binicilik",
+        "en": "Horse Riding"
+      },
+      "color": {
+        "light": "#D1C1A0",
+        "dark": "#67604A"
+      },
+      "places": ["sports_club"],
+      "keywords": {
+        "tr": ["binicilik kulübü", "at çiftliği"],
+        "en": ["horse riding"]
+      },
+      "osm": [
+        {
+          "leisure": "horse_riding"
+        },
+        {
+          "sport": ["equestrian", "horse_racing"]
+        }
+      ]
+    },
+    {
+      "id": "su",
+      "name": {
+        "tr": "Su Sporları",
+        "en": "Water Sports"
+      },
+      "color": {
+        "light": "#B8C7CC",
+        "dark": "#4F5E63"
+      },
+      "places": ["sports_club"],
+      "keywords": {
+        "tr": ["yelken kulübü", "kürek kulübü", "dalış okulu"],
+        "en": ["sailing club", "rowing club"]
+      },
+      "osm": [
+        {
+          "sport": [
+            "sailing",
+            "rowing",
+            "canoe",
+            "kayak",
+            "surfing",
+            "windsurfing",
+            "kitesurfing",
+            "scuba_diving",
+            "water_ski",
+            "water_polo"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "okculuk",
+      "name": {
+        "tr": "Okçuluk / Atıcılık",
+        "en": "Archery / Shooting"
+      },
+      "color": {
+        "light": "#C0C1C3",
+        "dark": "#55585C"
+      },
+      "places": ["sports_activity_location"],
+      "keywords": {
+        "tr": ["okçuluk", "atış poligonu"],
+        "en": ["archery", "shooting range"]
+      },
+      "osm": [
+        {
+          "sport": ["archery", "shooting", "clay_pigeon_shooting"]
+        }
+      ]
+    },
+    {
+      "id": "fitness",
+      "name": {
+        "tr": "Spor Salonu / Fitness",
+        "en": "Gym / Fitness"
+      },
+      "color": {
+        "light": "#D2B4BE",
+        "dark": "#6E5560"
+      },
+      "places": ["gym", "fitness_center"],
+      "keywords": {
+        "tr": ["spor salonu", "fitness"],
+        "en": ["gym"]
+      },
+      "osm": [
+        {
+          "leisure": "fitness_centre"
+        },
+        {
+          "sport": ["fitness", "crossfit", "bodybuilding"]
+        }
+      ]
+    },
+    {
+      "id": "kosu",
+      "name": {
+        "tr": "Koşu & Park",
+        "en": "Running & Parks"
+      },
+      "color": {
+        "light": "#C9D3B0",
+        "dark": "#5F6849"
+      },
+      "places": ["park", "athletic_field"],
+      "keywords": {
+        "tr": ["koşu parkuru", "atletizm pisti"],
+        "en": ["running track"]
+      },
+      "osm": [
+        {
+          "leisure": ["track", "fitness_station"]
+        },
+        {
+          "sport": ["running", "athletics", "cycling"]
+        }
+      ]
+    },
+    {
+      "id": "stadyum",
+      "name": {
+        "tr": "Stadyum & Spor Kompleksi",
+        "en": "Stadiums & Sports Complexes"
+      },
+      "color": {
+        "light": "#D4C2AC",
+        "dark": "#6C5E4C"
+      },
+      "places": ["stadium", "arena", "sports_complex"],
+      "keywords": {
+        "tr": ["spor kompleksi", "stadyum"],
+        "en": ["sports complex", "stadium"]
+      },
+      "osm": [
+        {
+          "leisure": ["stadium", "sports_centre", "sports_hall"]
+        }
+      ]
+    }
+  ]
+}

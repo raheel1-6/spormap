@@ -1,0 +1,149 @@
+[
+  {
+    "id": "n13931535637",
+    "name": "B Fitness Clup",
+    "cat": "fitness",
+    "m": "beykoz--kavacik",
+    "ll": [29.088861, 41.094306]
+  },
+  {
+    "id": "w374348212",
+    "name": "Beykozspor Stadyumu",
+    "cat": "halisaha",
+    "m": "beykoz--yalikoy",
+    "ll": [29.083098, 41.139636],
+    "f": "o"
+  },
+  {
+    "id": "w1105699216",
+    "name": "Dila Atlı Spor Kulübü",
+    "cat": "binicilik",
+    "m": "beykoz--ishakli",
+    "ll": [29.302243, 41.13659],
+    "f": "o"
+  },
+  {
+    "id": "w436557221",
+    "name": "Halı Saha",
+    "cat": "halisaha",
+    "m": "beykoz--ishakli",
+    "ll": [29.296697, 41.136339],
+    "f": "o"
+  },
+  {
+    "id": "w734738446",
+    "name": "İstanbul Büyükşehir Belediyesi Beykoz Spor Kompleksi",
+    "cat": "stadyum",
+    "m": "beykoz--gumussuyu",
+    "ll": [29.100389, 41.12502],
+    "f": "b"
+  },
+  {
+    "id": "r20283402",
+    "name": "Mustafa V. Koç Golf Course",
+    "cat": "golf",
+    "m": "beykoz--gollu",
+    "ll": [29.257494, 41.18754],
+    "f": "o"
+  },
+  {
+    "id": "w689297763",
+    "name": "Optimum Tenis Akademisi",
+    "cat": "stadyum",
+    "m": "beykoz--goztepe",
+    "ll": [29.09471, 41.073069]
+  },
+  {
+    "id": "w734735976",
+    "name": "Paşabahçe Stadyumu",
+    "cat": "stadyum",
+    "m": "beykoz--gumussuyu",
+    "ll": [29.100974, 41.123645]
+  },
+  {
+    "id": "w468573614",
+    "name": "Polonezkoy Country Club",
+    "cat": "golf",
+    "m": "beykoz--polonezkoy",
+    "ll": [29.222583, 41.117663],
+    "f": "o"
+  },
+  {
+    "id": "r20448972",
+    "name": "Polonezköy Tabiat Parkı",
+    "cat": "kosu",
+    "m": "beykoz--polonezkoy",
+    "ll": [29.197433, 41.106546]
+  },
+  {
+    "id": "w436554856",
+    "name": "Saklıköy Country Club Yüzme Havuzu",
+    "cat": "yuzme",
+    "m": "beykoz--ishakli",
+    "ll": [29.295823, 41.134734]
+  },
+  {
+    "id": "w722145903",
+    "name": "Soğuksu Spor Tesisleri",
+    "cat": "halisaha",
+    "m": "beykoz--incirkoy",
+    "ll": [29.105331, 41.114866],
+    "f": "o"
+  },
+  {
+    "id": "w436557224",
+    "name": "TEB Saklıköy",
+    "cat": "basketbol",
+    "m": "beykoz--ishakli",
+    "ll": [29.294194, 41.134807],
+    "f": "o"
+  },
+  {
+    "id": "w436554858",
+    "name": "Tenis Kortu",
+    "cat": "tenis",
+    "m": "beykoz--ishakli",
+    "ll": [29.296576, 41.136064],
+    "f": "o"
+  },
+  {
+    "id": "w436554859",
+    "name": "Tenis Kortu",
+    "cat": "tenis",
+    "m": "beykoz--ishakli",
+    "ll": [29.296628, 41.135934],
+    "f": "o"
+  },
+  {
+    "id": "w499623787",
+    "name": "Tenis Kortu",
+    "cat": "tenis",
+    "m": "beykoz--riva",
+    "ll": [29.237967, 41.206481],
+    "f": "o"
+  },
+  {
+    "id": "w499623788",
+    "name": "Tenis Kortu",
+    "cat": "tenis",
+    "m": "beykoz--riva",
+    "ll": [29.237739, 41.206481],
+    "f": "o"
+  },
+  {
+    "id": "w499623789",
+    "name": "Tenis Kortu",
+    "cat": "tenis",
+    "m": "beykoz--riva",
+    "ll": [29.237511, 41.206481],
+    "f": "o"
+  },
+  {
+    "id": "w499623790",
+    "name": "Tenis Kortu",
+    "cat": "tenis",
+    "m": "beykoz--riva",
+    "ll": [29.237284, 41.206481],
+    "f": "o"
+  }
+]

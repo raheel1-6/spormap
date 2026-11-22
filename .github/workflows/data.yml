@@ -1,0 +1,33 @@
+name: Refresh OSM data
+
+# Monthly rebuild of boundaries and venue counts from OpenStreetMap (ODbL).
+# Commits only when the generated files changed; the push then triggers the Pages deploy.
+on:
+  schedule:
+    - cron: "17 3 2 * *" # 03:17 UTC on the 2nd of every month
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run data -- --refresh
+      - run: npm run verify
+      - name: Commit changes
+        run: |
+          if git diff --quiet -- public/data; then echo "No data changes"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data
+          git commit -m "Refresh OSM data ($(date -u +%Y-%m))"
+          git push

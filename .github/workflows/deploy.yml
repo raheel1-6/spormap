@@ -32,6 +32,8 @@ jobs:
           # "/spormap" on github.io, "" once the custom domain is set.
           SITE_ORIGIN: ${{ steps.pages.outputs.origin }}
           SITE_BASE: ${{ steps.pages.outputs.base_path }}
+          # Public browser key (repository variable), restricted by referrer in Google Cloud.
+          PUBLIC_GOOGLE_MAPS_KEY: ${{ vars.GOOGLE_MAPS_KEY }}
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist

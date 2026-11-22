@@ -1,0 +1,22 @@
+---
+/** One static page per region: /istanbul, /istanbul/avrupa-yakasi, /istanbul/kadikoy, /istanbul/kadikoy/moda … */
+import type { GetStaticPaths } from "astro";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import AppShell from "../components/AppShell.astro";
+import { pathOf, type RegionIndex } from "../lib/regions.ts";
+
+export const getStaticPaths = (() => {
+  const index = JSON.parse(
+    readFileSync(join(process.cwd(), "public/data/regions.json"), "utf8"),
+  ) as RegionIndex;
+  return Object.keys(index.regions).map((id) => ({
+    params: { path: pathOf(index, id).slice(1) },
+    props: { regionId: id },
+  }));
+}) satisfies GetStaticPaths;
+
+const { regionId } = Astro.props;
+---
+
+<AppShell regionId={regionId} />

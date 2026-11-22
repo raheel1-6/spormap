@@ -66,3 +66,21 @@ site shows the OSM list without ratings.
 Node 26 locally (24 in CI), Astro 7, TypeScript 6 (strictest), ESLint 10 + typescript-eslint,
 Prettier, Vitest. `npm run verify` = format check, lint, `astro check`, tests, build; CI runs it on
 branches and pull requests, and the Pages deploy runs it before publishing `main`.
+
+## D6 · Data pipeline and region model — assumed (W2)
+
+- `npm run data` (`pipeline/run.ts`) rebuilds everything from Overpass; `--refresh` ignores the
+  local cache. `.github/workflows/data.yml` runs it monthly and commits changed files.
+- Mahalle → ilçe assignment: OSM has no parent tag, so each mahalle goes to the district that
+  contains most of its sampled outer-ring vertices (robust to shared borders).
+- Region ids: `istanbul`, `avrupa-yakasi` / `anadolu-yakasi`, district slug (`kadikoy`),
+  mahalle `<district>--<slug>` (`kadikoy--caddebostan`). URLs skip the Yaka for districts:
+  `/istanbul/kadikoy/caddebostan`. All 1,006 regions get a static page.
+- Simplification: 60 m tolerance for the overview file (İl, Yaka, İlçe: ~230 KB), 12 m for
+  mahalle files (~50 KB per district, fetched on first drill-in).
+- Categories (`src/data/categories.json`): order is priority. Specific sports come before generic
+  venue types (a gym tagged `sport=yoga` is Yoga, not Fitness), and ties for a region's top
+  category go to the earlier entry.
+- **OSM coverage is thin:** 794 named sport venues for all of İstanbul (Nov 2026); 611 of 964
+  mahalle have none and render in the neutral cream colour. Google's live search (W4) fills the
+  venue lists; the choropleth stays OSM-based (D1).

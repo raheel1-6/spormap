@@ -6,10 +6,12 @@ interface Props {
   title: string;
   description: string;
   lang?: "tr" | "en";
+  /** Path including the base, when the page's own URL isn't the canonical one (e.g. "/" → "/istanbul"). */
+  canonicalPath?: string;
 }
 
-const { title, description, lang = "tr" } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const { title, description, lang = "tr", canonicalPath } = Astro.props;
+const canonical = new URL(canonicalPath ?? Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>

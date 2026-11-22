@@ -1,0 +1,134 @@
+[
+  {
+    "id": "w1079263730",
+    "name": "Ali Samiyen Stadyumu",
+    "cat": "halisaha",
+    "m": "beyoglu--kuloglu",
+    "ll": [28.979142, 41.033155],
+    "f": "o"
+  },
+  {
+    "id": "n11521914912",
+    "name": "Beyoğlu Belediyesi Cihangir Spor Salonu",
+    "cat": "stadyum",
+    "m": "beyoglu--cihangir",
+    "ll": [28.986079, 41.031728],
+    "f": "b"
+  },
+  {
+    "id": "n14253264541",
+    "name": "Beyoğlu Belediyesi Spor Tesisi",
+    "cat": "stadyum",
+    "m": "beyoglu--yahya-kahya",
+    "ll": [28.9708, 41.032968],
+    "f": "b"
+  },
+  {
+    "id": "n14334125069",
+    "name": "Cihangir Pilates",
+    "cat": "yoga",
+    "m": "beyoglu--cihangir",
+    "ll": [28.984615, 41.031674]
+  },
+  {
+    "id": "n2785802377",
+    "name": "Cihangir Yoga",
+    "cat": "yoga",
+    "m": "beyoglu--purtelas-hasan-efendi",
+    "ll": [28.988302, 41.032283]
+  },
+  {
+    "id": "n4228217798",
+    "name": "CS-Club",
+    "cat": "fitness",
+    "m": "beyoglu--kuloglu",
+    "ll": [28.982644, 41.031537]
+  },
+  {
+    "id": "n7103717885",
+    "name": "Flash Gym",
+    "cat": "fitness",
+    "m": "beyoglu--asmali-mescit",
+    "ll": [28.976685, 41.033303]
+  },
+  {
+    "id": "n14253264538",
+    "name": "Galatasaray Spor Kulübü Voleybol Akademisi",
+    "cat": "basketbol",
+    "m": "beyoglu--katip-mustafa-celebi",
+    "ll": [28.981764, 41.034772]
+  },
+  {
+    "id": "n10772015843",
+    "name": "İBB Beyoğlu Yüzme Havuzu",
+    "cat": "stadyum",
+    "m": "beyoglu--bedrettin",
+    "ll": [28.969113, 41.02968]
+  },
+  {
+    "id": "w498633958",
+    "name": "İTÜ Gümüşsuyu Halı Saha",
+    "cat": "tenis",
+    "m": "beyoglu--gumussuyu",
+    "ll": [28.991075, 41.037337],
+    "f": "o"
+  },
+  {
+    "id": "w498633959",
+    "name": "İtü Gümüşsuyu Kampüsü Spor Tesisleri",
+    "cat": "halisaha",
+    "m": "beyoglu--gumussuyu",
+    "ll": [28.990916, 41.037648],
+    "f": "o"
+  },
+  {
+    "id": "n1651582024",
+    "name": "Kuledibi Hamamı",
+    "cat": "yuzme",
+    "m": "beyoglu--mueyyedzade",
+    "ll": [28.975152, 41.02488]
+  },
+  {
+    "id": "n6848335485",
+    "name": "NOA Gym",
+    "cat": "fitness",
+    "m": "beyoglu--mueyyedzade",
+    "ll": [28.97617, 41.026134]
+  },
+  {
+    "id": "w106619664",
+    "name": "Okçular Vakfı",
+    "cat": "okculuk",
+    "m": "beyoglu--kulaksiz",
+    "ll": [28.959937, 41.041889]
+  },
+  {
+    "id": "w35411079",
+    "name": "Recep Tayyip Erdoğan Stadyumu",
+    "cat": "stadyum",
+    "m": "beyoglu--catma-mescit",
+    "ll": [28.972393, 41.032794]
+  },
+  {
+    "id": "n14382982632",
+    "name": "Shooting range",
+    "cat": "okculuk",
+    "m": "beyoglu--mueyyedzade",
+    "ll": [28.976107, 41.02475]
+  },
+  {
+    "id": "w498785069",
+    "name": "Sütlüce Stadı",
+    "cat": "halisaha",
+    "m": "beyoglu--sutluce",
+    "ll": [28.949699, 41.055741],
+    "f": "o"
+  },
+  {
+    "id": "n14334125068",
+    "name": "Urban Boxing Turkey",
+    "cat": "dovus",
+    "m": "beyoglu--cihangir",
+    "ll": [28.984413, 41.031535]
+  }
+]

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "n6752791262",
+    "name": "Altınova Halı Saha Tesisleri",
+    "cat": "stadyum",
+    "m": "gungoren--tozkoparan",
+    "ll": [28.898113, 41.018044]
+  },
+  {
+    "id": "w191285323",
+    "name": "Altınova Spor Kulübü Sahası",
+    "cat": "halisaha",
+    "m": "gungoren--tozkoparan",
+    "ll": [28.89852, 41.018368],
+    "f": "o"
+  },
+  {
+    "id": "n6749940278",
+    "name": "Cömertkent Sitesi Spor Alanı",
+    "cat": "fitness",
+    "m": "gungoren--tozkoparan",
+    "ll": [28.900374, 41.019502],
+    "f": "o"
+  },
+  {
+    "id": "w307857356",
+    "name": "Güngören Belediyesi Kapalı Havuzu",
+    "cat": "yuzme",
+    "m": "gungoren--merkez",
+    "ll": [28.870954, 41.017845],
+    "f": "b"
+  },
+  {
+    "id": "w1250415583",
+    "name": "Güngören MTAL Spor Salonu",
+    "cat": "stadyum",
+    "m": "gungoren--tozkoparan",
+    "ll": [28.895056, 41.013915]
+  },
+  {
+    "id": "n3129217294",
+    "name": "Güngören Spor Kulübü",
+    "cat": "stadyum",
+    "m": "gungoren--merkez",
+    "ll": [28.870755, 41.023354]
+  },
+  {
+    "id": "w524370541",
+    "name": "Halı Saha",
+    "cat": "halisaha",
+    "m": "gungoren--gencosman",
+    "ll": [28.88687, 41.02733],
+    "f": "o"
+  },
+  {
+    "id": "n6964045867",
+    "name": "İSMEK Spor Eğitim Merkezi",
+    "cat": "stadyum",
+    "m": "gungoren--mehmet-nesih-ozmen",
+    "ll": [28.890479, 41.013392]
+  },
+  {
+    "id": "w900528409",
+    "name": "Kapalı Yüzme Havuzu",
+    "cat": "yuzme",
+    "m": "gungoren--gencosman",
+    "ll": [28.885763, 41.028007]
+  },
+  {
+    "id": "n5667618678",
+    "name": "Stadyum",
+    "cat": "fitness",
+    "m": "gungoren--tozkoparan",
+    "ll": [28.901981, 41.015478]
+  },
+  {
+    "id": "n6753096942",
+    "name": "Tozkoparan Spor Salonu",
+    "cat": "fitness",
+    "m": "gungoren--tozkoparan",
+    "ll": [28.894995, 41.012931]
+  },
+  {
+    "id": "n13701504401",
+    "name": "Yurt Spor Salonu",
+    "cat": "fitness",
+    "m": "gungoren--gencosman",
+    "ll": [28.887304, 41.031163]
+  }
+]

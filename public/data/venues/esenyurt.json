@@ -1,0 +1,124 @@
+[
+  {
+    "id": "n7064021064",
+    "name": "Ahmet Koç Gym & Fitness",
+    "cat": "fitness",
+    "m": "esenyurt--fatih",
+    "ll": [28.67512, 41.031634]
+  },
+  {
+    "id": "n4887139228",
+    "name": "Basi Systems Pilates",
+    "cat": "fitness",
+    "m": "esenyurt--akcaburgaz",
+    "ll": [28.644208, 41.061266]
+  },
+  {
+    "id": "n5014019601",
+    "name": "Blue Pasific",
+    "cat": "stadyum",
+    "m": "esenyurt--piri-reis",
+    "ll": [28.647068, 41.020713]
+  },
+  {
+    "id": "w662218445",
+    "name": "Esenkent Havuzu",
+    "cat": "yuzme",
+    "m": "esenyurt--asik-veysel",
+    "ll": [28.673108, 41.059175]
+  },
+  {
+    "id": "w662218446",
+    "name": "Esenkent Yüzme Havuzu",
+    "cat": "yuzme",
+    "m": "esenyurt--asik-veysel",
+    "ll": [28.674102, 41.059551]
+  },
+  {
+    "id": "w1165233076",
+    "name": "Esenyurt Belediyesi Yarı Olimpik Yüzme ve Spor Kompleksi",
+    "cat": "yuzme",
+    "m": "esenyurt--merkez",
+    "ll": [28.672914, 41.03684],
+    "f": "b"
+  },
+  {
+    "id": "n12841755586",
+    "name": "Fitcity Beylikdüzü Safir Residence",
+    "cat": "fitness",
+    "m": "esenyurt--cumhuriyet",
+    "ll": [28.649527, 41.016006]
+  },
+  {
+    "id": "w747247842",
+    "name": "Gürbüz Süleymanoğlu Spor Merkezi",
+    "cat": "stadyum",
+    "m": "esenyurt--asik-veysel",
+    "ll": [28.673825, 41.057306]
+  },
+  {
+    "id": "w218462100",
+    "name": "Hakan Şükür Stadyumu",
+    "cat": "stadyum",
+    "m": "esenyurt--mehtercesme",
+    "ll": [28.667085, 41.023237]
+  },
+  {
+    "id": "w218535642",
+    "name": "Innovia 1 Havuz ve Sosyal Tesis",
+    "cat": "yuzme",
+    "m": "esenyurt--cumhuriyet",
+    "ll": [28.656193, 41.017558]
+  },
+  {
+    "id": "w1168232516",
+    "name": "Kaya Halı Saha Tesisi",
+    "cat": "halisaha",
+    "m": "esenyurt--barbaros-hayrettin-pasa",
+    "ll": [28.638587, 41.024622],
+    "f": "o"
+  },
+  {
+    "id": "w315614036",
+    "name": "Necmi Kadıoğlu Stadı",
+    "cat": "halisaha",
+    "m": "esenyurt--yunus-emre",
+    "ll": [28.697788, 41.024324],
+    "f": "o"
+  },
+  {
+    "id": "w260616574",
+    "name": "Newresidence Havuz",
+    "cat": "yuzme",
+    "m": "esenyurt--piri-reis",
+    "ll": [28.653714, 41.019538]
+  },
+  {
+    "id": "w218532597",
+    "name": "Regnum Astrum Towers Sosyal Tesis",
+    "cat": "stadyum",
+    "m": "esenyurt--akevler-mahallesi-7-sokak",
+    "ll": [28.676724, 41.01419]
+  },
+  {
+    "id": "w218532601",
+    "name": "Solarkent Sosyal Tesis",
+    "cat": "stadyum",
+    "m": "esenyurt--akevler-mahallesi-7-sokak",
+    "ll": [28.677107, 41.016148]
+  },
+  {
+    "id": "w315614039",
+    "name": "Stadyum",
+    "cat": "stadyum",
+    "m": "esenyurt--yunus-emre",
+    "ll": [28.697848, 41.024072]
+  },
+  {
+    "id": "w1160648158",
+    "name": "Yenikent Mustafa Akboğa Kapalı Yüzme Havuzu",
+    "cat": "yuzme",
+    "m": "esenyurt--yenikent",
+    "ll": [28.681855, 41.042352]
+  }
+]

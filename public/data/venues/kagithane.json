@@ -1,0 +1,62 @@
+[
+  {
+    "id": "n9701367817",
+    "name": "Boulderhane",
+    "cat": "tirmanis",
+    "m": "kagithane--emniyetevleri",
+    "ll": [29.005803, 41.08842]
+  },
+  {
+    "id": "w1315073695",
+    "name": "Hamidiye Spor Merkezi",
+    "cat": "yuzme",
+    "m": "kagithane--hamidiye",
+    "ll": [28.971165, 41.095112]
+  },
+  {
+    "id": "w1324177943",
+    "name": "Hasdal Futbol Sahası",
+    "cat": "halisaha",
+    "m": "kagithane--hamidiye",
+    "ll": [28.972473, 41.095119],
+    "f": "o"
+  },
+  {
+    "id": "w1415228840",
+    "name": "Hasdal Saha",
+    "cat": "basketbol",
+    "m": "kagithane--hamidiye",
+    "ll": [28.972096, 41.095023],
+    "f": "o"
+  },
+  {
+    "id": "w1324372022",
+    "name": "İmece İlkokulu Spor Salonu",
+    "cat": "stadyum",
+    "m": "kagithane--hamidiye",
+    "ll": [28.968543, 41.094472]
+  },
+  {
+    "id": "w498633989",
+    "name": "Kağıthane Belediyesi Spor Tesisleri",
+    "cat": "halisaha",
+    "m": "kagithane--nurtepe",
+    "ll": [28.962259, 41.075238],
+    "f": "ob"
+  },
+  {
+    "id": "w1107383732",
+    "name": "Kağıthane Belediyesi Yahya Kemal Spor Kompleksi",
+    "cat": "halisaha",
+    "m": "kagithane--yahya-kemal",
+    "ll": [28.987637, 41.086318],
+    "f": "ob"
+  },
+  {
+    "id": "n2316894492",
+    "name": "Turuncu Dalış Merkezi",
+    "cat": "su",
+    "m": "kagithane--sultan-selim",
+    "ll": [29.004689, 41.090692]
+  }
+]

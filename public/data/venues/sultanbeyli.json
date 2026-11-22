@@ -1,0 +1,84 @@
+[
+  {
+    "id": "w418953619",
+    "name": "Astro turf",
+    "cat": "halisaha",
+    "m": "sultanbeyli--mehmet-akif",
+    "ll": [29.264045, 40.960432],
+    "f": "o"
+  },
+  {
+    "id": "w1225640321",
+    "name": "Bizimtepe Aydos Spor Kompleksi",
+    "cat": "stadyum",
+    "m": "sultanbeyli--veysel-karani",
+    "ll": [29.236648, 40.964982]
+  },
+  {
+    "id": "n4832845691",
+    "name": "Fitness",
+    "cat": "fitness",
+    "m": "sultanbeyli--abdurrahmangazi",
+    "ll": [29.263221, 40.966678]
+  },
+  {
+    "id": "w625263690",
+    "name": "Gölet Spor Tesisleri",
+    "cat": "stadyum",
+    "m": "sultanbeyli--yavuz-selim",
+    "ll": [29.27482, 40.950328]
+  },
+  {
+    "id": "n5542883615",
+    "name": "Kapalı yüzme havuzu",
+    "cat": "yuzme",
+    "m": "sultanbeyli--battalgazi",
+    "ll": [29.268372, 40.983348]
+  },
+  {
+    "id": "w307900719",
+    "name": "Mustafa Öncel Kültür ve Spor Kompleksi",
+    "cat": "stadyum",
+    "m": "sultanbeyli--veysel-karani",
+    "ll": [29.236146, 40.964113]
+  },
+  {
+    "id": "w490954236",
+    "name": "Nur Halı Saha",
+    "cat": "halisaha",
+    "m": "sultanbeyli--abdurrahmangazi",
+    "ll": [29.262861, 40.96641],
+    "f": "o"
+  },
+  {
+    "id": "n5542891434",
+    "name": "Sultanbeyli belediyesi spor salonu",
+    "cat": "stadyum",
+    "m": "sultanbeyli--battalgazi",
+    "ll": [29.268887, 40.983883],
+    "f": "b"
+  },
+  {
+    "id": "n5329319616",
+    "name": "Ulusal Spor Klübü",
+    "cat": "fitness",
+    "m": "sultanbeyli--adil",
+    "ll": [29.265261, 40.978951]
+  },
+  {
+    "id": "w491369653",
+    "name": "Ülker Spor Tesisleri",
+    "cat": "halisaha",
+    "m": "sultanbeyli--mehmet-akif",
+    "ll": [29.271845, 40.962516],
+    "f": "o"
+  },
+  {
+    "id": "w491139389",
+    "name": "Yıldırım Halı Saha",
+    "cat": "halisaha",
+    "m": "sultanbeyli--mehmet-akif",
+    "ll": [29.263126, 40.964205],
+    "f": "o"
+  }
+]

@@ -1,0 +1,105 @@
+[
+  {
+    "id": "n5667643002",
+    "name": "Akyüz Spor Salonu",
+    "cat": "stadyum",
+    "m": "zeytinburnu--bestelsiz",
+    "ll": [28.901906, 41.002538]
+  },
+  {
+    "id": "w390417466",
+    "name": "Basketbol Sahas",
+    "cat": "basketbol",
+    "m": "zeytinburnu--kazlicesme",
+    "ll": [28.910897, 40.99073],
+    "f": "o"
+  },
+  {
+    "id": "n5667640043",
+    "name": "Beştelsiz Kapalı yüzme havuzu",
+    "cat": "yuzme",
+    "m": "zeytinburnu--bestelsiz",
+    "ll": [28.903915, 41.000596]
+  },
+  {
+    "id": "n5667657810",
+    "name": "Body Line",
+    "cat": "fitness",
+    "m": "zeytinburnu--sumer",
+    "ll": [28.895834, 40.987444]
+  },
+  {
+    "id": "n5667655631",
+    "name": "Go Kart",
+    "cat": "stadyum",
+    "m": "zeytinburnu--bestelsiz",
+    "ll": [28.909054, 40.99526]
+  },
+  {
+    "id": "n5667657811",
+    "name": "Hasan doğan spor kompleksi",
+    "cat": "stadyum",
+    "m": "zeytinburnu--veliefendi",
+    "ll": [28.894523, 40.994711]
+  },
+  {
+    "id": "w115366118",
+    "name": "Merkezefendi Spor Kulübü Sahası",
+    "cat": "halisaha",
+    "m": "zeytinburnu--merkezefendi",
+    "ll": [28.914708, 41.01182],
+    "f": "o"
+  },
+  {
+    "id": "n6841359931",
+    "name": "Ness Qwert",
+    "cat": "fitness",
+    "m": "zeytinburnu--sumer",
+    "ll": [28.893444, 40.992898]
+  },
+  {
+    "id": "n5667661798",
+    "name": "Spor yaşam merkezi",
+    "cat": "fitness",
+    "m": "zeytinburnu--telsiz",
+    "ll": [28.910574, 40.996342]
+  },
+  {
+    "id": "n12324658347",
+    "name": "Turkcell Basketbol Gelişim Merkezi",
+    "cat": "basketbol",
+    "m": "zeytinburnu--kazlicesme",
+    "ll": [28.919266, 40.996387]
+  },
+  {
+    "id": "n14220242582",
+    "name": "Veliefendi Kapalı Yüzme Havuzu",
+    "cat": "yuzme",
+    "m": "zeytinburnu--veliefendi",
+    "ll": [28.895754, 40.996007]
+  },
+  {
+    "id": "w1060879018",
+    "name": "Zeytinburnu Belediyesi Buz Adası",
+    "cat": "buz",
+    "m": "zeytinburnu--veliefendi",
+    "ll": [28.894361, 40.996134],
+    "f": "b"
+  },
+  {
+    "id": "w1353152271",
+    "name": "Zeytinburnu Belediyesi Spor Salonu",
+    "cat": "fitness",
+    "m": "zeytinburnu--gokalp",
+    "ll": [28.905975, 40.994046],
+    "f": "b"
+  },
+  {
+    "id": "w83740888",
+    "name": "Zeytinburnu Stadyumu",
+    "cat": "halisaha",
+    "m": "zeytinburnu--kazlicesme",
+    "ll": [28.912091, 40.994051],
+    "f": "o"
+  }
+]

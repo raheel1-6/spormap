@@ -1,0 +1,24 @@
+[
+  {
+    "id": "n12684627911",
+    "name": "Arnavutköy Sağlıklı Yaşam Merkezi",
+    "cat": "yuzme",
+    "m": "arnavutkoy--tasoluk",
+    "ll": [28.719099, 41.185981]
+  },
+  {
+    "id": "w1564864730",
+    "name": "Hadımköy Kapalı Spor Kompleksi",
+    "cat": "yuzme",
+    "m": "arnavutkoy--hastane",
+    "ll": [28.609883, 41.159728],
+    "f": "b"
+  },
+  {
+    "id": "n14246478772",
+    "name": "Koç GYM",
+    "cat": "fitness",
+    "m": "arnavutkoy--hastane",
+    "ll": [28.617952, 41.151934]
+  }
+]

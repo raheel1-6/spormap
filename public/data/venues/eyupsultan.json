@@ -1,0 +1,157 @@
+[
+  {
+    "id": "n10104719761",
+    "name": "Akın Fit Club",
+    "cat": "fitness",
+    "m": "eyupsultan--karadolap",
+    "ll": [28.934317, 41.074458]
+  },
+  {
+    "id": "w738229382",
+    "name": "Alibeyköy Spor Kompleksi",
+    "cat": "stadyum",
+    "m": "eyupsultan--alibeykoy",
+    "ll": [28.946477, 41.072043]
+  },
+  {
+    "id": "n12495668616",
+    "name": "Alkuzu Binicilik",
+    "cat": "binicilik",
+    "m": "eyupsultan--mithatpasa",
+    "ll": [28.903307, 41.155093],
+    "f": "o"
+  },
+  {
+    "id": "n12920133104",
+    "name": "Esperanza Sport Club",
+    "cat": "stadyum",
+    "m": "eyupsultan--aksemsettin",
+    "ll": [28.923814, 41.083541]
+  },
+  {
+    "id": "w1224762966",
+    "name": "Eyüpsultan Belediyesi Yüzme Havuzu",
+    "cat": "yuzme",
+    "m": "eyupsultan--circir",
+    "ll": [28.929308, 41.081808],
+    "f": "b"
+  },
+  {
+    "id": "w1305493374",
+    "name": "Göktürk Futbol Sahası",
+    "cat": "halisaha",
+    "m": "eyupsultan--gokturk-merkez",
+    "ll": [28.873144, 41.185912],
+    "f": "o"
+  },
+  {
+    "id": "w1116243283",
+    "name": "Halit Kıvanç Stadyumu",
+    "cat": "stadyum",
+    "m": "eyupsultan--mevlana",
+    "ll": [28.916436, 41.087737],
+    "f": "b"
+  },
+  {
+    "id": "w736868016",
+    "name": "İbb Tevfik Aydeniz Spor Tesisi",
+    "cat": "stadyum",
+    "m": "eyupsultan--circir",
+    "ll": [28.938419, 41.081558]
+  },
+  {
+    "id": "w847301082",
+    "name": "Kemerburgaz Metin Oktay Tesisleri",
+    "cat": "stadyum",
+    "m": "eyupsultan--mimar-sinan",
+    "ll": [28.942613, 41.133438]
+  },
+  {
+    "id": "w847301088",
+    "name": "Kemerburgaz Spor Kulübü Spor Kompleksi",
+    "cat": "stadyum",
+    "m": "eyupsultan--mimar-sinan",
+    "ll": [28.922774, 41.156738]
+  },
+  {
+    "id": "n2888679695",
+    "name": "MACFit",
+    "cat": "yoga",
+    "m": "eyupsultan--topcular",
+    "ll": [28.921501, 41.034795]
+  },
+  {
+    "id": "w1112999428",
+    "name": "Özalibeyköy Halı Saha",
+    "cat": "halisaha",
+    "m": "eyupsultan--karadolap",
+    "ll": [28.939078, 41.075997],
+    "f": "o"
+  },
+  {
+    "id": "w498879496",
+    "name": "Parseller Spor Kulübü",
+    "cat": "halisaha",
+    "m": "eyupsultan--aksemsettin",
+    "ll": [28.928453, 41.081144],
+    "f": "o"
+  },
+  {
+    "id": "w1130850001",
+    "name": "Rami Spor Tesisleri",
+    "cat": "halisaha",
+    "m": "eyupsultan--rami-yeni",
+    "ll": [28.917252, 41.047437],
+    "f": "o"
+  },
+  {
+    "id": "w1029656308",
+    "name": "Serdar Aksun Okulu spor salonu",
+    "cat": "stadyum",
+    "m": "eyupsultan--aksemsettin",
+    "ll": [28.929436, 41.083111]
+  },
+  {
+    "id": "w387205589",
+    "name": "Şafak Spor Sosyal Tesisleri",
+    "cat": "halisaha",
+    "m": "eyupsultan--defterdar",
+    "ll": [28.9367, 41.037293],
+    "f": "o"
+  },
+  {
+    "id": "w793455138",
+    "name": "Şafak Spor Sosyal Tesisleri",
+    "cat": "stadyum",
+    "m": "eyupsultan--defterdar",
+    "ll": [28.937148, 41.037432]
+  },
+  {
+    "id": "w922872784",
+    "name": "Tevfik Aydeniz Spor Tesisi",
+    "cat": "fitness",
+    "m": "eyupsultan--circir",
+    "ll": [28.938306, 41.081521]
+  },
+  {
+    "id": "w1292677882",
+    "name": "Tırmanma Duvarı",
+    "cat": "tirmanis",
+    "m": "eyupsultan--yesilpinar",
+    "ll": [28.923203, 41.071696]
+  },
+  {
+    "id": "w1149730659",
+    "name": "Unixpadel",
+    "cat": "tenis",
+    "m": "eyupsultan--emniyettepe",
+    "ll": [28.949714, 41.067076]
+  },
+  {
+    "id": "n8976813142",
+    "name": "Yeşilpınar Kapalı Yüzme Havuzu",
+    "cat": "yuzme",
+    "m": "eyupsultan--yesilpinar",
+    "ll": [28.925835, 41.078503]
+  }
+]

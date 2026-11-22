@@ -1,0 +1,259 @@
+[
+  {
+    "id": "n5087168316",
+    "name": "Asta la vista",
+    "cat": "fitness",
+    "m": "fatih--yedikule",
+    "ll": [28.925983, 40.995372]
+  },
+  {
+    "id": "n5243952625",
+    "name": "Atlas spor salonu",
+    "cat": "fitness",
+    "m": "fatih--aksemsettin",
+    "ll": [28.946254, 41.016539]
+  },
+  {
+    "id": "n5113483675",
+    "name": "B fit",
+    "cat": "fitness",
+    "m": "fatih--ali-kuscu",
+    "ll": [28.94631, 41.021879]
+  },
+  {
+    "id": "n5111215752",
+    "name": "Champion",
+    "cat": "fitness",
+    "m": "fatih--koca-mustafapasa",
+    "ll": [28.933986, 41.004618]
+  },
+  {
+    "id": "n5113127749",
+    "name": "Club Sporıuum",
+    "cat": "fitness",
+    "m": "fatih--silivrikapi",
+    "ll": [28.93143, 41.005252]
+  },
+  {
+    "id": "w531395619",
+    "name": "Çapa Fen Lisesi Futsal sahası",
+    "cat": "halisaha",
+    "m": "fatih--molla-gurani",
+    "ll": [28.936485, 41.015241],
+    "f": "o"
+  },
+  {
+    "id": "w521335168",
+    "name": "Çapa Fen Lisesi Spor Salonu",
+    "cat": "stadyum",
+    "m": "fatih--molla-gurani",
+    "ll": [28.935527, 41.014839]
+  },
+  {
+    "id": "n5107247576",
+    "name": "Extreme Body Fitness",
+    "cat": "fitness",
+    "m": "fatih--silivrikapi",
+    "ll": [28.929549, 41.005402]
+  },
+  {
+    "id": "n5243952745",
+    "name": "Fatih Pilates gym",
+    "cat": "fitness",
+    "m": "fatih--aksemsettin",
+    "ll": [28.941722, 41.019251]
+  },
+  {
+    "id": "n5109654664",
+    "name": "Fit Life",
+    "cat": "fitness",
+    "m": "fatih--sehremini",
+    "ll": [28.934856, 41.013165]
+  },
+  {
+    "id": "n4949018798",
+    "name": "Fit Slim",
+    "cat": "fitness",
+    "m": "fatih--haseki-sultan",
+    "ll": [28.939962, 41.010976]
+  },
+  {
+    "id": "n5113590265",
+    "name": "Fitness World",
+    "cat": "fitness",
+    "m": "fatih--haseki-sultan",
+    "ll": [28.942207, 41.01047]
+  },
+  {
+    "id": "n5113598504",
+    "name": "Fitslim",
+    "cat": "fitness",
+    "m": "fatih--haseki-sultan",
+    "ll": [28.940002, 41.0111]
+  },
+  {
+    "id": "n5113557347",
+    "name": "Flamingo",
+    "cat": "fitness",
+    "m": "fatih--haseki-sultan",
+    "ll": [28.943245, 41.010701]
+  },
+  {
+    "id": "n5113590260",
+    "name": "Flamingo GYM",
+    "cat": "fitness",
+    "m": "fatih--haseki-sultan",
+    "ll": [28.941374, 41.01079]
+  },
+  {
+    "id": "w1206730294",
+    "name": "Gelenvevi Anadolu Lisesi Spor Salonu",
+    "cat": "stadyum",
+    "m": "fatih--zeyrek",
+    "ll": [28.952594, 41.021397]
+  },
+  {
+    "id": "n5106122988",
+    "name": "Hakan Emrah Studio Gym",
+    "cat": "fitness",
+    "m": "fatih--zeyrek",
+    "ll": [28.955422, 41.016699]
+  },
+  {
+    "id": "n5113592189",
+    "name": "Hakkay Yağlı",
+    "cat": "fitness",
+    "m": "fatih--haseki-sultan",
+    "ll": [28.939729, 41.011638]
+  },
+  {
+    "id": "w498185035",
+    "name": "Halı Saha",
+    "cat": "halisaha",
+    "m": "fatih--seyyid-omer",
+    "ll": [28.92697, 41.010369],
+    "f": "o"
+  },
+  {
+    "id": "w527491530",
+    "name": "İstanbul Büyükşehir Belediyesi Silivrikapı Buz Pisti",
+    "cat": "buz",
+    "m": "fatih--sumbul-efendi",
+    "ll": [28.922388, 41.003428],
+    "f": "b"
+  },
+  {
+    "id": "n5110342141",
+    "name": "İÜ Coğrafya Stüdyo Kapalı Spor Salonu",
+    "cat": "fitness",
+    "m": "fatih--molla-husrev",
+    "ll": [28.959518, 41.015199]
+  },
+  {
+    "id": "w498905059",
+    "name": "Mimar Sinan Stadı",
+    "cat": "halisaha",
+    "m": "fatih--karagumruk",
+    "ll": [28.934316, 41.024062],
+    "f": "o"
+  },
+  {
+    "id": "w381309655",
+    "name": "Namik Sevik Stadi",
+    "cat": "halisaha",
+    "m": "fatih--sumbul-efendi",
+    "ll": [28.921472, 41.001165],
+    "f": "o"
+  },
+  {
+    "id": "n5113462479",
+    "name": "Olympic spor salonu",
+    "cat": "fitness",
+    "m": "fatih--ali-kuscu",
+    "ll": [28.951071, 41.017033]
+  },
+  {
+    "id": "n5107247539",
+    "name": "Paşa Sports",
+    "cat": "stadyum",
+    "m": "fatih--silivrikapi",
+    "ll": [28.930627, 41.003771]
+  },
+  {
+    "id": "n5113125307",
+    "name": "Paşa Sports",
+    "cat": "stadyum",
+    "m": "fatih--silivrikapi",
+    "ll": [28.930922, 41.003655]
+  },
+  {
+    "id": "n5106134528",
+    "name": "Power Gym",
+    "cat": "fitness",
+    "m": "fatih--sehremini",
+    "ll": [28.934469, 41.011131]
+  },
+  {
+    "id": "n5107247592",
+    "name": "R-Form",
+    "cat": "fitness",
+    "m": "fatih--silivrikapi",
+    "ll": [28.930041, 41.006729]
+  },
+  {
+    "id": "n5243951991",
+    "name": "Sportwani",
+    "cat": "fitness",
+    "m": "fatih--aksemsettin",
+    "ll": [28.943873, 41.018514]
+  },
+  {
+    "id": "n6757978886",
+    "name": "Sultan Osman Hamami",
+    "cat": "fitness",
+    "m": "fatih--binbirdirek",
+    "ll": [28.973467, 41.006375]
+  },
+  {
+    "id": "n5113483678",
+    "name": "Troy Gym",
+    "cat": "fitness",
+    "m": "fatih--ali-kuscu",
+    "ll": [28.946116, 41.022065]
+  },
+  {
+    "id": "n5113470965",
+    "name": "Türktaş Sitesi",
+    "cat": "fitness",
+    "m": "fatih--mevlanakapi",
+    "ll": [28.924634, 41.015498]
+  },
+  {
+    "id": "n5115939293",
+    "name": "Uzun Yusuf Spor Tesisleri",
+    "cat": "stadyum",
+    "m": "fatih--seyyid-omer",
+    "ll": [28.927339, 41.010407]
+  },
+  {
+    "id": "w110311525",
+    "name": "Vefa Küçük Spor Salonu",
+    "cat": "fitness",
+    "m": "fatih--kalenderhane",
+    "ll": [28.958212, 41.014739]
+  },
+  {
+    "id": "n5081264707",
+    "name": "Xpower GYM",
+    "cat": "fitness",
+    "m": "fatih--molla-gurani",
+    "ll": [28.945262, 41.012143]
+  },
+  {
+    "id": "n5081610964",
+    "name": "Zigana spor tesisleri",
+    "cat": "stadyum",
+    "m": "fatih--yedikule",
+    "ll": [28.922146, 40.99935]
+  }
+]

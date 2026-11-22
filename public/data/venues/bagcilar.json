@@ -1,0 +1,103 @@
+[
+  {
+    "id": "w1381652928",
+    "name": "Ay Yıldız Halı Saha",
+    "cat": "stadyum",
+    "m": "bagcilar--goztepe",
+    "ll": [28.833092, 41.05818]
+  },
+  {
+    "id": "w571845707",
+    "name": "Bağcılar Belediyesi Yüzme Havuzu",
+    "cat": "stadyum",
+    "m": "bagcilar--barbaros",
+    "ll": [28.837815, 41.029798],
+    "f": "b"
+  },
+  {
+    "id": "w725395863",
+    "name": "Bağcılar Belediyesi Yüzme Havuzu",
+    "cat": "yuzme",
+    "m": "bagcilar--barbaros",
+    "ll": [28.83781, 41.029815],
+    "f": "b"
+  },
+  {
+    "id": "w315619036",
+    "name": "Bağcılar Stadyumu",
+    "cat": "stadyum",
+    "m": "bagcilar--mahmutbey",
+    "ll": [28.819783, 41.058852]
+  },
+  {
+    "id": "w498796835",
+    "name": "Esenler Stadı",
+    "cat": "halisaha",
+    "m": "bagcilar--fevzi-cakmak",
+    "ll": [28.856394, 41.053762],
+    "f": "o"
+  },
+  {
+    "id": "n5667706136",
+    "name": "Eser Spor Kulübü",
+    "cat": "fitness",
+    "m": "bagcilar--gunesli",
+    "ll": [28.824117, 41.037518]
+  },
+  {
+    "id": "n12014335131",
+    "name": "Galanthus Pilates",
+    "cat": "stadyum",
+    "m": "bagcilar--baglar",
+    "ll": [28.825893, 41.023803]
+  },
+  {
+    "id": "n12014335132",
+    "name": "Galanthus Pilates",
+    "cat": "stadyum",
+    "m": "bagcilar--baglar",
+    "ll": [28.825561, 41.023806]
+  },
+  {
+    "id": "n12014335133",
+    "name": "Galanthus Pilates",
+    "cat": "fitness",
+    "m": "bagcilar--baglar",
+    "ll": [28.825628, 41.023839]
+  },
+  {
+    "id": "n12014335134",
+    "name": "Galanthus Pilates",
+    "cat": "fitness",
+    "m": "bagcilar--baglar",
+    "ll": [28.825437, 41.023461]
+  },
+  {
+    "id": "w1491401465",
+    "name": "Göztepe Spor Kompleksi",
+    "cat": "stadyum",
+    "m": "bagcilar--goztepe",
+    "ll": [28.83592, 41.05815]
+  },
+  {
+    "id": "n6751146155",
+    "name": "Gymfit",
+    "cat": "fitness",
+    "m": "bagcilar--15-temmuz",
+    "ll": [28.812107, 41.04018]
+  },
+  {
+    "id": "n5667688674",
+    "name": "Kazım karabekir semt yüzme havuzu",
+    "cat": "yuzme",
+    "m": "bagcilar--kazim-karabekir",
+    "ll": [28.843723, 41.029277]
+  },
+  {
+    "id": "n13785122535",
+    "name": "Olimpik Go Kart",
+    "cat": "stadyum",
+    "m": "bagcilar--fevzi-cakmak",
+    "ll": [28.853791, 41.042157]
+  }
+]

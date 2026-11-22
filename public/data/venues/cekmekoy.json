@@ -1,0 +1,138 @@
+[
+  {
+    "id": "n2258710175",
+    "name": "Ağaoğlu Spor Salonu",
+    "cat": "stadyum",
+    "m": "cekmekoy--hamidiye",
+    "ll": [29.19135, 41.027932]
+  },
+  {
+    "id": "w1110587303",
+    "name": "Aras Halı Saha",
+    "cat": "halisaha",
+    "m": "cekmekoy--cumhuriyet",
+    "ll": [29.224307, 41.024042],
+    "f": "o"
+  },
+  {
+    "id": "w226421064",
+    "name": "Athletic Center",
+    "cat": "stadyum",
+    "m": "cekmekoy--nisantepe",
+    "ll": [29.257874, 41.034088]
+  },
+  {
+    "id": "w1568492977",
+    "name": "Beden Eğitimi Salonu",
+    "cat": "fitness",
+    "m": "cekmekoy--merkez",
+    "ll": [29.175364, 41.048005]
+  },
+  {
+    "id": "n13611702234",
+    "name": "BeFit Elite Training Studio",
+    "cat": "stadyum",
+    "m": "cekmekoy--mimar-sinan",
+    "ll": [29.172486, 41.030121]
+  },
+  {
+    "id": "n2255925948",
+    "name": "Çalışkan Sports Center",
+    "cat": "stadyum",
+    "m": "cekmekoy--mehmet-akif",
+    "ll": [29.192492, 41.021489]
+  },
+  {
+    "id": "w547305910",
+    "name": "Çekmeköy Belediyesi Spor Tesisleri",
+    "cat": "stadyum",
+    "m": "cekmekoy--merkez",
+    "ll": [29.175701, 41.038168],
+    "f": "b"
+  },
+  {
+    "id": "w216493839",
+    "name": "Çekmeköy Spor Kompleksi",
+    "cat": "stadyum",
+    "m": "cekmekoy--hamidiye",
+    "ll": [29.185308, 41.023454]
+  },
+  {
+    "id": "n12301261902",
+    "name": "Dr. Mimar Kadir Topbaş Spor Kompleksi - Fitness Salonu",
+    "cat": "fitness",
+    "m": "cekmekoy--alemdag",
+    "ll": [29.235509, 41.047961]
+  },
+  {
+    "id": "n12301283101",
+    "name": "Dr. Mimar Kadir Topbaş Spor Kompleksi - Kapalı Yüzme Havuzu",
+    "cat": "stadyum",
+    "m": "cekmekoy--alemdag",
+    "ll": [29.235859, 41.047979]
+  },
+  {
+    "id": "n5291408274",
+    "name": "Easy Fit",
+    "cat": "fitness",
+    "m": "cekmekoy--mimar-sinan",
+    "ll": [29.185841, 41.031847]
+  },
+  {
+    "id": "n10131182306",
+    "name": "FitnessMax PT Studio",
+    "cat": "yoga",
+    "m": "cekmekoy--mimar-sinan",
+    "ll": [29.174181, 41.033197]
+  },
+  {
+    "id": "n12301204501",
+    "name": "GSB - Alemdağ Stadı",
+    "cat": "stadyum",
+    "m": "cekmekoy--alemdag",
+    "ll": [29.233486, 41.047433]
+  },
+  {
+    "id": "n12302090001",
+    "name": "Kapalı Spor Salonu",
+    "cat": "stadyum",
+    "m": "cekmekoy--catalmese",
+    "ll": [29.245459, 41.050788]
+  },
+  {
+    "id": "w1347520088",
+    "name": "Plaj Voleybol Sahası",
+    "cat": "basketbol",
+    "m": "cekmekoy--nisantepe",
+    "ll": [29.260443, 41.03219],
+    "f": "o"
+  },
+  {
+    "id": "n13798914961",
+    "name": "U Prime Training",
+    "cat": "yoga",
+    "m": "cekmekoy--merkez",
+    "ll": [29.17678, 41.040955]
+  },
+  {
+    "id": "n12301210201",
+    "name": "Üstü Kapalı Halı Saha",
+    "cat": "stadyum",
+    "m": "cekmekoy--alemdag",
+    "ll": [29.233345, 41.048244]
+  },
+  {
+    "id": "n12301244701",
+    "name": "Üstü Kapalı Halı Saha",
+    "cat": "stadyum",
+    "m": "cekmekoy--alemdag",
+    "ll": [29.235375, 41.047562]
+  },
+  {
+    "id": "n5289269961",
+    "name": "Yoga Academy",
+    "cat": "yoga",
+    "m": "cekmekoy--mimar-sinan",
+    "ll": [29.183048, 41.031281]
+  }
+]

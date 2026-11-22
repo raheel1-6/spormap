@@ -1,0 +1,69 @@
+[
+  {
+    "id": "w342794930",
+    "name": "Avcılar Belediyesi Stadyumu",
+    "cat": "halisaha",
+    "m": "avcilar--firuzkoy",
+    "ll": [28.699539, 41.013855],
+    "f": "ob"
+  },
+  {
+    "id": "w342794933",
+    "name": "Avcılar Stadyumu",
+    "cat": "stadyum",
+    "m": "avcilar--firuzkoy",
+    "ll": [28.699546, 41.013861]
+  },
+  {
+    "id": "w1342262078",
+    "name": "Dost Halı Saha Tesisleri",
+    "cat": "halisaha",
+    "m": "avcilar--ambarli",
+    "ll": [28.707855, 40.979237],
+    "f": "o"
+  },
+  {
+    "id": "n13869258831",
+    "name": "Fitness Pilates",
+    "cat": "fitness",
+    "m": "avcilar--ambarli",
+    "ll": [28.721826, 40.976557]
+  },
+  {
+    "id": "w979531457",
+    "name": "İBB İstanbul Üniversitesi Avcılar Spor Kompleksi",
+    "cat": "stadyum",
+    "m": "avcilar--universite",
+    "ll": [28.721447, 40.997009],
+    "f": "b"
+  },
+  {
+    "id": "w922864731",
+    "name": "İstanbul Büyükşehir Belediyesi Spor Salonu",
+    "cat": "stadyum",
+    "m": "avcilar--mustafa-kemal-pasa",
+    "ll": [28.703553, 41.001278],
+    "f": "b"
+  },
+  {
+    "id": "n7593105027",
+    "name": "Pozitif Spor",
+    "cat": "tenis",
+    "m": "avcilar--universite",
+    "ll": [28.715475, 40.989989]
+  },
+  {
+    "id": "w926982108",
+    "name": "Prof. Dr. Turgay Atasü Spor Salonu",
+    "cat": "stadyum",
+    "m": "avcilar--universite",
+    "ll": [28.727202, 40.98474]
+  },
+  {
+    "id": "w926991456",
+    "name": "Spor Bilimleri Fakültesi Avcılar Spor Kompleksi",
+    "cat": "fitness",
+    "m": "avcilar--universite",
+    "ll": [28.721053, 40.997054]
+  }
+]

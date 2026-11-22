@@ -1,0 +1,149 @@
+[
+  {
+    "id": "n7069537693",
+    "name": "9Round",
+    "cat": "dovus",
+    "m": "besiktas--etiler",
+    "ll": [29.031829, 41.079549]
+  },
+  {
+    "id": "n12198605401",
+    "name": "Acıbadem Sports",
+    "cat": "stadyum",
+    "m": "besiktas--dikilitas",
+    "ll": [29.000125, 41.054267]
+  },
+  {
+    "id": "w62178470",
+    "name": "Alman Deresi Yürüyüş Parkuru",
+    "cat": "kosu",
+    "m": "besiktas--akat",
+    "ll": [29.029361, 41.086329]
+  },
+  {
+    "id": "w403554074",
+    "name": "BJK Akatlar Arena",
+    "cat": "stadyum",
+    "m": "besiktas--akat",
+    "ll": [29.023548, 41.087059]
+  },
+  {
+    "id": "w403554075",
+    "name": "BJK Çilekli Tesisleri",
+    "cat": "stadyum",
+    "m": "besiktas--levent",
+    "ll": [29.019137, 41.088439]
+  },
+  {
+    "id": "n12674200755",
+    "name": "Cure",
+    "cat": "yoga",
+    "m": "besiktas--gayrettepe",
+    "ll": [29.004874, 41.063582]
+  },
+  {
+    "id": "w31356051",
+    "name": "Dave Philips Sahası",
+    "cat": "halisaha",
+    "m": "besiktas--kurucesme",
+    "ll": [29.031776, 41.067906],
+    "f": "o"
+  },
+  {
+    "id": "w498633993",
+    "name": "Hakkı Yeten Futbol Altyapı Tesisleri",
+    "cat": "halisaha",
+    "m": "besiktas--dikilitas",
+    "ll": [29.001299, 41.05294],
+    "f": "o"
+  },
+  {
+    "id": "w801942589",
+    "name": "Hayal Çocuk Parkı Basket Sahası",
+    "cat": "basketbol",
+    "m": "besiktas--konaklar",
+    "ll": [29.015476, 41.092347],
+    "f": "o"
+  },
+  {
+    "id": "n5884051160",
+    "name": "Health Club & Spa Soul",
+    "cat": "tenis",
+    "m": "besiktas--cihannuma",
+    "ll": [29.009313, 41.046994]
+  },
+  {
+    "id": "n13179542881",
+    "name": "Kickboks Kursu",
+    "cat": "dovus",
+    "m": "besiktas--nisbetiye",
+    "ll": [29.021749, 41.075527]
+  },
+  {
+    "id": "w433033775",
+    "name": "Koza Sitesi Basket Sahası",
+    "cat": "basketbol",
+    "m": "besiktas--konaklar",
+    "ll": [29.016577, 41.088824],
+    "f": "o"
+  },
+  {
+    "id": "n4961671723",
+    "name": "MACFit",
+    "cat": "fitness",
+    "m": "besiktas--ortakoy",
+    "ll": [29.024437, 41.058875]
+  },
+  {
+    "id": "w498633973",
+    "name": "MGSK Muradiye",
+    "cat": "halisaha",
+    "m": "besiktas--dikilitas",
+    "ll": [29.004371, 41.052606],
+    "f": "o"
+  },
+  {
+    "id": "w1244844962",
+    "name": "TSYD Spor Tesisleri",
+    "cat": "stadyum",
+    "m": "besiktas--levent",
+    "ll": [29.020418, 41.080623]
+  },
+  {
+    "id": "w1328815936",
+    "name": "Tüpraş Stadyumu",
+    "cat": "stadyum",
+    "m": "besiktas--visnezade",
+    "ll": [28.994607, 41.039459]
+  },
+  {
+    "id": "w498371231",
+    "name": "Uçaksavar Kampüs Futbol Sahası",
+    "cat": "halisaha",
+    "m": "besiktas--etiler",
+    "ll": [29.040732, 41.085479],
+    "f": "o"
+  },
+  {
+    "id": "w167450761",
+    "name": "Uçaksavar Kapalı Spor Salonu",
+    "cat": "basketbol",
+    "m": "besiktas--etiler",
+    "ll": [29.039432, 41.085879],
+    "f": "o"
+  },
+  {
+    "id": "n14216180383",
+    "name": "Yoga Iatro",
+    "cat": "yoga",
+    "m": "besiktas--levazim",
+    "ll": [29.018313, 41.06353]
+  },
+  {
+    "id": "n6295633685",
+    "name": "Yoga8",
+    "cat": "fitness",
+    "m": "besiktas--tesvikiye",
+    "ll": [28.9959, 41.052254]
+  }
+]

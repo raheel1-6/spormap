@@ -1,0 +1,112 @@
+[
+  {
+    "id": "w1511175446",
+    "name": "Agena Spor Kompleksi",
+    "cat": "stadyum",
+    "m": "silivri--mimar-sinan",
+    "ll": [28.241033, 41.092935]
+  },
+  {
+    "id": "w857729230",
+    "name": "Aydan Siyavuş Açık Basketbol Sahası",
+    "cat": "basketbol",
+    "m": "silivri--yeni-mahalle",
+    "ll": [28.254425, 41.078115],
+    "f": "o"
+  },
+  {
+    "id": "w965191744",
+    "name": "Basketbol Sahası",
+    "cat": "basketbol",
+    "m": "silivri--buyuk-kilicli",
+    "ll": [28.190139, 41.170571],
+    "f": "o"
+  },
+  {
+    "id": "w1114834433",
+    "name": "Büyükkılıçlı Halı Saha",
+    "cat": "halisaha",
+    "m": "silivri--buyuk-kilicli",
+    "ll": [28.189347, 41.170973],
+    "f": "o"
+  },
+  {
+    "id": "w831653384",
+    "name": "Büyükkılıçlı Sahası",
+    "cat": "halisaha",
+    "m": "silivri--buyuk-kilicli",
+    "ll": [28.188278, 41.170726],
+    "f": "o"
+  },
+  {
+    "id": "w697661111",
+    "name": "Futbol Sahası",
+    "cat": "halisaha",
+    "m": "silivri--kadikoy",
+    "ll": [28.367649, 41.138641],
+    "f": "o"
+  },
+  {
+    "id": "w1114832829",
+    "name": "İSTAÇ Seymen Halı Saha",
+    "cat": "halisaha",
+    "m": "silivri--seymen",
+    "ll": [28.16666, 41.161243],
+    "f": "o"
+  },
+  {
+    "id": "w1314138703",
+    "name": "Kılıçpaşa At Çiftliği",
+    "cat": "binicilik",
+    "m": "silivri--alipasa",
+    "ll": [28.20238, 41.122631],
+    "f": "o"
+  },
+  {
+    "id": "w1510795989",
+    "name": "Kutnak Harası",
+    "cat": "binicilik",
+    "m": "silivri--cayirdere",
+    "ll": [28.084597, 41.261518],
+    "f": "o"
+  },
+  {
+    "id": "n5452420356",
+    "name": "Marmara Golf",
+    "cat": "golf",
+    "m": "silivri--seymen",
+    "ll": [28.156114, 41.185711],
+    "f": "o"
+  },
+  {
+    "id": "n12047508440",
+    "name": "Müslüm Baba At Çiftliği",
+    "cat": "binicilik",
+    "m": "silivri--beyciler",
+    "ll": [28.115313, 41.229358],
+    "f": "o"
+  },
+  {
+    "id": "w938752561",
+    "name": "Seymen Futbol Sahası",
+    "cat": "halisaha",
+    "m": "silivri--seymen",
+    "ll": [28.166519, 41.16129],
+    "f": "o"
+  },
+  {
+    "id": "w1299898668",
+    "name": "Top Sahası",
+    "cat": "halisaha",
+    "m": "silivri--ortakoy",
+    "ll": [28.372432, 41.100747],
+    "f": "o"
+  },
+  {
+    "id": "w308689528",
+    "name": "Yüzme Havuzu",
+    "cat": "yuzme",
+    "m": "silivri--degirmenkoy-ismetpasa",
+    "ll": [28.05393, 41.136892]
+  }
+]

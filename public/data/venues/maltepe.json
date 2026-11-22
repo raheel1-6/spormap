@@ -1,0 +1,242 @@
+[
+  {
+    "id": "n13306014851",
+    "name": "Alisay Pilates Studio",
+    "cat": "yoga",
+    "m": "maltepe--altaycesme",
+    "ll": [29.135148, 40.93181]
+  },
+  {
+    "id": "n2129726903",
+    "name": "Altayçeşme Sports Center",
+    "cat": "stadyum",
+    "m": "maltepe--altaycesme",
+    "ll": [29.12871, 40.940279]
+  },
+  {
+    "id": "n13060105074",
+    "name": "Athletic Club",
+    "cat": "fitness",
+    "m": "maltepe--findikli",
+    "ll": [29.135641, 40.969456]
+  },
+  {
+    "id": "w461011362",
+    "name": "Ayışığı Spor Tesisleri",
+    "cat": "halisaha",
+    "m": "maltepe--altaycesme",
+    "ll": [29.131876, 40.932451],
+    "f": "o"
+  },
+  {
+    "id": "n7740550405",
+    "name": "Bfit",
+    "cat": "fitness",
+    "m": "maltepe--altintepe",
+    "ll": [29.100779, 40.953328]
+  },
+  {
+    "id": "n5408893123",
+    "name": "Burgu Arjaan By Rotana Bodylines Pool and Fitness Center",
+    "cat": "fitness",
+    "m": "maltepe--altaycesme",
+    "ll": [29.136158, 40.936899]
+  },
+  {
+    "id": "n13307739989",
+    "name": "Cihangir Yoga",
+    "cat": "yoga",
+    "m": "maltepe--altaycesme",
+    "ll": [29.134006, 40.933667]
+  },
+  {
+    "id": "n14152849301",
+    "name": "Club Aydınoğlu",
+    "cat": "stadyum",
+    "m": "maltepe--idealtepe",
+    "ll": [29.127323, 40.942229]
+  },
+  {
+    "id": "w721568848",
+    "name": "Club Aydınoğlu",
+    "cat": "stadyum",
+    "m": "maltepe--idealtepe",
+    "ll": [29.127483, 40.942297]
+  },
+  {
+    "id": "n13963886095",
+    "name": "DuvarX",
+    "cat": "tirmanis",
+    "m": "maltepe--aydinevler",
+    "ll": [29.124105, 40.950504]
+  },
+  {
+    "id": "w1091917739",
+    "name": "E.C.A Elginkan Anadolu Lisesi Spor Merkezi",
+    "cat": "stadyum",
+    "m": "maltepe--baglarbasi",
+    "ll": [29.135516, 40.927046]
+  },
+  {
+    "id": "n6153661913",
+    "name": "Fit Life Sports",
+    "cat": "fitness",
+    "m": "maltepe--altintepe",
+    "ll": [29.104866, 40.950162]
+  },
+  {
+    "id": "w494225750",
+    "name": "Gülsuyu Stadı",
+    "cat": "halisaha",
+    "m": "maltepe--gulsuyu",
+    "ll": [29.157393, 40.924164],
+    "f": "o"
+  },
+  {
+    "id": "w178774133",
+    "name": "Halı Saha",
+    "cat": "halisaha",
+    "m": "maltepe--yali",
+    "ll": [29.125889, 40.923756],
+    "f": "o"
+  },
+  {
+    "id": "n13253804313",
+    "name": "Hercules",
+    "cat": "fitness",
+    "m": "maltepe--altaycesme",
+    "ll": [29.13049, 40.926552]
+  },
+  {
+    "id": "r17299264",
+    "name": "İBB Maltepe Kenan Onuk Atletizm Pisti",
+    "cat": "kosu",
+    "m": "maltepe--yali",
+    "ll": [29.115971, 40.931327],
+    "f": "o"
+  },
+  {
+    "id": "w1300687820",
+    "name": "İstanbul Büyükşehir Belediyesi Kapalı Spor Alanı",
+    "cat": "stadyum",
+    "m": "maltepe--cevizli",
+    "ll": [29.148603, 40.922318],
+    "f": "b"
+  },
+  {
+    "id": "n13658535787",
+    "name": "Liora Pilates Studio",
+    "cat": "yoga",
+    "m": "maltepe--altaycesme",
+    "ll": [29.130605, 40.925302]
+  },
+  {
+    "id": "n5379225723",
+    "name": "MACFit",
+    "cat": "fitness",
+    "m": "maltepe--altaycesme",
+    "ll": [29.135034, 40.938221]
+  },
+  {
+    "id": "w461203618",
+    "name": "MALTEPE FITNES CANTER (MFC)",
+    "cat": "tenis",
+    "m": "maltepe--altaycesme",
+    "ll": [29.127753, 40.938507]
+  },
+  {
+    "id": "w159932934",
+    "name": "Maltepe Hasan Polat Stadyumu",
+    "cat": "stadyum",
+    "m": "maltepe--yali",
+    "ll": [29.131345, 40.920438]
+  },
+  {
+    "id": "w957567556",
+    "name": "Maltepe Hasan Polat Stadyumu",
+    "cat": "halisaha",
+    "m": "maltepe--yali",
+    "ll": [29.131355, 40.920465],
+    "f": "o"
+  },
+  {
+    "id": "w1396061328",
+    "name": "Marmara Eğitim Kurumları Spor Tesisleri",
+    "cat": "stadyum",
+    "m": "maltepe--buyukbakkalkoy",
+    "ll": [29.186149, 40.959054]
+  },
+  {
+    "id": "w1433511873",
+    "name": "Marmara Üniversitesi Spor Sahaları",
+    "cat": "stadyum",
+    "m": "maltepe--basibuyuk",
+    "ll": [29.130167, 40.963525]
+  },
+  {
+    "id": "w462396233",
+    "name": "Müzahir Sille Spor Kompleksi",
+    "cat": "stadyum",
+    "m": "maltepe--girne",
+    "ll": [29.140329, 40.942818]
+  },
+  {
+    "id": "n13321584715",
+    "name": "No: 6:15 Studio",
+    "cat": "yoga",
+    "m": "maltepe--altaycesme",
+    "ll": [29.134196, 40.933918]
+  },
+  {
+    "id": "n14296624966",
+    "name": "Nova Pilates",
+    "cat": "stadyum",
+    "m": "maltepe--feyzullah",
+    "ll": [29.129415, 40.92507]
+  },
+  {
+    "id": "n12403265676",
+    "name": "Poligon Hilltown",
+    "cat": "okculuk",
+    "m": "maltepe--aydinevler",
+    "ll": [29.123261, 40.950365],
+    "f": "o"
+  },
+  {
+    "id": "n13976852919",
+    "name": "Retro Gym",
+    "cat": "fitness",
+    "m": "maltepe--altintepe",
+    "ll": [29.09964, 40.952941]
+  },
+  {
+    "id": "w461948509",
+    "name": "Tenis Kortu",
+    "cat": "tenis",
+    "m": "maltepe--basibuyuk",
+    "ll": [29.166376, 40.952897],
+    "f": "o"
+  },
+  {
+    "id": "w461948510",
+    "name": "Tenis Kortu",
+    "cat": "tenis",
+    "m": "maltepe--basibuyuk",
+    "ll": [29.16634, 40.952513],
+    "f": "o"
+  },
+  {
+    "id": "n13003982539",
+    "name": "XOOM Traing Club",
+    "cat": "stadyum",
+    "m": "maltepe--baglarbasi",
+    "ll": [29.133749, 40.927307]
+  },
+  {
+    "id": "n13371713469",
+    "name": "Yunus Emre Kul Fitness",
+    "cat": "fitness",
+    "m": "maltepe--altaycesme",
+    "ll": [29.131112, 40.932726]
+  }
+]

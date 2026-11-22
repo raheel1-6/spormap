@@ -1,0 +1,207 @@
+---
+/**
+ * Design preview (/tasarim): the app shell (map stage, search, breadcrumb, menu-card panel) with every
+ * component on obviously fake sample data. W2 replaces the swatches with the real Google map.
+ */
+import Base from "../layouts/Base.astro";
+import PaperPanel from "../components/PaperPanel.astro";
+import PanelHeader from "../components/PanelHeader.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import VenueRow from "../components/VenueRow.astro";
+import Chip from "../components/Chip.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import { formatRating, upper } from "../lib/format";
+
+const swatches = [
+  { name: "Moda", cat: "Halı Saha", fill: "var(--pastel-sage)" },
+  { name: "Caddebostan", cat: "Tenis", fill: "var(--region-selected)", selected: true },
+  { name: "Göztepe", cat: "Fitness", fill: "var(--pastel-pink)" },
+  { name: "Suadiye", cat: "Yüzme", fill: "var(--pastel-greyblue)" },
+  { name: "Fenerbahçe", cat: "Su Sporları", fill: "var(--pastel-lavender)" },
+  { name: "Erenköy", cat: "Basketbol", fill: "var(--pastel-olive)" },
+];
+---
+
+<Base
+  title="İstanbul Spor Haritası"
+  description="İstanbul'un ilçe ve mahallelerindeki en iyi spor mekanları, Google puanlarıyla."
+>
+  <div class="app">
+    <main class="stage" aria-label="Harita">
+      <div class="search-slot">
+        <label class="search">
+          <span class="visually-hidden">Ara</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M10 4a6 6 0 1 0 3.9 10.6l4.7 4.7 1.4-1.4-4.7-4.7A6 6 0 0 0 10 4zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"
+            ></path>
+          </svg>
+          <input type="search" placeholder="Mekan, semt veya tür ara" />
+        </label>
+      </div>
+
+      <div class="swatches" aria-hidden="true">
+        {swatches.map((s) => (
+          <div
+            class:list={["swatch", { "swatch--parent": s.name === "Göztepe" }]}
+            style={`--fill: ${s.fill}`}
+          >
+            <span class:list={["region-label", { "region-label--selected": s.selected }]}>
+              <span class="region-label__name">{s.name}</span>
+              <span class="region-label__cat">{upper(s.cat)}</span>
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div class="crumb-slot">
+        <Breadcrumb
+          crumbs={[
+            { label: "Türkiye", disabled: true },
+            { label: "İstanbul", href: "#" },
+            { label: "Anadolu Yakası", href: "#" },
+            { label: "Kadıköy", href: "#" },
+            { label: "Caddebostan" },
+          ]}
+        />
+      </div>
+    </main>
+
+    <PaperPanel as="aside" class="panel" aria-label="Mekanlar">
+      <PanelHeader path={["İstanbul", "Kadıköy"]} title="Caddebostan" />
+
+      <div class="chips" role="group" aria-label="Filtreler">
+        <Chip label="Tümü" pressed />
+        <Chip
+          label={`En İyiler ${formatRating(4.5)}+`}
+          count="12"
+          variant="highlight"
+          tint="var(--pastel-olive)"
+        />
+        <Chip label="Açık Hava" count="7" variant="highlight" tint="var(--pastel-sage)" />
+        <Chip label="Halı Saha" />
+        <Chip label="Tenis" />
+        <Chip label="+9" variant="more" />
+      </div>
+
+      <SectionHeader text="Halı Saha" />
+      <ul class="venue-list">
+        <VenueRow
+          name="Örnek Halı Saha A"
+          rating={4.86}
+          reviews={312}
+          subline="Caddebostan"
+          href="#"
+          badges={["A"]}
+        />
+        <VenueRow
+          name="Örnek Spor Tesisi B"
+          rating={4.6}
+          reviews={1234}
+          subline="Caddebostan"
+          href="#"
+          badges={["B"]}
+        />
+      </ul>
+      <SectionHeader text="Tenis" />
+      <ul class="venue-list">
+        <VenueRow name="Örnek Tenis Kulübü C" rating={4.4} reviews={87} subline="Caddebostan" href="#" />
+      </ul>
+
+      <footer class="panel-footer">
+        <p>
+          <b>A</b> Açık hava · <b>B</b> Belediye tesisi
+        </p>
+        <p>Tasarım önizlemesi · örnek veriler gerçek değildir.</p>
+      </footer>
+    </PaperPanel>
+  </div>
+</Base>
+
+<style>
+  .app {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr min(420px, 40vw);
+  }
+
+  /* Map stage: warm paper + faint dot grid (no street basemap). */
+  .stage {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--map-bg);
+    background-image: radial-gradient(var(--map-dot) 1px, transparent 1.2px);
+    background-size: 14px 14px;
+  }
+
+  .search-slot {
+    position: absolute;
+    top: max(16px, env(safe-area-inset-top));
+    left: 16px;
+    width: min(360px, calc(100% - 32px));
+    z-index: 2;
+  }
+
+  .crumb-slot {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: max(28px, env(safe-area-inset-bottom)); /* leaves room for Google's logo below */
+    z-index: 2;
+  }
+
+  .swatches {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    translate: -50% -50%;
+    display: grid;
+    grid-template-columns: repeat(3, 132px);
+    gap: 6px;
+  }
+  .swatch {
+    display: grid;
+    place-items: center;
+    height: 92px;
+    background: var(--fill);
+    border-radius: 12px;
+    outline: 1px solid color-mix(in srgb, var(--ink) 15%, transparent);
+  }
+  .swatch--parent {
+    outline: 3px solid var(--outline-rust);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--outline-rust) 55%, transparent);
+  }
+
+  .panel {
+    margin: 16px 16px 16px 0;
+    overflow-y: auto;
+  }
+
+  /* Phones: the panel becomes a bottom sheet over the map (detents come in W5). */
+  @media (max-width: 767px) {
+    .app {
+      grid-template-columns: 1fr;
+    }
+    .panel {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-height: 55dvh;
+      margin: 0;
+      border-radius: 14px 14px 0 0;
+      padding-bottom: max(6px, env(safe-area-inset-bottom));
+    }
+    .crumb-slot {
+      bottom: calc(55dvh + 12px);
+    }
+    .swatches {
+      top: 38%;
+      grid-template-columns: repeat(3, 104px);
+    }
+    .swatch {
+      height: 72px;
+    }
+  }
+</style>

@@ -13,23 +13,28 @@ Key decisions (platform, Google terms, free-tier limits) are in [docs/DECISIONS.
 npm install
 npm run dev       # http://localhost:4321
 npm run verify    # format check, lint, type check, tests, build
+npm run data      # rebuild OSM boundaries + venue counts (add -- --refresh to refetch)
 ```
 
 ## Layout
 
-| Path                        | Contents                                                                       |
-| --------------------------- | ------------------------------------------------------------------------------ |
-| `src/styles/tokens.css`     | Colour tokens (light + dimmed dark), fonts, base styles                        |
-| `src/styles/components.css` | Paper components as classes, shared by Astro templates and client scripts      |
-| `src/components/`           | `PaperPanel`, `PanelHeader`, `SectionHeader`, `VenueRow`, `Chip`, `Breadcrumb` |
-| `src/lib/format.ts`         | Locale-aware rating/count formatting, Turkish uppercasing                      |
-| `src/pages/index.astro`     | W1 design preview (fake sample data)                                           |
-| `.github/workflows/`        | `ci.yml` (branches, PRs) and `deploy.yml` (main → GitHub Pages)                |
+| Path                        | Contents                                                                                       |
+| --------------------------- | ---------------------------------------------------------------------------------------------- |
+| `src/styles/tokens.css`     | Colour tokens (light + dimmed dark), fonts, base styles                                        |
+| `src/styles/components.css` | Paper components as classes, shared by Astro templates and client scripts                      |
+| `src/components/`           | `PaperPanel`, `PanelHeader`, `SectionHeader`, `VenueRow`, `Chip`, `Breadcrumb`                 |
+| `src/lib/format.ts`         | Locale-aware rating/count formatting, Turkish uppercasing                                      |
+| `src/pages/`                | `index.astro` + `[...path].astro`: one static page per region; `tasarim.astro`: design preview |
+| `src/scripts/`              | Client: `app.ts` (state, URL, panel), `map/view.ts` (Google map, choropleth, labels)           |
+| `src/lib/`                  | Shared logic: hierarchy (`regions.ts`), geometry, labels, categories, HTML rendering           |
+| `pipeline/`                 | OSM → GeoJSON + region index (`npm run data`)                                                  |
+| `public/data/`              | Generated: `regions.json`, `geo/overview.geojson`, `geo/mahalle/*`, `venues/*`                 |
+| `.github/workflows/`        | `ci.yml` (branches, PRs) and `deploy.yml` (main → GitHub Pages)                                |
 
 ## Milestones
 
 - [x] W1 Setup, theme, fonts, CI, Pages deploy
-- [ ] W2 Boundary pipeline + İstanbul → Yaka → İlçe map
+- [x] W2 Boundary pipeline + İstanbul → Yaka → İlçe map (mahalle drill-in included)
 - [ ] W3 Mahalle level, lazy loading, performance
 - [ ] W4 OSM venue dataset + Places proxy
 - [ ] W5 Venue panel / bottom sheet, chips, ranking, tooltip

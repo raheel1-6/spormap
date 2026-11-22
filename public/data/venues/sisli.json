@@ -1,0 +1,60 @@
+[
+  {
+    "id": "n2004754501",
+    "name": "Avantgarde Fitness & Spa",
+    "cat": "stadyum",
+    "m": "sisli--esentepe",
+    "ll": [29.014962, 41.070847]
+  },
+  {
+    "id": "w498837526",
+    "name": "Feriköy Stadı",
+    "cat": "stadyum",
+    "m": "sisli--duatepe",
+    "ll": [28.978352, 41.052895]
+  },
+  {
+    "id": "n3905957087",
+    "name": "Gaia Spa & Fitness Center",
+    "cat": "stadyum",
+    "m": "sisli--harbiye",
+    "ll": [28.988241, 41.040452]
+  },
+  {
+    "id": "n4053791524",
+    "name": "Gold‘s Gym",
+    "cat": "fitness",
+    "m": "sisli--esentepe",
+    "ll": [29.011609, 41.075774]
+  },
+  {
+    "id": "n12677413911",
+    "name": "Goranga Yoga Merkezi",
+    "cat": "yoga",
+    "m": "sisli--mecidiyekoy",
+    "ll": [28.998855, 41.067065]
+  },
+  {
+    "id": "n6675941358",
+    "name": "Hayat Pilateste",
+    "cat": "yoga",
+    "m": "sisli--halil-rifat-pasa",
+    "ll": [28.970019, 41.058374]
+  },
+  {
+    "id": "w55217266",
+    "name": "Mecidiyeköy Spor Kulübü",
+    "cat": "halisaha",
+    "m": "sisli--esentepe",
+    "ll": [29.009514, 41.071103],
+    "f": "o"
+  },
+  {
+    "id": "w498837523",
+    "name": "Taksim Spor Süleyman Seba Tesisleri",
+    "cat": "halisaha",
+    "m": "sisli--ferikoy",
+    "ll": [28.979295, 41.050836],
+    "f": "o"
+  }
+]

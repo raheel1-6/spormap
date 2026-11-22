@@ -1,0 +1,24 @@
+[
+  {
+    "id": "w462847581",
+    "name": "Büyükada Su Sporları Klübü Kapalı Yüzme Havuzu",
+    "cat": "yuzme",
+    "m": "adalar--maden",
+    "ll": [29.138606, 40.870654]
+  },
+  {
+    "id": "w462759618",
+    "name": "Koca Yusuf Futbol Sahası",
+    "cat": "halisaha",
+    "m": "adalar--nizam",
+    "ll": [29.124959, 40.864135],
+    "f": "o"
+  },
+  {
+    "id": "n9785296388",
+    "name": "Vitavien",
+    "cat": "buz",
+    "m": "adalar--nizam",
+    "ll": [29.128421, 40.874421]
+  }
+]

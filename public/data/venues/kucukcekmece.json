@@ -1,0 +1,180 @@
+[
+  {
+    "id": "n6447304186",
+    "name": "Fit Box Fitness",
+    "cat": "fitness",
+    "m": "kucukcekmece--gultepe",
+    "ll": [28.792766, 40.993096]
+  },
+  {
+    "id": "w344306733",
+    "name": "Galatasaray Spor Kulübü Kürek Şubesi",
+    "cat": "stadyum",
+    "m": "kucukcekmece--kanarya",
+    "ll": [28.772208, 41.009944]
+  },
+  {
+    "id": "w316651509",
+    "name": "Halı Saha",
+    "cat": "halisaha",
+    "m": "kucukcekmece--halkali-merkez",
+    "ll": [28.775305, 41.036902],
+    "f": "o"
+  },
+  {
+    "id": "w396516813",
+    "name": "Halı Saha",
+    "cat": "stadyum",
+    "m": "kucukcekmece--istasyon",
+    "ll": [28.765764, 41.031335]
+  },
+  {
+    "id": "w1123520297",
+    "name": "Halkalı Ata Sporları Merkezi",
+    "cat": "binicilik",
+    "m": "kucukcekmece--halkali-merkez",
+    "ll": [28.781307, 41.026324],
+    "f": "o"
+  },
+  {
+    "id": "w1566605380",
+    "name": "İnönü Spor Kulübü Halı Sahası",
+    "cat": "halisaha",
+    "m": "kucukcekmece--inonu",
+    "ll": [28.799211, 41.019286],
+    "f": "o"
+  },
+  {
+    "id": "w497355975",
+    "name": "İZÜ Basketbol Sahası",
+    "cat": "basketbol",
+    "m": "kucukcekmece--halkali-merkez",
+    "ll": [28.786204, 41.033857],
+    "f": "o"
+  },
+  {
+    "id": "w563051656",
+    "name": "İZÜ Golf Sahası",
+    "cat": "golf",
+    "m": "kucukcekmece--halkali-merkez",
+    "ll": [28.789133, 41.029486]
+  },
+  {
+    "id": "w563051655",
+    "name": "İZÜ Spor Salonu",
+    "cat": "fitness",
+    "m": "kucukcekmece--halkali-merkez",
+    "ll": [28.788623, 41.029931]
+  },
+  {
+    "id": "w917872716",
+    "name": "İZÜ Spor Salonu",
+    "cat": "fitness",
+    "m": "kucukcekmece--halkali-merkez",
+    "ll": [28.788575, 41.030588]
+  },
+  {
+    "id": "w904391120",
+    "name": "İZÜ Stadyumu",
+    "cat": "stadyum",
+    "m": "kucukcekmece--halkali-merkez",
+    "ll": [28.787595, 41.03028]
+  },
+  {
+    "id": "w344318775",
+    "name": "Kanarya Stadı",
+    "cat": "stadyum",
+    "m": "kucukcekmece--kanarya",
+    "ll": [28.771039, 41.010958]
+  },
+  {
+    "id": "w539866582",
+    "name": "Küçükçekmece Voleybol Kulübü",
+    "cat": "basketbol",
+    "m": "kucukcekmece--tevfikbey",
+    "ll": [28.796048, 41.01607]
+  },
+  {
+    "id": "n14061510441",
+    "name": "MACFit",
+    "cat": "fitness",
+    "m": "kucukcekmece--atakent",
+    "ll": [28.770057, 41.055376]
+  },
+  {
+    "id": "w175124040",
+    "name": "Metin Oktay Stadı",
+    "cat": "halisaha",
+    "m": "kucukcekmece--fatih",
+    "ll": [28.771009, 40.987479],
+    "f": "o"
+  },
+  {
+    "id": "w627532801",
+    "name": "MNG Blue Boutique Yüzme Havuzu",
+    "cat": "yuzme",
+    "m": "kucukcekmece--halkali-merkez",
+    "ll": [28.791188, 41.028015]
+  },
+  {
+    "id": "n6759616786",
+    "name": "Pro Gold Gym",
+    "cat": "fitness",
+    "m": "kucukcekmece--ataturk",
+    "ll": [28.804557, 41.046207]
+  },
+  {
+    "id": "n13829772149",
+    "name": "PUMP HOUSE FITNESS",
+    "cat": "yoga",
+    "m": "kucukcekmece--inonu",
+    "ll": [28.791869, 41.021612]
+  },
+  {
+    "id": "w321603134",
+    "name": "Sefaköy Kapalı Yüzme Havuzu ve Kütüphanesi",
+    "cat": "yuzme",
+    "m": "kucukcekmece--gultepe",
+    "ll": [28.792801, 40.997744]
+  },
+  {
+    "id": "w498931438",
+    "name": "Sefaköy Kartal Stadı",
+    "cat": "halisaha",
+    "m": "kucukcekmece--kemalpasa",
+    "ll": [28.790725, 41.000862],
+    "f": "o"
+  },
+  {
+    "id": "w549178949",
+    "name": "spor sahası",
+    "cat": "basketbol",
+    "m": "kucukcekmece--atakent",
+    "ll": [28.768636, 41.042474],
+    "f": "o"
+  },
+  {
+    "id": "w549179264",
+    "name": "spor sahası",
+    "cat": "basketbol",
+    "m": "kucukcekmece--atakent",
+    "ll": [28.768837, 41.042473],
+    "f": "o"
+  },
+  {
+    "id": "w549179303",
+    "name": "spor sahası",
+    "cat": "basketbol",
+    "m": "kucukcekmece--atakent",
+    "ll": [28.769051, 41.0425],
+    "f": "o"
+  },
+  {
+    "id": "w175129392",
+    "name": "Yeşilova Kemal Aktaş Stadı",
+    "cat": "halisaha",
+    "m": "kucukcekmece--gultepe",
+    "ll": [28.790633, 40.989771],
+    "f": "o"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "n4557740271",
+    "name": "Dark Fitnes",
+    "cat": "fitness",
+    "m": "gaziosmanpasa--barbaros-hayrettin-pasa",
+    "ll": [28.888806, 41.07284]
+  },
+  {
+    "id": "w818512567",
+    "name": "Gaziosmanpaşa Belediyesi Yüzme Havuzu ve Spor Kompleksi",
+    "cat": "fitness",
+    "m": "gaziosmanpasa--kazim-karabekir",
+    "ll": [28.914306, 41.072837],
+    "f": "b"
+  },
+  {
+    "id": "w1414258552",
+    "name": "Küçükköy Yüzme Havuzu ve Fitness Merkezi",
+    "cat": "yuzme",
+    "m": "gaziosmanpasa--yeni-mahalle",
+    "ll": [28.900301, 41.07611]
+  },
+  {
+    "id": "n4359597889",
+    "name": "Validesuyu Halısaha Tesisleri",
+    "cat": "halisaha",
+    "m": "gaziosmanpasa--kazim-karabekir",
+    "ll": [28.912728, 41.074612],
+    "f": "o"
+  }
+]
