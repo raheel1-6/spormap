@@ -31,7 +31,7 @@ Google Maps Platform terms (as understood on 2026-11-22; re-verify before launch
 
 ## D2 · Map: Google Maps JavaScript API — agreed by consequence of D1
 
-Vector map with a cloud style (Map ID) hiding every basemap feature, land coloured `#DED2BA`.
+Vector map (Map ID `98571d0a25e40b97dc0c9ea0`) with the cloud style `spormap-paper` hiding every basemap feature; the page’s paper and dot grid show through. Tilt and rotation are disabled.
 Regions drawn from our OSM GeoJSON (Data layer, or a Maps Datasets upload if profiling favours it),
 labels as HTML overlays with a collision pass. The dot grid sits on the page behind a transparent
 map background. Google logo and attribution stay visible at the bottom-left, under the breadcrumb.

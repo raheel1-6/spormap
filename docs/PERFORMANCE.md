@@ -36,9 +36,22 @@ hovered feature, per-district loads de-duplicated and prefetched.
 **Not yet measured on a mid-range phone.** The target is 60 fps pan/zoom; use `?perf` on a real
 device (e.g. a 2–3 year old mid-range Android) and record the numbers here.
 
-## Vector map (Map ID)
+## Vector map (Map ID) — default since 2026-11-22
 
-`?vector` switches to the vector renderer with our own 600 ms eased camera (`src/lib/camera.ts`).
-It stays opt-in until the Map ID has a cloud style that hides every basemap feature. In the
-browser pane (software WebGL) it ran at ~17 fps, so it must be profiled on real devices before
-becoming the default.
+The Map ID uses the cloud style `spormap-paper` (light variant; every feature hidden), so only our
+own regions show on the page's paper and dot grid. The site always requests the light scheme and
+draws its own dark mode. `?raster` forces the raster renderer; browsers without WebGL fall back
+to it automatically.
+
+Camera moves use our own 600 ms ease (`src/lib/camera.ts`, honours reduced motion). Measured on
+the live site in the browser pane (frames during the camera move into each region):
+
+| Drill target        | fps | worst frame |
+| ------------------- | --- | ----------- |
+| Anadolu Yakası      | 119 | 33 ms       |
+| Kadıköy             | 118 | 33 ms       |
+| İstanbul (zoom out) | 120 | 17 ms       |
+| Çatalca             | 119 | 25 ms       |
+
+Tap-to-settled: 530 ms on average (the 600 ms ease minus the first frame). With Google's default
+style still attached the same map ran at ~17 fps, so the cloud style matters for performance too.
