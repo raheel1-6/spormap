@@ -46,7 +46,8 @@ const T = {
 } as const;
 
 export function href(ctx: RenderContext, id: string): string {
-  return `${ctx.base}${pathOf(ctx.index, id)}`;
+  // Trailing slash matches how GitHub Pages serves directory pages (avoids a 301 per link).
+  return `${ctx.base}${pathOf(ctx.index, id)}/`;
 }
 
 export function categoryName(id: string, locale: Locale): string {

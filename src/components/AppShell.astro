@@ -31,7 +31,7 @@ const cats = region.top
 const title =
   region.level === "il" ? "İstanbul Spor Haritası" : `${name} spor mekanları · İstanbul Spor Haritası`;
 const description = `${name} bölgesindeki en iyi spor mekanları${cats ? `: ${cats}` : ""}. İlçe ve mahalle haritası, Google puanlarıyla.`;
-const canonicalPath = `${base}${pathOf(index, regionId)}`;
+const canonicalPath = `${base}${pathOf(index, regionId)}/`;
 ---
 
 <Base title={title} description={description} lang={locale} canonicalPath={canonicalPath}>
