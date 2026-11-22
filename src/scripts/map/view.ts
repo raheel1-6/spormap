@@ -104,7 +104,8 @@ export class MapView {
       ...(opts.mapId
         ? {
             mapId: opts.mapId,
-            renderingType: opts.raster ? maps.RenderingType.RASTER : maps.RenderingType.VECTOR,
+            // Let the Map ID pick the renderer (vector); only name one when raster is forced.
+            ...(opts.raster ? { renderingType: maps.RenderingType.RASTER } : {}),
           }
         : { styles: [{ stylers: [{ visibility: "off" }] }] }),
     });
@@ -304,7 +305,7 @@ export class MapView {
         gmpClickable: true,
         zIndex: 10,
       });
-      marker.addListener("gmp-click", () => this.opts.onPinClick?.(pin.id));
+      marker.addEventListener("gmp-click", () => this.opts.onPinClick?.(pin.id));
       this.pins.set(pin.id, marker);
     }
   }
