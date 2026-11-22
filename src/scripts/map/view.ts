@@ -87,6 +87,9 @@ export class MapView {
       tiltInteractionEnabled: false,
       headingInteractionEnabled: false,
       rotateControl: false,
+      // The Map ID only has a light cloud style (everything hidden). Always request it; the site
+      // does its own dark mode on top, so Google must never switch to its default dark street map.
+      colorScheme: maps.ColorScheme.LIGHT,
       restriction: { latLngBounds: ISTANBUL_RESTRICTION, strictBounds: false },
       // No street basemap: every Google feature hidden, the page's paper + dot grid shows through.
       // No street basemap. Raster: every Google feature hidden here, the page paper + dot grid shows
