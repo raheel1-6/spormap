@@ -23,7 +23,8 @@ export interface MapViewOptions {
 }
 
 const LONG_PRESS_MS = 500;
-const ISTANBUL_RESTRICTION = { west: 27.6, south: 40.5, east: 29.95, north: 41.6 };
+// Keeps panning near İstanbul; generous so padded fits of edge regions (Şile, Silivri) are never clamped.
+const ISTANBUL_RESTRICTION = { west: 26.6, south: 39.9, east: 31.2, north: 42.3 };
 
 type Role = "context" | "fill" | "ghost" | "glow" | "outline";
 
