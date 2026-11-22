@@ -4,6 +4,7 @@
  * faint district outlines for orientation, and collision-aware HTML labels.
  */
 import type { Feature, FeatureCollection } from "geojson";
+import { cameraFor, easeInOutCubic, interpolateCamera } from "../../lib/camera.ts";
 import { CATEGORY_BY_ID, EMPTY_COLOR } from "../../lib/categories.ts";
 import { upper, type Locale } from "../../lib/format.ts";
 import { placeLabels, type LabelCandidate } from "../../lib/labels.ts";
@@ -11,6 +12,8 @@ import { getRegion, type NavState, type RegionIndex, type RegionMeta } from "../
 import { categoryName, regionName } from "../../lib/render.ts";
 
 export interface MapViewOptions {
+  /** Cloud Map ID: switches to the vector renderer (cloud style + eased camera). */
+  mapId?: string | undefined;
   index: RegionIndex;
   locale: Locale;
   /** Base URL for data files, ending in "/". */
@@ -23,6 +26,9 @@ export interface MapViewOptions {
 }
 
 const LONG_PRESS_MS = 500;
+const CAMERA_MS = 600;
+const MIN_ZOOM = 7;
+const MAX_ZOOM = 17;
 // Keeps panning near İstanbul; generous so padded fits of edge regions (Şile, Silivri) are never clamped.
 const ISTANBUL_RESTRICTION = { west: 26.6, south: 39.9, east: 31.2, north: 42.3 };
 
@@ -32,15 +38,30 @@ export class MapView {
   readonly map: google.maps.Map;
   private readonly layers: Record<Role, google.maps.Data>;
   private readonly geometry = new Map<string, Feature>();
-  private readonly loadedDistricts = new Set<string>();
+  private readonly districtLoads = new Map<string, Promise<void>>();
   private readonly labels: ReturnType<typeof createLabelLayer>;
   private nav: NavState | null = null;
   private hovered: string | null = null;
   private pressTimer: number | undefined;
   private suppressClick = false;
   private scheme: "light" | "dark" = "light";
+  private readonly added: Record<Role, Set<string>> = {
+    context: new Set(),
+    fill: new Set(),
+    ghost: new Set(),
+    glow: new Set(),
+    outline: new Set(),
+  };
+  private visible: Record<Role, Set<string>> = {
+    context: new Set(),
+    fill: new Set(),
+    ghost: new Set(),
+    glow: new Set(),
+    outline: new Set(),
+  };
   /** Resolves on the map's first "idle": fitting bounds earlier uses a stale viewport size. */
   private readonly ready: Promise<void>;
+  private animation = 0;
 
   constructor(
     element: HTMLElement,
@@ -50,10 +71,10 @@ export class MapView {
     this.map = new maps.Map(element, {
       center: { lat: 41.05, lng: 28.95 },
       zoom: 9,
-      minZoom: 7,
+      minZoom: MIN_ZOOM,
       // Smooth fits: without fractional zoom a wide region snaps to the next whole level and gets clipped.
       isFractionalZoomEnabled: true,
-      maxZoom: 17,
+      maxZoom: MAX_ZOOM,
       backgroundColor: "transparent",
       disableDefaultUI: true,
       zoomControl: true,
@@ -61,9 +82,16 @@ export class MapView {
       clickableIcons: false,
       keyboardShortcuts: true,
       gestureHandling: "greedy",
+      // Flat, north-up paper map: tilt distorts region shapes and rotation turns the labels.
+      // (Only vector maps can tilt/rotate; this keeps them off once a Map ID is added.)
+      tiltInteractionEnabled: false,
+      headingInteractionEnabled: false,
+      rotateControl: false,
       restriction: { latLngBounds: ISTANBUL_RESTRICTION, strictBounds: false },
       // No street basemap: every Google feature hidden, the page's paper + dot grid shows through.
-      styles: [{ stylers: [{ visibility: "off" }] }],
+      // No street basemap. Raster: every Google feature hidden here, the page paper + dot grid shows
+      // through. Vector (Map ID): this is ignored and the Map ID's cloud style must hide everything.
+      ...(opts.mapId ? { mapId: opts.mapId } : { styles: [{ stylers: [{ visibility: "off" }] }] }),
     });
 
     const layer = (zIndex: number, clickable: boolean) => {
@@ -88,9 +116,12 @@ export class MapView {
         }
         this.opts.onTap(String(e.feature.getProperty("id")));
       });
+      // Hover touches only the hovered feature (overrideStyle) instead of restyling every feature.
       data.addListener("mouseover", (e: google.maps.Data.MouseEvent) => {
         this.hovered = String(e.feature.getProperty("id"));
-        this.restyle();
+        this.prefetch(this.hovered);
+        data.revertStyle();
+        data.overrideStyle(e.feature, role === "fill" ? { strokeWeight: 2.5 } : { fillOpacity: 0.6 });
         const p = pointerOf(e);
         this.opts.onHover(this.hovered, p.x, p.y);
       });
@@ -100,13 +131,14 @@ export class MapView {
       });
       data.addListener("mouseout", () => {
         this.hovered = null;
-        this.restyle();
+        data.revertStyle();
         this.opts.onHover(null, 0, 0);
       });
       // Long-press (touch) shows the tooltip instead of drilling in.
       data.addListener("mousedown", (e: google.maps.Data.MouseEvent) => {
         window.clearTimeout(this.pressTimer);
         const id = String(e.feature.getProperty("id"));
+        this.prefetch(id); // a press usually precedes a tap
         const p = pointerOf(e);
         this.pressTimer = window.setTimeout(() => {
           this.suppressClick = true;
@@ -115,7 +147,10 @@ export class MapView {
       });
       data.addListener("mouseup", () => window.clearTimeout(this.pressTimer));
     }
-    this.map.addListener("dragstart", () => window.clearTimeout(this.pressTimer));
+    this.map.addListener("dragstart", () => {
+      window.clearTimeout(this.pressTimer);
+      window.cancelAnimationFrame(this.animation); // the user takes over the camera
+    });
 
     this.labels = createLabelLayer(maps, this);
     this.labels.setMap(this.map);
@@ -147,12 +182,24 @@ export class MapView {
     );
   }
 
-  /** Mahalle geometry is split per district and fetched on first drill-in. */
-  private async ensureDistrict(districtId: string): Promise<void> {
-    if (this.loadedDistricts.has(districtId)) return;
-    const fc = await fetchJson<FeatureCollection>(`${this.opts.dataUrl}geo/mahalle/${districtId}.geojson`);
-    for (const f of fc.features) this.geometry.set(String(f.properties?.["id"]), f);
-    this.loadedDistricts.add(districtId);
+  /** Mahalle geometry is split per district and fetched on first drill-in (or earlier, see prefetch). */
+  private ensureDistrict(districtId: string): Promise<void> {
+    let pending = this.districtLoads.get(districtId);
+    if (!pending) {
+      pending = fetchJson<FeatureCollection>(`${this.opts.dataUrl}geo/mahalle/${districtId}.geojson`).then(
+        (fc) => {
+          for (const f of fc.features) this.geometry.set(String(f.properties?.["id"]), f);
+        },
+      );
+      pending.catch(() => this.districtLoads.delete(districtId)); // allow a retry after a network error
+      this.districtLoads.set(districtId, pending);
+    }
+    return pending;
+  }
+
+  /** Warms the district's mahalle file when the user is likely to open it (hover, long-press). */
+  prefetch(id: string): void {
+    if (this.opts.index.regions[id]?.level === "ilce") void this.ensureDistrict(id).catch(() => {});
   }
 
   async show(nav: NavState, { animate = true } = {}): Promise<void> {
@@ -172,24 +219,51 @@ export class MapView {
     this.setFeatures("outline", focus.parent ? [focus.id] : []);
     this.restyle();
 
-    // Google animates short camera moves itself; a custom ~600 ms eased move needs a vector map
-    // (Map ID), which comes with the API key. Until then, longer jumps are instant.
-    void animate;
     await this.ready;
-    this.fit();
+    this.fit(animate);
     this.labels.update(
       focus.children.map((id) => getRegion(index, id)),
       nav.selected,
     );
   }
 
-  private fit(): void {
+  /**
+   * Fits the focused region. Vector maps (Map ID) get our own ~600 ms eased camera move;
+   * raster maps fall back to Google's fitBounds. Reduced motion always jumps.
+   */
+  private fit(animate = false): void {
     if (!this.nav) return;
-    const [w, s, e, n] = getRegion(this.opts.index, this.nav.focus).bbox;
-    this.map.fitBounds(
-      new this.maps.LatLngBounds({ lat: s, lng: w }, { lat: n, lng: e }),
-      this.opts.padding(),
-    );
+    const bbox = getRegion(this.opts.index, this.nav.focus).bbox;
+    const padding = this.opts.padding();
+    window.cancelAnimationFrame(this.animation);
+    if (this.map.getRenderingType() !== this.maps.RenderingType.VECTOR) {
+      const [w, s, e, n] = bbox;
+      this.map.fitBounds(new this.maps.LatLngBounds({ lat: s, lng: w }, { lat: n, lng: e }), padding);
+      return;
+    }
+    const div = this.map.getDiv();
+    const pad = {
+      top: padding.top ?? 0,
+      right: padding.right ?? 0,
+      bottom: padding.bottom ?? 0,
+      left: padding.left ?? 0,
+    };
+    const target = cameraFor(bbox, div.clientWidth, div.clientHeight, pad, MIN_ZOOM, MAX_ZOOM);
+    const center = this.map.getCenter();
+    const zoom = this.map.getZoom();
+    if (!animate || !center || zoom === undefined || prefersReducedMotion()) {
+      this.map.moveCamera({ center: { lat: target.lat, lng: target.lng }, zoom: target.zoom });
+      return;
+    }
+    const from = { lat: center.lat(), lng: center.lng(), zoom };
+    const start = performance.now();
+    const step = (now: number) => {
+      const t = Math.min(1, (now - start) / CAMERA_MS);
+      const cam = interpolateCamera(from, target, easeInOutCubic(t));
+      this.map.moveCamera({ center: { lat: cam.lat, lng: cam.lng }, zoom: cam.zoom });
+      if (t < 1) this.animation = window.requestAnimationFrame(step);
+    };
+    this.animation = window.requestAnimationFrame(step);
   }
 
   get locale(): Locale {
@@ -200,17 +274,28 @@ export class MapView {
     return Object.values(this.opts.index.regions).filter((r) => r.level === level && this.geometry.has(r.id));
   }
 
+  /**
+   * Shows exactly `ids` in a layer. Features are added to a layer once and then only toggled
+   * through the style (`visible`), so navigating never re-parses or re-adds geometry.
+   */
   private setFeatures(role: Role, ids: string[]): void {
-    const data = this.layers[role];
-    data.forEach((f) => data.remove(f));
-    const features = ids.map((id) => this.geometry.get(id)).filter((f): f is Feature => f !== undefined);
-    if (features.length) data.addGeoJson({ type: "FeatureCollection", features });
+    const added = this.added[role];
+    const missing = ids.filter((id) => !added.has(id) && this.geometry.has(id));
+    if (missing.length) {
+      this.layers[role].addGeoJson({
+        type: "FeatureCollection",
+        features: missing.map((id) => this.geometry.get(id)!),
+      });
+      for (const id of missing) added.add(id);
+    }
+    this.visible[role] = new Set(ids);
   }
 
   private restyle(): void {
     const css = getComputedStyle(document.documentElement);
     const v = (name: string) => css.getPropertyValue(name).trim();
     const selected = this.nav?.selected ?? null;
+    const shown = (role: Role, id: string) => this.visible[role].has(id);
     const fillOf = (id: string) => {
       const top = this.opts.index.regions[id]?.top[0];
       return (top ? CATEGORY_BY_ID.get(top)?.color : undefined)?.[this.scheme] ?? EMPTY_COLOR[this.scheme];
@@ -218,22 +303,24 @@ export class MapView {
 
     this.layers.fill.setStyle((f) => {
       const id = String(f.getProperty("id"));
+      if (!shown("fill", id)) return { visible: false };
       const isSelected = id === selected;
       return {
         zIndex: isSelected ? 3 : 2,
         fillColor: isSelected ? v("--region-selected") : fillOf(id),
         fillOpacity: 1,
         strokeColor: v("--paper"),
-        strokeWeight: id === this.hovered ? 2.5 : 1,
+        strokeWeight: 1,
         cursor: "pointer",
       };
     });
     this.layers.context.setStyle((f) => {
       const id = String(f.getProperty("id"));
+      if (!shown("context", id)) return { visible: false };
       return {
         zIndex: 1,
         fillColor: fillOf(id),
-        fillOpacity: id === this.hovered ? 0.6 : 0.35,
+        fillOpacity: 0.35,
         strokeColor: v("--paper"),
         strokeOpacity: 0.6,
         strokeWeight: 0.8,
@@ -248,22 +335,24 @@ export class MapView {
       strokeOpacity: 0.16,
       strokeWeight: 0.7,
     });
-    this.layers.glow.setStyle({
+    this.layers.glow.setStyle((f) => ({
+      visible: shown("glow", String(f.getProperty("id"))),
       zIndex: 4,
       clickable: false,
       fillOpacity: 0,
       strokeColor: v("--outline-rust"),
       strokeOpacity: 0.18,
       strokeWeight: 12,
-    });
-    this.layers.outline.setStyle({
+    }));
+    this.layers.outline.setStyle((f) => ({
+      visible: shown("outline", String(f.getProperty("id"))),
       zIndex: 5,
       clickable: false,
       fillOpacity: 0,
       strokeColor: v("--outline-rust"),
       strokeOpacity: 1,
       strokeWeight: 3,
-    });
+    }));
   }
 }
 
@@ -350,4 +439,8 @@ async function fetchJson<T>(url: string): Promise<T> {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
   return (await res.json()) as T;
+}
+
+function prefersReducedMotion(): boolean {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }

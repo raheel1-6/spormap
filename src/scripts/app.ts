@@ -25,6 +25,8 @@ import {
 } from "../lib/render.ts";
 import { loadGoogleMaps } from "./map/google.ts";
 import { MapView } from "./map/view.ts";
+import { createPerfProbe } from "./perf.ts";
+import { GOOGLE_MAP_ID, useVectorMap } from "../config.ts";
 
 const shell = document.querySelector<HTMLElement>("[data-app]");
 if (shell) void boot(shell);
@@ -41,6 +43,7 @@ async function boot(shell: HTMLElement) {
   const ctx: RenderContext = { index, locale, base };
   let nav: NavState = goTo(index, shell.dataset["region"] ?? index.root);
   let map: MapView | null = null;
+  const perf = createPerfProbe();
 
   const titleFor = (id: string) => {
     const r = getRegion(index, id);
@@ -52,6 +55,7 @@ async function boot(shell: HTMLElement) {
 
   function render(next: NavState, { push = true } = {}) {
     const changed = current(next) !== current(nav) || next.focus !== nav.focus;
+    if (changed) perf?.navigationStarted();
     nav = next;
     const swap = () => {
       panelBody.innerHTML = renderRegionPanel(ctx, nav);
@@ -80,6 +84,14 @@ async function boot(shell: HTMLElement) {
     e.preventDefault();
     render(goTo(index, link.dataset["region"]!));
   });
+
+  // Warm a district's mahalle file as soon as its link is hovered or focused.
+  const warm = (e: Event) => {
+    const link = (e.target as Element).closest<HTMLAnchorElement>("a[data-region]");
+    if (link) map?.prefetch(link.dataset["region"]!);
+  };
+  shell.addEventListener("pointerover", warm);
+  shell.addEventListener("focusin", warm);
 
   window.addEventListener("popstate", () => {
     const id = resolvePath(index, location.pathname.slice(base.length)) ?? index.root;
@@ -112,6 +124,7 @@ async function boot(shell: HTMLElement) {
   try {
     const maps = await loadGoogleMaps(import.meta.env.PUBLIC_GOOGLE_MAPS_KEY, locale);
     map = new MapView(mapEl, maps, {
+      mapId: useVectorMap() ? GOOGLE_MAP_ID : undefined,
       index,
       locale,
       dataUrl: `${base}/data/`,
@@ -123,6 +136,7 @@ async function boot(shell: HTMLElement) {
     });
     if (import.meta.env.DEV)
       (window as unknown as { __spormap: unknown }).__spormap = { map: map.map, index };
+    perf?.attach(map.map);
     await map.loadOverview();
     await map.show(nav, { animate: false });
     shell.classList.add("map-ready");

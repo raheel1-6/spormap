@@ -19,6 +19,7 @@ import { join } from "node:path";
 import {
   bboxContains,
   bboxOf,
+  geometryArea,
   polygonsOf,
   pointInGeometry,
   round,
@@ -38,7 +39,14 @@ const refresh = process.argv.includes("--refresh");
 
 /** Simplification tolerances (metres). Overview is seen zoomed out; mahalle up close. */
 const OVERVIEW_INTERVAL = 60;
-const MAHALLE_INTERVAL = 12;
+/**
+ * Mahalle tolerance scales with the district: each district is viewed fitted to the screen, so a
+ * large rural one (Şile, ~800 km²) is seen far more zoomed out than a dense central one
+ * (Kadıköy, ~25 km²). Roughly sqrt(area)/300, clamped to 10–45 m. See docs/PERFORMANCE.md.
+ */
+const MAHALLE_INTERVAL_MIN = 10;
+const MAHALLE_INTERVAL_MAX = 45;
+const MAHALLE_INTERVAL_DIVISOR = 300;
 
 type Poly = Polygon | MultiPolygon;
 type Props = Record<string, unknown>;
@@ -145,11 +153,17 @@ async function main() {
     },
   );
 
-  const mahalleFc = fc(mahalleler.map((m) => feature(m.geometry, { id: m.id, parent: m.parent })));
-  const mahalleSimple = await ms(
-    `-i m.json -clean -simplify interval=${MAHALLE_INTERVAL} keep-shapes -clean -o out.json format=geojson precision=0.00001`,
-    { "m.json": mahalleFc },
-  );
+  // Each district's mahalle are simplified together (shared borders stay shared) with its own tolerance.
+  const mahalleSimple = fc([]);
+  for (const d of districts) {
+    const members = mahalleler.filter((m) => m.parent === d.id);
+    if (!members.length) continue;
+    const out = await ms(
+      `-i m.json -clean -simplify interval=${mahalleInterval(d.geometry)} keep-shapes -clean -o out.json format=geojson precision=0.00001`,
+      { "m.json": fc(members.map((m) => feature(m.geometry, { id: m.id, parent: m.parent }))) },
+    );
+    mahalleSimple.features.push(...out.features);
+  }
 
   // Label anchors: mapshaper's "inner" point is well inside concave shapes.
   const labels = new Map<string, Position>();
@@ -230,6 +244,13 @@ async function main() {
 
   await writeFile(join(OUT, "boundaries.json"), JSON.stringify({ osmDataAt, records }, null, 1));
   console.log(`Wrote ${records.length} regions. OSM data as of ${osmDataAt}.`);
+}
+
+function mahalleInterval(geometry: Poly): number {
+  // Squared degrees → km² at İstanbul's latitude (1° lat ≈ 111 km, 1° lng ≈ 84 km).
+  const km2 = geometryArea(geometry as unknown as PolygonalGeometry) * 111 * 84;
+  const metres = (Math.sqrt(km2) * 1000) / MAHALLE_INTERVAL_DIVISOR;
+  return Math.round(Math.min(MAHALLE_INTERVAL_MAX, Math.max(MAHALLE_INTERVAL_MIN, metres)));
 }
 
 function assignParent(
