@@ -1,8 +1,25 @@
 import { describe, expect, it, vi } from "vitest";
-import { ALLOWED_QUERIES, handle, type Env } from "./index.ts";
+import { ALLOWED_QUERIES, handle, type Env, type QuotaNamespace } from "./index.ts";
+import { takeQuota } from "./quota.ts";
+
+/** In-memory stand-in for the QuotaCounter Durable Object. */
+function fakeQuota(): QuotaNamespace & { data: Map<string, unknown> } {
+  const data = new Map<string, unknown>();
+  const storage = {
+    get: async <T>(k: string) => data.get(k) as T | undefined,
+    put: async (entries: Record<string, unknown>) =>
+      void Object.entries(entries).forEach(([k, v]) => data.set(k, v)),
+  };
+  return { data, idFromName: (n) => n, get: () => ({ take: (limits) => takeQuota(storage, limits) }) };
+}
 
 const ORIGIN = "https://raheel1-6.github.io";
-const env: Env = { PLACES_API_KEY: "test-key", ALLOWED_ORIGINS: `${ORIGIN},http://localhost:4321` };
+const env: Env = {
+  PLACES_API_KEY: "test-key",
+  ALLOWED_ORIGINS: `${ORIGIN},http://localhost:4321`,
+  QUOTA: fakeQuota(),
+  DAILY_LIMIT: "1000",
+};
 const kadikoy = [29.01579, 40.95134, 29.11123, 41.0123];
 
 function request(body: unknown, { origin = ORIGIN, method = "POST", path = "/v1/search" } = {}) {
@@ -123,5 +140,33 @@ describe("places proxy", () => {
       googleOk(),
     );
     expect(noToken.status).toBe(403);
+  });
+
+  it("stops calling Google once the daily cap is reached", async () => {
+    const fetchMock = googleOk();
+    const capped: Env = { ...env, QUOTA: fakeQuota(), DAILY_LIMIT: "2" };
+    const statuses = [];
+    for (let i = 0; i < 3; i++) {
+      statuses.push(
+        (await handle(request({ query: "tenis kortu", bbox: kadikoy }), capped, fetchMock)).status,
+      );
+    }
+    expect(statuses).toEqual([200, 200, 503]);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
+  it("does not spend quota on rejected requests", async () => {
+    const quota = fakeQuota();
+    await handle(request({ query: "pizza", bbox: kadikoy }), { ...env, QUOTA: quota }, googleOk());
+    expect(quota.data.size).toBe(0);
+  });
+
+  it("fails closed without the quota counter", async () => {
+    const fetchMock = googleOk();
+    const { QUOTA: _omit, ...noCounter } = env;
+    void _omit;
+    const res = await handle(request({ query: "tenis kortu", bbox: kadikoy }), noCounter, fetchMock);
+    expect(res.status).toBe(503);
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 });

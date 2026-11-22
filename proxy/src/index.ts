@@ -5,10 +5,18 @@
  *   → { places: Place[] }   (live from Google, Cache-Control: no-store, nothing stored here)
  *
  * Guards, cheapest first: allowed Origin, per-IP rate limit (optional binding), query must be one
- * of our sport keywords, bbox must be small and inside İstanbul, optional Turnstile check.
- * The hard cost cap is the Places API daily quota in Google Cloud (see docs/PROXY.md).
+ * of our sport keywords, bbox must be small and inside İstanbul, optional Turnstile check, and
+ * finally the hard cost cap: a global daily/monthly counter of Google calls (quota.ts), so the
+ * free tier can't be exceeded even though Google's own Places quota may not be adjustable.
  */
 import categories from "../../src/data/categories.json" with { type: "json" };
+import { limitsFrom, type QuotaLimits, type QuotaResult } from "./quota.ts";
+
+/** Minimal view of the QuotaCounter Durable Object namespace used here. */
+export interface QuotaNamespace {
+  idFromName(name: string): unknown;
+  get(id: unknown): { take(limits: QuotaLimits): Promise<QuotaResult> };
+}
 
 export interface Env {
   /** Server key restricted to "Places API (New)". Set with `wrangler secret put PLACES_API_KEY`. */
@@ -19,6 +27,11 @@ export interface Env {
   TURNSTILE_SECRET?: string;
   /** Optional Workers rate-limit binding (wrangler.toml [[unsafe.bindings]] / ratelimits). */
   RATE_LIMITER?: { limit(options: { key: string }): Promise<{ success: boolean }> };
+  /** Global Google-call counter (Durable Object). Required in production; see wrangler.toml. */
+  QUOTA?: QuotaNamespace;
+  /** Max Google calls per UTC day / month (defaults 30 / 850). "0" switches ratings off. */
+  DAILY_LIMIT?: string;
+  MONTHLY_LIMIT?: string;
 }
 
 export interface Place {
@@ -105,6 +118,12 @@ export async function handle(req: Request, env: Env, fetchImpl: typeof fetch = f
     }
   }
 
+  // Hard cost cap, checked last so rejected requests never consume it. Fail closed: without the
+  // counter binding, Google is never called.
+  if (!env.QUOTA) return reply(503, { error: "quota", reason: "not_configured" });
+  const quota = await env.QUOTA.get(env.QUOTA.idFromName("global")).take(limitsFrom(env));
+  if (!quota.ok) return reply(503, { error: "quota", reason: quota.reason });
+
   const [w, s, e, n] = bbox;
   const upstream = await fetchImpl("https://places.googleapis.com/v1/places:searchText", {
     method: "POST",
@@ -184,7 +203,3 @@ async function verifyTurnstile(token: string, secret: string, ip: string | null,
   });
   return res.ok && ((await res.json()) as { success?: boolean }).success === true;
 }
-
-export default {
-  fetch: (req: Request, env: Env) => handle(req, env),
-};
