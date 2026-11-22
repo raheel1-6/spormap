@@ -1,0 +1,50 @@
+---
+/** Pill bar, bottom-left of the map. Last crumb = current level; disabled crumbs (Türkiye) are inert. */
+export interface Crumb {
+  label: string;
+  href?: string;
+  disabled?: boolean;
+}
+interface Props {
+  crumbs: Crumb[];
+  label?: string;
+}
+const { crumbs, label = "Konum" } = Astro.props;
+---
+
+<nav class="breadcrumb" aria-label={label}>
+  <ol>
+    {crumbs.map((c, i) => {
+      const current = i === crumbs.length - 1;
+      if (current)
+        return (
+          <li>
+            <span aria-current="page">{c.label}</span>
+          </li>
+        );
+      if (c.disabled || !c.href)
+        return (
+          <li>
+            <span aria-disabled="true">{c.label}</span>
+          </li>
+        );
+      return (
+        <li>
+          <a href={c.href}>{c.label}</a>
+        </li>
+      );
+    })}
+  </ol>
+</nav>
+
+<script>
+  // Keep the current (last) crumb in view when the path is wider than the screen.
+  // Re-run after web fonts load, since they change the crumbs' widths.
+  const scrollToEnd = () => {
+    for (const nav of document.querySelectorAll<HTMLElement>(".breadcrumb")) {
+      nav.scrollLeft = nav.scrollWidth;
+    }
+  };
+  scrollToEnd();
+  void document.fonts.ready.then(scrollToEnd);
+</script>

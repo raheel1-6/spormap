@@ -1,0 +1,25 @@
+---
+/** Filter chip. variant: plain (categories, "Tümü"), highlight (tinted, with count), more (dashed "+N"). */
+interface Props {
+  label: string;
+  pressed?: boolean;
+  count?: string;
+  variant?: "plain" | "highlight" | "more";
+  tint?: string;
+  value?: string;
+}
+const { label, pressed = false, count, variant = "plain", tint, value } = Astro.props;
+const style = variant === "highlight" && tint ? `--tint: ${tint}` : undefined;
+---
+
+<button
+  type="button"
+  class:list={["chip", { "chip--highlight": variant === "highlight", "chip--more": variant === "more" }]}
+  aria-pressed={variant === "more" ? undefined : pressed ? "true" : "false"}
+  aria-expanded={variant === "more" ? "false" : undefined}
+  data-value={value}
+  style={style}
+>
+  {label}
+  {count && <span class="chip__count">{count}</span>}
+</button>

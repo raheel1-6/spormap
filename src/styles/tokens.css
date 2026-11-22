@@ -1,0 +1,126 @@
+/*
+ * Design tokens for the "paper map" look.
+ * Dark mode dims the paper (lamplight) rather than inverting it.
+ */
+@import "@fontsource-variable/fraunces/full.css";
+@import "@fontsource-variable/fraunces/full-italic.css";
+@import "@fontsource-variable/inter/opsz.css";
+
+:root {
+  color-scheme: light dark;
+
+  --map-bg: #ded2ba;
+  --map-dot: rgb(30 20 8 / 0.12);
+  --map-ghost: rgb(181 68 30 / 0.2);
+  --paper: #f8efde;
+  --paper-rule: #d8c8aa;
+  --ink: #1e1408;
+  --ink-muted: #6b5a44;
+  --rust-dark: #7a2a14;
+  --region-selected: #ae4f23;
+  --outline-rust: #b5441e;
+  --accent: #a2421d;
+  --on-rust: #ffffff;
+
+  --pastel-sage: #c1d0b9;
+  --pastel-pink: #d2b4be;
+  --pastel-tan: #d4c2ac;
+  --pastel-lavender: #c8b8c2;
+  --pastel-olive: #d7ceaf;
+  --pastel-greyblue: #c0c1c3;
+  --pastel-cream: #f1e8d7;
+
+  --shadow: 0 6px 24px rgb(60 40 15 / 0.18), 0 1px 3px rgb(60 40 15 / 0.12);
+
+  --font-display: "Fraunces Variable", "Playfair Display", Georgia, serif;
+  --font-ui: "Inter Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-panel: 6px;
+  --tap: 44px; /* minimum touch target (WCAG 2.5.5 AAA is 44 CSS px) */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --map-bg: #2b251d;
+    --map-dot: rgb(241 232 215 / 0.12);
+    --map-ghost: rgb(217 119 74 / 0.25);
+    --paper: #3a3228;
+    --paper-rule: #5a4e3e;
+    --ink: #f1e8d7;
+    --ink-muted: #bbaa90;
+    --rust-dark: #b4532d;
+    --region-selected: #c8622f;
+    --outline-rust: #d9774a;
+    --accent: #e08a5e;
+    --on-rust: #fff7ec;
+    --pastel-sage: #59654f;
+    --pastel-pink: #6e5560;
+    --pastel-tan: #6c5e4c;
+    --pastel-lavender: #625562;
+    --pastel-olive: #6b654a;
+    --pastel-greyblue: #55585c;
+    --pastel-cream: #7a715f;
+    --shadow: 0 6px 24px rgb(0 0 0 / 0.45), 0 1px 3px rgb(0 0 0 / 0.3);
+  }
+}
+
+:root[data-theme="dark"] {
+  --map-bg: #2b251d;
+  --map-dot: rgb(241 232 215 / 0.12);
+  --map-ghost: rgb(217 119 74 / 0.25);
+  --paper: #3a3228;
+  --paper-rule: #5a4e3e;
+  --ink: #f1e8d7;
+  --ink-muted: #bbaa90;
+  --rust-dark: #b4532d;
+  --region-selected: #c8622f;
+  --outline-rust: #d9774a;
+  --accent: #e08a5e;
+  --on-rust: #fff7ec;
+  --pastel-sage: #59654f;
+  --pastel-pink: #6e5560;
+  --pastel-tan: #6c5e4c;
+  --pastel-lavender: #625562;
+  --pastel-olive: #6b654a;
+  --pastel-greyblue: #55585c;
+  --pastel-cream: #7a715f;
+  --shadow: 0 6px 24px rgb(0 0 0 / 0.45), 0 1px 3px rgb(0 0 0 / 0.3);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--map-bg);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

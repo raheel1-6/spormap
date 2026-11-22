@@ -1,0 +1,18 @@
+---
+import { upper } from "../lib/format";
+
+/** Eyebrow path ("İSTANBUL · KADIKÖY"), italic serif title, ✦ ✦ ✦ ornament. */
+interface Props {
+  path: string[];
+  title: string;
+}
+const { path, title } = Astro.props;
+---
+
+<header>
+  {path.length > 0 && <p class="eyebrow">{path.map((p) => upper(p)).join("  ·  ")}</p>}
+  <h1 class="panel-title">{title}</h1>
+  <div class="ornament" aria-hidden="true">
+    ✦ ✦ ✦
+  </div>
+</header>

@@ -1,0 +1,17 @@
+---
+/** Cream "menu card" with a double inner rule. */
+interface Props {
+  as?: "section" | "aside" | "div";
+  class?: string;
+  [key: `aria-${string}`]: string | undefined;
+}
+const { as: Tag = "div", class: className, ...rest } = Astro.props;
+---
+
+<Tag class:list={["paper", className]} {...rest}>
+  <div class="paper__rule">
+    <div class="paper__body">
+      <slot />
+    </div>
+  </div>
+</Tag>

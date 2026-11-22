@@ -1,0 +1,38 @@
+---
+import { formatCount, formatRating, type Locale } from "../lib/format";
+
+/** One line of the menu card:  Venue Name ˢ ··········· 4,9 (312)  /  Caddebostan */
+interface Props {
+  name: string;
+  rating: number;
+  reviews: number;
+  subline: string;
+  href: string;
+  badges?: string[];
+  locale?: Locale;
+}
+const { name, rating, reviews, subline, href, badges = [], locale = "tr" } = Astro.props;
+const r = formatRating(rating, locale);
+const c = formatCount(reviews, locale);
+const label =
+  locale === "tr"
+    ? `${name}, puan ${r}, ${c} değerlendirme, ${subline}`
+    : `${name}, rated ${r}, ${c} reviews, ${subline}`;
+---
+
+<li>
+  <a class="venue-row" href={href} aria-label={label}>
+    <span class="venue-row__line">
+      <span class="venue-row__name">
+        {name}
+        {badges.map((b) => (
+          <span class="venue-row__badge">{b}</span>
+        ))}
+      </span>
+      <span class="venue-row__leader" aria-hidden="true"></span>
+      <span class="venue-row__rating">{r}</span>
+      <span class="venue-row__count">({c})</span>
+    </span>
+    <span class="venue-row__sub">{subline}</span>
+  </a>
+</li>
