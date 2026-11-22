@@ -374,9 +374,9 @@
   filter: drop-shadow(0 1px 1.5px rgb(30 20 8 / 0.35));
 }
 .venue-pin__body {
-  fill: var(--outline-rust);
+  fill: var(--rust-dark);
   stroke: var(--paper);
-  stroke-width: 1.2;
+  stroke-width: 1.5;
 }
 .venue-pin__dot {
   fill: var(--paper);
@@ -385,7 +385,7 @@
   transform: scale(1.35);
 }
 .venue-pin--active .venue-pin__body {
-  fill: var(--rust-dark);
+  fill: var(--ink);
 }
 
 /* Small pin glyph on panel rows (row ↔ pin link). */
