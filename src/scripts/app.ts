@@ -115,7 +115,7 @@ async function boot(shell: HTMLElement) {
       onLongPress: showTooltip,
       onHover: (id, x, y) =>
         id && window.matchMedia("(hover: hover)").matches ? showTooltip(id, x, y) : hideTooltip(),
-      padding: () => overlayPadding(shell),
+      padding: overlayPadding,
     });
     if (import.meta.env.DEV)
       (window as unknown as { __spormap: unknown }).__spormap = { map: map.map, index };
@@ -130,12 +130,10 @@ async function boot(shell: HTMLElement) {
 
 /**
  * Keeps regions clear of the search bar, breadcrumb and zoom control. On wide screens the panel
- * is its own grid column beside the map; on phones it is a bottom sheet over the map.
+ * is its own grid column beside the map; on phones the map ends above the bottom sheet.
  */
-function overlayPadding(shell: HTMLElement): google.maps.Padding {
+function overlayPadding(): google.maps.Padding {
   const wide = window.matchMedia("(min-width: 768px)").matches;
   if (wide) return { top: 76, left: 24, bottom: 76, right: 64 };
-  const mapRect = shell.querySelector<HTMLElement>("[data-map]")!.getBoundingClientRect();
-  const panel = shell.querySelector<HTMLElement>("[data-panel]")!.getBoundingClientRect();
-  return { top: 72, left: 12, right: 12, bottom: Math.max(60, Math.round(mapRect.bottom - panel.top + 56)) };
+  return { top: 72, left: 12, right: 12, bottom: 84 };
 }

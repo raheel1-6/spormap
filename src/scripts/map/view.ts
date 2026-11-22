@@ -49,7 +49,9 @@ export class MapView {
     this.map = new maps.Map(element, {
       center: { lat: 41.05, lng: 28.95 },
       zoom: 9,
-      minZoom: 8,
+      minZoom: 7,
+      // Smooth fits: without fractional zoom a wide region snaps to the next whole level and gets clipped.
+      isFractionalZoomEnabled: true,
       maxZoom: 17,
       backgroundColor: "transparent",
       disableDefaultUI: true,

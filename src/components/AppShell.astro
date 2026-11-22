@@ -131,14 +131,18 @@ const canonicalPath = `${base}${pathOf(index, regionId)}/`;
       left: 0;
       right: 0;
       bottom: 0;
-      max-height: 45dvh;
+      height: 45dvh;
       margin: 0;
       border-radius: 14px 14px 0 0;
       padding-bottom: max(6px, env(safe-area-inset-bottom));
       z-index: 3;
     }
+    /* The map stops where the sheet starts so Google's logo and attribution stay visible. */
+    .map {
+      bottom: 45dvh;
+    }
     .crumb-slot {
-      bottom: calc(45dvh + 12px);
+      bottom: calc(45dvh + 34px);
     }
   }
 </style>
